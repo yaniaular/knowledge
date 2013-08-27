@@ -14,6 +14,7 @@ Contents:
    
    donde_quede
    aplicacion
+   postgresql
 
 Indices and tables
 ==================
