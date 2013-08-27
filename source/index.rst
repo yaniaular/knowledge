@@ -13,6 +13,7 @@ Contents:
 
    
    donde_quede
+   openerp
    aplicacion
    postgresql
 

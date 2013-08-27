@@ -104,15 +104,3 @@ $ln -s ~/.vim/.vimrc ~/.vimrc
 
 VIM
 ---
-
-23 de Agosto de 2013 - 8:51 p.m
--------------------------------
-
-server/openerp/osv/orm.py
-Linea 4006, 
-
-Se explica como agregar valores
-a campos one2many many2many, etc
-con el metodo write
-
-
