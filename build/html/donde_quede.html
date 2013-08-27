@@ -25,6 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="docs_knowledge 0 documentation" href="index.html" />
+    <link rel="next" title="Aplicaciones" href="aplicacion.html" />
     <link rel="prev" title="Welcome to docs_knowledge’s documentation!" href="index.html" /> 
   </head>
   <body>
@@ -34,6 +35,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="aplicacion.html" title="Aplicaciones"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Welcome to docs_knowledge’s documentation!"
              accesskey="P">previous</a> |</li>
@@ -50,6 +54,8 @@
 <h1>Historial de trabajo<a class="headerlink" href="#historial-de-trabajo" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="de-agosto-de-2013-8-51-p-m">
 <h2>24 de Agosto de 2013 - 8:51 p.m<a class="headerlink" href="#de-agosto-de-2013-8-51-p-m" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="resumen-del-dia">
+<h3>Resumen del día<a class="headerlink" href="#resumen-del-dia" title="Permalink to this headline">¶</a></h3>
 <p>Haciendo tarea de cluster 106, haciendo el manual de manufactura para explicar esta tarea 106,
 para el manual se explica el modulo mrp_consume_produce de Julio, en el cual
 hay ciertos errores al consumir y al producir nuevos items con respecto
@@ -58,12 +64,44 @@ debe agregar el stock.move al consumir, revisar código de addons/mrp/mrp.py
 linea 962.</p>
 <p>./openerp-server -r openerp -w openerp &#8211;addons-path=../addons/,../web/addons/,../web_example/,../mrp_consume_produce -u mrp_consume_produce -d mrp_cluster</p>
 </div>
+<div class="section" id="problemas-solventados-en-el-dia">
+<h3>Problemas solventados en el día<a class="headerlink" href="#problemas-solventados-en-el-dia" title="Permalink to this headline">¶</a></h3>
+<p>Ya logra crear los stock.moves para lo que se produce y lo que se consume</p>
+</div>
+<div class="section" id="problemas-que-se-presentaron">
+<h3>Problemas que se presentaron<a class="headerlink" href="#problemas-que-se-presentaron" title="Permalink to this headline">¶</a></h3>
+<p>El state de un stock.move debe quedar en Done, y queda en Waiting Another Move
+La locacion de un stock.move está mal
+Nunca se reduce los materiales nuevos de inventario</p>
+</div>
+</div>
 <div class="section" id="de-agosto-de-2013-5-28-p-m">
 <h2>26 de Agosto de 2013 - 5:28 p.m<a class="headerlink" href="#de-agosto-de-2013-5-28-p-m" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Resumen del día<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Ya se crean los consumibles en el move_lines2, el poblemas es que en los stock.moves
 no se están creando bien las localizaciones, es decir, el shipment_move_id que corresponde al
 sotck.move en rojo no se esta colocando en state DOne, y el consume_move_id tiene
 la localizacion de origen mala, debería ser Stock, y está recibiendo Production.</p>
+</div>
+</div>
+<div class="section" id="de-agosto-de-2013-9-31-a-m">
+<h2>27 de Agosto de 2013 - 9:31 a.m<a class="headerlink" href="#de-agosto-de-2013-9-31-a-m" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>Problemas solventados en el día<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Para la locación de un stock.move que se guardaba mal, se debía hacer un condicional
+indicando si se estaba consumiendo o produciendo, ya que, dependiendo de ellos, las
+locaciones que se obtienen de la orden de manufactura se invertian. :)</p>
+</div>
+<div class="section" id="id3">
+<h3>Resumen del día<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="servers-ejecutados">
+<h3>Servers ejecutados<a class="headerlink" href="#servers-ejecutados" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id4">
+<h3>Problemas que se presentaron<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</div>
 <div class="section" id="que">
 <h3>¿Qué?<a class="headerlink" href="#que" title="Permalink to this headline">¶</a></h3>
 <p>Arreglar módulo de Julio</p>
@@ -92,8 +130,8 @@ $ln -s ~/.vim/.vimrc ~/.vimrc</p>
 <div class="section" id="vim">
 <h2>VIM<a class="headerlink" href="#vim" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="id1">
-<h2>23 de Agosto de 2013 - 8:51 p.m<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>23 de Agosto de 2013 - 8:51 p.m<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>server/openerp/osv/orm.py
 Linea 4006,</p>
 <p>Se explica como agregar valores
@@ -111,8 +149,21 @@ con el metodo write</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Historial de trabajo</a><ul>
-<li><a class="reference internal" href="#de-agosto-de-2013-8-51-p-m">24 de Agosto de 2013 - 8:51 p.m</a></li>
+<li><a class="reference internal" href="#de-agosto-de-2013-8-51-p-m">24 de Agosto de 2013 - 8:51 p.m</a><ul>
+<li><a class="reference internal" href="#resumen-del-dia">Resumen del día</a></li>
+<li><a class="reference internal" href="#problemas-solventados-en-el-dia">Problemas solventados en el día</a></li>
+<li><a class="reference internal" href="#problemas-que-se-presentaron">Problemas que se presentaron</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#de-agosto-de-2013-5-28-p-m">26 de Agosto de 2013 - 5:28 p.m</a><ul>
+<li><a class="reference internal" href="#id1">Resumen del día</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#de-agosto-de-2013-9-31-a-m">27 de Agosto de 2013 - 9:31 a.m</a><ul>
+<li><a class="reference internal" href="#id2">Problemas solventados en el día</a></li>
+<li><a class="reference internal" href="#id3">Resumen del día</a></li>
+<li><a class="reference internal" href="#servers-ejecutados">Servers ejecutados</a></li>
+<li><a class="reference internal" href="#id4">Problemas que se presentaron</a></li>
 <li><a class="reference internal" href="#que">¿Qué?</a></li>
 <li><a class="reference internal" href="#como">¿Cómo?</a></li>
 <li><a class="reference internal" href="#cuando">¿Cuándo?</a></li>
@@ -124,7 +175,7 @@ con el metodo write</p>
 <li><a class="reference internal" href="#aprendizaje">Aprendizaje</a><ul>
 <li><a class="reference internal" href="#configurar-vim">Configurar VIM</a></li>
 <li><a class="reference internal" href="#vim">VIM</a></li>
-<li><a class="reference internal" href="#id1">23 de Agosto de 2013 - 8:51 p.m</a></li>
+<li><a class="reference internal" href="#id5">23 de Agosto de 2013 - 8:51 p.m</a></li>
 </ul>
 </li>
 </ul>
@@ -132,6 +183,9 @@ con el metodo write</p>
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Welcome to docs_knowledge&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="aplicacion.html"
+                        title="next chapter">Aplicaciones</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/donde_quede.txt"
@@ -160,6 +214,9 @@ con el metodo write</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="aplicacion.html" title="Aplicaciones"
+             >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Welcome to docs_knowledge’s documentation!"
              >previous</a> |</li>
