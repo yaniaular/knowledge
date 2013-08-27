@@ -61,6 +61,29 @@ Problemas solventados en el día
 Resumen del día
 ~~~~~~~~~~~~~~~
 
+Se crea un SQL mrp_cluster
+
+Data:
+- Productos
+- BOM
+- Routing
+
+Módulos instalados:
+- mrp_operations
+- mrp
+- warehouse
+- mrp_byproduct
+- mrp_consume_produce (Addons-vauxoo)
+
+Permisos:
+
+- Manage Multiple Units of Measure
+- Manage Secondary Unit of Measure
+- Manage Multiple Locations and Warehouses
+- Manage Routings
+- MRP / Button Consume-Produce
+
+
 ~~~~~~~~~~~~~~~~~~
 Servers ejecutados
 ~~~~~~~~~~~~~~~~~~
