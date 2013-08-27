@@ -11,8 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   
    donde_quede
-
+   aplicacion
 
 Indices and tables
 ==================
