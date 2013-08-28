@@ -105,6 +105,11 @@ wf_service = netsvc.LocalService("workflow")
 wf_service.trg_validate(uid, 'procurement.order', procurement_id, 'button_check', cr)
 procurement_order.action_done(cr, uid, [procurement_id])  
 
+Se hizo una propuesta de merge a los addons-vauxoo-7.0:
+
+https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-rev-mrp_consume_produce-yani
+https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-rev-mrp_consume_produce-yani/+merge/182765
+
 ~~~~~~~~~~~~~~~~~~
 Servers ejecutados
 ~~~~~~~~~~~~~~~~~~
