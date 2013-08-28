@@ -2,7 +2,7 @@
 Historial de trabajo
 ====================
 
-27 de Agosto de 2013 - 9:31 a.m
+27 de Agosto de 2013 - 4:33 p.m
 -------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -19,6 +19,7 @@ Resumen del día
 ~~~~~~~~~~~~~~~
 
 Se crea un SQL mrp_cluster
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Data:
 - Productos
@@ -41,16 +42,46 @@ Permisos:
 - MRP / Button Consume-Produce
 
 
+Proceso de Force Reservation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Modelo: mrp.production
+Método: force_production
+>
+Modelo: stock.picking
+Método: force_assing
+>
+Modelo: stock.move
+Metodo: force_assing
+
+No encontre nada que tuviera que ver con pasar el orden de abastecimientos a done
+sin embargo se llamo a un metodo  procurement_order.action_done(cr, uid, [procurement_id])
+que permitio colocar la orden de abastecimiento en Done, pero el campo de message se queda 
+vacío cuando debería decir Products reserved from stock. el único método que edita
+ese mensaje es action_move_assigned() en procurement/procurement.py, pero no consigo
+donde se llama ese método.
+
+Necesito saber el workflow que se genera al forzar la resevación para poder llevar a Done
+la orden de abastecimiento del producto adicional y ademñas de eso necesito pasar el stock.move
+a Done.
+
 ~~~~~~~~~~~~~~~~~~
 Servers ejecutados
 ~~~~~~~~~~~~~~~~~~
+
+./openerp-server -r openerp -w openerp 
+--addons-path=../addons/,../web/addons/,../web_example/,../mrp_consume_produce -u
+mrp_consume_produce,procurement,mrp -d mrp_cluster
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Al agregar una materia prima nueva, se vuelven a agregar las estimadas automaticamente a los
+- Al agregar una materia prima nueva, se vuelven a agregar las estimadas automáticamente a los
   procurement exceptions
+- La orden de abastecimiento pasa a Done pero sin el mensaje, se debe buscar el workflow
+  correcto para pasar la orden a Donde (El state de un stock.move debe quedar en Done, 
+  y queda en Waiting Another Move)
+- EL stock.move de la materi prima nueva no pasa a Done
 
 26 de Agosto de 2013 - 5:28 p.m
 -------------------------------
