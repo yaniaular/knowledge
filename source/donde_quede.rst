@@ -67,6 +67,15 @@ Al resolver lo anterior, ésto ya no se manifestó.
 Esto se resuelve colocando los campos de las localizaciones en la vista y con invisible con True
 para que no moleste al usuario.
 
+- Al producir todo lo que se tenía y luego se consume algo más, estaba dando un error ya que
+  la referencia para consumir un producto se utilizaba el campo move_created_ids que ya
+  se encontraban vacío.
+
+if mrp_obj.move_created_ids:
+    reference = mrp_obj.move_created_ids[0].id
+else:
+    reference = mrp_obj.move_created_ids2[-1].id
+
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
@@ -108,8 +117,10 @@ Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Al producir un elemento adicional, las locaciones del stock.move de los que se produjo es de
-  stock a stock y deberia ser de production a stock.
-
+  stock a stock y deberia ser de production a stock. (Resuelto `28 de Agosto de 2013 - 2:48 p.m`_ )
+- Al producir todo lo que se tenía y luego se consume algo más, estaba dando un error ya que
+  la referencia para consumir un producto se utilizaba el campo move_created_ids que ya
+  se encontraban vacío. (Resuelto `28 de Agosto de 2013 - 2:48 p.m`_ )
 
 27 de Agosto de 2013 - 4:33 p.m
 -------------------------------
