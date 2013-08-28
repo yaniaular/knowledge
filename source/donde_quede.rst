@@ -86,15 +86,19 @@ deducir cual era el método que se debía llamar para procesa las excepciones de
 de manera correcta. Resumen del pdb:
 
     /home/yanina/branches/instancias/7.0/addons/mrp/mrp.py(1021)force_production()
+    
     -> pick_obj.force_assign(cr, uid, [prod.picking_id.id for prod in self.browse(cr, uid, ids)])
 
     /home/yanina/branches/instancias/7.0/addons/stock/stock.py(778)force_assign()
+    
     -> self.pool.get('stock.move').force_assign(cr, uid, move_ids)
 
     /home/yanina/branches/instancias/7.0/addons/stock/stock.py(2126)force_assign()
+    
     -> wf_service.trg_write(uid, 'stock.picking', move.picking_id.id, cr)
 
     /home/yanina/branches/instancias/7.0/addons/procurement/procurement.py(482)test_finished()
+    
     -> procurement.id, 'button_check', cursor)
 
 se llama al método production_obj.force_production(cr, uid, [mrp_obj.id])
@@ -105,7 +109,7 @@ wf_service = netsvc.LocalService("workflow")
 wf_service.trg_validate(uid, 'procurement.order', procurement_id, 'button_check', cr)
 procurement_order.action_done(cr, uid, [procurement_id])  
 
-Se hizo una propuesta de merge a los addons-vauxoo-7.0:
+Se hizo una propuesta de **merge** a los addons-vauxoo-7.0:
 
 https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-rev-mrp_consume_produce-yani
 https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-rev-mrp_consume_produce-yani/+merge/182765
