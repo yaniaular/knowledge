@@ -2,6 +2,115 @@
 Historial de trabajo
 ====================
 
+Fecha - Hora
+------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Asunto del dia1
+^^^^^^^^^^^^^^^
+
+Asunto del dia2
+^^^^^^^^^^^^^^^
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+28 de Agosto de 2013 - 2:48 p.m
+-------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+- La orden de abastecimiento pasa a Done pero sin el mensaje, se debe buscar el workflow
+  correcto para pasar la orden a Done (El state de un stock.move debe quedar en Done, 
+  y queda en Waiting Another Move)
+
+Se agregaron las siguientes líneas de código:
+
+    wf_service = netsvc.LocalService("workflow")
+
+    wf_service.trg_validate(uid, 'procurement.order', procurement_id, 'button_check', cr)
+    
+    procurement_order.action_done(cr, uid, [procurement_id])  
+
+ésto permitió que la excepción de abastecimiento se procesara de manera correcta.
+
+- EL stock.move de la materia prima nueva no pasa a Done
+
+Con la siguiente línea se resuelve el problema:
+
+    self.pool.get('stock.move').action_done(cr, uid, [shipment_move_id], context=context) 
+
+- Al agregar una materia prima nueva, se vuelven a agregar las estimadas automáticamente a los
+  procurement exceptions.
+
+Al resolver lo anterior, ésto ya no se manifestó.
+
+- Al producir un elemento adicional, las locaciones del stock.move de los que se produjo es de
+  stock a stock y deberia ser de production a stock.
+
+Esto se resuelve colocando los campos de las localizaciones en la vista y con invisible con True
+para que no moleste al usuario.
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Con ayuda del pdb de python, y del comando w, se pudo revisar el flujo de procesos por los
+cuales se paseaban el openerp al forzar la reservación de materiales y así se pudo
+deducir cual era el método que se debía llamar para procesa las excepciones de abastecimiento
+de manera correcta. Resumen del pdb:
+
+    /home/yanina/branches/instancias/7.0/addons/mrp/mrp.py(1021)force_production()
+    -> pick_obj.force_assign(cr, uid, [prod.picking_id.id for prod in self.browse(cr, uid, ids)])
+
+    /home/yanina/branches/instancias/7.0/addons/stock/stock.py(778)force_assign()
+    -> self.pool.get('stock.move').force_assign(cr, uid, move_ids)
+
+    /home/yanina/branches/instancias/7.0/addons/stock/stock.py(2126)force_assign()
+    -> wf_service.trg_write(uid, 'stock.picking', move.picking_id.id, cr)
+
+    /home/yanina/branches/instancias/7.0/addons/procurement/procurement.py(482)test_finished()
+    -> procurement.id, 'button_check', cursor)
+
+se llama al método production_obj.force_production(cr, uid, [mrp_obj.id])
+
+Se pasa la excepción de abastecimiento por un proceso y luego se pasa a Done:
+
+wf_service = netsvc.LocalService("workflow")                                    
+wf_service.trg_validate(uid, 'procurement.order', procurement_id, 'button_check', cr)
+procurement_order.action_done(cr, uid, [procurement_id])  
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+./openerp-server -r openerp -w openerp --addons-path=../addons/,../web/addons/,../web_example/
+,../mrp_consume_produce -u mrp_consume_produce,procurement,mrp -d mrp_cluster
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Al producir un elemento adicional, las locaciones del stock.move de los que se produjo es de
+  stock a stock y deberia ser de production a stock.
+
+
 27 de Agosto de 2013 - 4:33 p.m
 -------------------------------
 
@@ -22,11 +131,13 @@ Se crea un SQL mrp_cluster
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Data:
+
 - Productos
 - BOM
 - Routing
 
 Módulos instalados:
+
 - mrp_operations
 - mrp
 - warehouse
@@ -77,11 +188,11 @@ Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Al agregar una materia prima nueva, se vuelven a agregar las estimadas automáticamente a los
-  procurement exceptions
+  procurement exceptions (Resuelto `28 de Agosto de 2013 - 2:48 p.m`_) 
 - La orden de abastecimiento pasa a Done pero sin el mensaje, se debe buscar el workflow
-  correcto para pasar la orden a Donde (El state de un stock.move debe quedar en Done, 
-  y queda en Waiting Another Move)
-- EL stock.move de la materi prima nueva no pasa a Done
+  correcto para pasar la orden a Done (El state de un stock.move debe quedar en Done, 
+  y queda en Waiting Another Move) (Resuelto `28 de Agosto de 2013 - 2:48 p.m`_)
+- EL stock.move de la materia prima nueva no pasa a Done (Resuelto `28 de Agosto de 2013 - 2:48 p.m`_ )
 
 26 de Agosto de 2013 - 5:28 p.m
 -------------------------------
