@@ -28,6 +28,63 @@ Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
+29 de Agosto de 2013 - 9:05 a.m
+-------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Cambiar la forma de obtener el producto principal para la referencia, ya que no siempre
+  estará en la posición 0, o la posición -1.
+
+De la materia prima que se carga por defecto desde el BOM, ya se tiene creado los asientos
+con la referencia al stock.move principal, que se refiere al producto final principal
+definido en la orden de manufactura. A partir del stock.picking de la orden de manufactura y
+consultados la lista de stock.move se pudo llevar al stock.move principal que se utilizará,
+sin embargo, se debe tener en cuenta que si no existen componentes en el BOM que se define en
+la orden de producción, no seŕa posible realizar ésta operación.
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se continúa realizando el manual, ya que el módulo mrp_consume_produce aparentemente está listo.
+
+Al definir un BOM sin componentes en una orden de manufactura no se crean el stock.move del
+producto final, se debe reportar un bug a openERP no sin antes probar mi teoría en el runbot.
+
+Trabajo repertido con respecto al módulo mrp_request_return
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Hable con Julio sobre la propuesta de merge del módulo mrp_consume_produce, y resulta que ya
+existe un modulo llamada mrp_request_return el cual agrega un boton a la orden de manufactura
+el cual se encarga de añadir productos nueva al page product to consume, y luego allí se
+puede ir nuevamente al wizard de Consumed para finalmente consumirlos en la orden de produccion.
+
+Sin embargo no encontre un modulo que hiciera la misma tarea para los productos producidos.
+Quede con Julio en que él iba a revisar lo que se tenía, y de mandarme una lista de modulos de mrp
+que el conozca para saber que tenemos en Vauxoo. Y además de eso debemos complementar
+lo que se hizo en mrp_consume_produce con lo que ha hecho Julio de MRP.
+
+Se debe revisar los modulos correspondientes a mrp_variation, mrp_account_variation.
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Cambiar la forma de obtener el producto principal para la referencia, ya que no siempre
+  estará en la posición 0, o la posición -1. (Resuelto `29 de Agosto de 2013 - 9:05 a.m`_ )
+- Se debe reportar bug con respecto a que no se crean el stock.move del producto principal
+  cuando en su BOM no tiene componentes.
+- Existe un módulo de Julio que ya agregaba nuevos items y además los cancelaba, mrp_request_return
+  y mrp_request_return_cancel.
+
 28 de Agosto de 2013 - 2:48 p.m
 -------------------------------
 
@@ -231,8 +288,8 @@ Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - El state de un stock.move debe quedar en Done, y queda en Waiting Another Move
-- La locacion de un stock.move está mal (Resuelto `27 de Agosto de 2013 - 9:31 a.m`_) 
-- Nunca se reduce los materiales nuevos de inventario (Resuelto `27 de Agosto de 2013 - 9:31 a.m`_)
+- La locacion de un stock.move está mal (Resuelto `27 de Agosto de 2013 - 4:33 p.m`_) 
+- Nunca se reduce los materiales nuevos de inventario (Resuelto `27 de Agosto de 2013 - 4:33 p.m`_)
 
 24 de Agosto de 2013 - 8:51 p.m
 -------------------------------
