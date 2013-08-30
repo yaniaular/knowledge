@@ -28,6 +28,54 @@ Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+30 de Agosto de 2013 - 5:37
+---------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Hablar con Julio para tomar una decisión.
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+Hable con Julio, revisó los módulos que tiene de mrp:
+
+- mrp_variation: es un módulo que te muestra la variación de los productos consumidos y los
+  producidos, es decir, por ejemplo, si se produjeron menos materia prima de los que se esperaba te
+  muestra en números negativos lo que sobró. Y cuando se usaron más materiales de lo planificado,
+  entonces se mostraran esos números en negativo.
+- mrp_subproduct_pt_planified: permite tomar en cuenta los subproductos del módulo mrp_buproduct
+  en los productos finales planificados del módulo mrp_pt_planified, campo pt_planified_ids
+- mrp_byproducts: permite agregar productos finales adicionales desde el bom.
+- mrp_pt_planified: permite tener una vista de los productos a consumir y a producir que estén
+  planificados.
+- mrp_request_return: permite requerer materia prima adicional mediante un boton en la orden de
+  manufactura.
+- mrp_request_return_cancel:
+- mrp_consume_produce: agrega un wizard que permite editar el numero de materia prima usada o el
+  numero de productos producidos.
+- mrp_account_variation:
+- mrp_account_variation_cancel:
+- mrp_location_line_production:
+
+Qué falta?:
+
+- un módulo que permita agregados nuevos producidos como mrp_request_return y de seguro debe
+  cancelar com mrp_request_return_cancel.
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- En mrp_variation habían un problema porque no tomaba en cuenta los byproducts para las
+  variaciones. por lo tanto se tuvo que editar el módulo mrp_subproduct_pt_planified que hacía esa
+  funcionalidad pero no estaba migrado a version 7. Se mando un patch a Julio para que lo revisara.
 
 29 de Agosto de 2013 - 9:05 a.m
 -------------------------------
