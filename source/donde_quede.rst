@@ -28,6 +28,45 @@ Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+2 de Septiembre del 2013
+------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ninguno
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Cree una carpeta llamar script_modulos la cual contiene un modulo totalmente vacío para
+empezar a trabajar, faltaría colocarle el nombre de quien está desarrollando.
+
+También contiene un script que se encarga de crear las carpetas y de mover el icon del 
+módulo. 
+
+Se creó un branch mrp_produce_new_products/mrp_produce_new_products para crear el botón que se
+encargará de crear nuevos productos finales.
+
+Se creo un sql con el modulo nuevo instalado en el hombre llamado mrp_produce_new_products.sql.
+
+Mañana se debe crear el botón para tener productos nuevos en la orden de manufactura.
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../web_example/,../mrp_produce_new_products -u
+mrp_produce_new_products -d mrp_produce_new_product
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ninguno por ahora
+
 30 de Agosto de 2013 - 5:37
 ---------------------------
 
@@ -46,7 +85,7 @@ Hable con Julio, revisó los módulos que tiene de mrp:
   producidos, es decir, por ejemplo, si se produjeron menos materia prima de los que se esperaba te
   muestra en números negativos lo que sobró. Y cuando se usaron más materiales de lo planificado,
   entonces se mostraran esos números en negativo.
-- mrp_subproduct_pt_planified: permite tomar en cuenta los subproductos del módulo mrp_buproduct
+- mrp_subproduct_pt_planified: permite tomar en cuenta los subproductos del módulo mrp_byproduct
   en los productos finales planificados del módulo mrp_pt_planified, campo pt_planified_ids
 - mrp_byproducts: permite agregar productos finales adicionales desde el bom.
 - mrp_pt_planified: permite tener una vista de los productos a consumir y a producir que estén
