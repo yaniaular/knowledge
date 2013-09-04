@@ -4,28 +4,121 @@ Historial de trabajo
 
 Fecha - Hora
 ------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+4 de Septiembre del 2013 - 5:10 p.m
+-----------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas solventados en el día
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+- Cargar resumen de tareas en cada tarea de la instancia de cluster.
+
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
 
-Asunto del dia1
-^^^^^^^^^^^^^^^
+Se envía un mensaje a cada tarea de suplivac con el resumen de la reunión del 3 de septiembre.
 
-Asunto del dia2
-^^^^^^^^^^^^^^^
+lp:~vauxoo/addons-vauxoo/7.0-rev-mrp_consume_produce_create_false-yani
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Daba un problema al agregar un nuevo item, se deshabilita
+add item en el wizard de consumir.
+
+lp:~vauxoo/addons-vauxoo/7.0-rev-mrp_request_return-yani
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Daba un problema al agregar un nuevo item, se arregla el problema y se deshabilita
+add item en el wizard de requerimiento.
+
+lp:~vauxoo/addons-vauxoo/7.0-mig-mrp_subproduct_pt_planified_to_7.0-yani
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+UN módulo que muestra una tabla con los productos planificados mrp_pt_planified el cual
+para poder mostrar tambien como planificados a los byproducts usa el modulo
+mrp_subproduct_pt_planified el cual se migró a versión 7 porque no estaba funcionando.
+
+lp:~vauxoo/addons-vauxoo/7.0-dev-mrp_request_add_item-yani
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Se crea nuevo branch para poder agregar items al wizard de Request/Return 
+módulo mrp_request_return.
+
+Se necesita aplicar los últimos dos merge y luego hacer merge de los addons a éste branch
+
+Se debe terminar para escribir lo siguiente en la tarea 109.
+
+Solución Final. Acorde a lo hablado en la reunión de 3 de Septiembre 2013 
+(Jose Javier, Armando, German, Humberto, Rafael, Katherine y Yanina), ésta tarea se 
+resuelve utilizando el módulo de mrp_request_return nativo de los addons-vauxoo, 
+para conocer sus funcionalidades y cómo se configura debidamente, revisar el manual 
+de MRP versión 29-Ago-2013 en la página 44 específicamente. 
+
+(Nota técnica: Se deshabilitó la ópcion de agregar nuevos consumidos por medio de 
+mrp_consume_produce, para eso se utilizará mrp_request_return)
 
 ~~~~~~~~~~~~~~~~~~
 Servers ejecutados
 ~~~~~~~~~~~~~~~~~~
 
+./openerp-server -r openerp -w openerp --addons-path=../addons/,../web/addons/,../web_example/
+,../mrp_request_add_item -u mrp_request_add_item -d mrp_cluster 
+--xmlrpc-port=8069 --no-xmlrpcs --no-netrpc
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Hacer minuta a German.
+- Hacer 2 merge pendientes con Humberto
+- Mezclar lo que se hizo en mrp_consume_produce con mrp_request_add_item
+- ¿Modulo de mrp_produce_new_products se hará?
+- Revisar script para crear módulos nuevos
+
+3 de Septiembre del 2013 - 12:30 a.m
+------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Aclaración de procesos con el personal de cluster.
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se tiene una reunión el 3 de Septiembre 2013 (Jose Javier, Armando, German, Humberto,
+Rafael, Katherine y Yanina), se discuten varios procesos de MRP llegando a un acuerdo
+mutuo, reflejado en la instancia de cluster, proyecto Suplivac. 
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+Ninguno.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ninguno.
 
 
 2 de Septiembre del 2013
