@@ -9,6 +9,7 @@ Welcome to Knowledge's Documentation
 Contents:
 
 .. toctree::
+   :numbered:
    :maxdepth: 2
 
    vim
@@ -21,7 +22,8 @@ Historial de Trabajo
 2013:
 
 .. toctree::
-   :maxdepth: 2
+   :numbered:
+   :maxdepth: 1
 
    sep-2013.rst
    ago-2013.rst
