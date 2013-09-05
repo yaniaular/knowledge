@@ -1,167 +1,9 @@
-====================
-Historial de trabajo
-====================
+===========
+Agosto 2013
+===========
 
-Fecha - Hora
-------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas solventados en el día
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~
-Resumen del día
-~~~~~~~~~~~~~~~
-^^^^^^^^^^^^^^^
-~~~~~~~~~~~~~~~~~~
-Servers ejecutados
-~~~~~~~~~~~~~~~~~~
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas que se presentaron
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-4 de Septiembre del 2013 - 5:10 p.m
------------------------------------
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas solventados en el día
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Cargar resumen de tareas en cada tarea de la instancia de cluster.
-
-~~~~~~~~~~~~~~~
-Resumen del día
-~~~~~~~~~~~~~~~
-
-Se envía un mensaje a cada tarea de suplivac con el resumen de la reunión del 3 de septiembre.
-
-lp:~vauxoo/addons-vauxoo/7.0-rev-mrp_consume_produce_create_false-yani
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Daba un problema al agregar un nuevo item, se deshabilita
-add item en el wizard de consumir.
-
-lp:~vauxoo/addons-vauxoo/7.0-rev-mrp_request_return-yani
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Daba un problema al agregar un nuevo item, se arregla el problema y se deshabilita
-add item en el wizard de requerimiento.
-
-lp:~vauxoo/addons-vauxoo/7.0-mig-mrp_subproduct_pt_planified_to_7.0-yani
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-UN módulo que muestra una tabla con los productos planificados mrp_pt_planified el cual
-para poder mostrar tambien como planificados a los byproducts usa el modulo
-mrp_subproduct_pt_planified el cual se migró a versión 7 porque no estaba funcionando.
-
-lp:~vauxoo/addons-vauxoo/7.0-dev-mrp_request_add_item-yani
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Se crea nuevo branch para poder agregar items al wizard de Request/Return 
-módulo mrp_request_return.
-
-Se necesita aplicar los últimos dos merge y luego hacer merge de los addons a éste branch
-
-Se debe terminar para escribir lo siguiente en la tarea 109.
-
-Solución Final. Acorde a lo hablado en la reunión de 3 de Septiembre 2013 
-(Jose Javier, Armando, German, Humberto, Rafael, Katherine y Yanina), ésta tarea se 
-resuelve utilizando el módulo de mrp_request_return nativo de los addons-vauxoo, 
-para conocer sus funcionalidades y cómo se configura debidamente, revisar el manual 
-de MRP versión 29-Ago-2013 en la página 44 específicamente. 
-
-(Nota técnica: Se deshabilitó la ópcion de agregar nuevos consumidos por medio de 
-mrp_consume_produce, para eso se utilizará mrp_request_return)
-
-~~~~~~~~~~~~~~~~~~
-Servers ejecutados
-~~~~~~~~~~~~~~~~~~
-
-./openerp-server -r openerp -w openerp --addons-path=../addons/,../web/addons/,../web_example/
-,../mrp_request_add_item -u mrp_request_add_item -d mrp_cluster 
---xmlrpc-port=8069 --no-xmlrpcs --no-netrpc
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas que se presentaron
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Hacer minuta a German.
-- Hacer 2 merge pendientes con Humberto
-- Mezclar lo que se hizo en mrp_consume_produce con mrp_request_add_item
-- ¿Modulo de mrp_produce_new_products se hará?
-- Revisar script para crear módulos nuevos
-
-3 de Septiembre del 2013 - 12:30 a.m
-------------------------------------
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas solventados en el día
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Aclaración de procesos con el personal de cluster.
-
-~~~~~~~~~~~~~~~
-Resumen del día
-~~~~~~~~~~~~~~~
-
-Se tiene una reunión el 3 de Septiembre 2013 (Jose Javier, Armando, German, Humberto,
-Rafael, Katherine y Yanina), se discuten varios procesos de MRP llegando a un acuerdo
-mutuo, reflejado en la instancia de cluster, proyecto Suplivac. 
-
-~~~~~~~~~~~~~~~~~~
-Servers ejecutados
-~~~~~~~~~~~~~~~~~~
-
-Ninguno.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas que se presentaron
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Ninguno.
-
-
-2 de Septiembre del 2013
-------------------------
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas solventados en el día
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Ninguno
-
-~~~~~~~~~~~~~~~
-Resumen del día
-~~~~~~~~~~~~~~~
-
-Cree una carpeta llamar script_modulos la cual contiene un modulo totalmente vacío para
-empezar a trabajar, faltaría colocarle el nombre de quien está desarrollando.
-
-También contiene un script que se encarga de crear las carpetas y de mover el icon del 
-módulo. 
-
-Se creó un branch mrp_produce_new_products/mrp_produce_new_products para crear el botón que se
-encargará de crear nuevos productos finales.
-
-Se creo un sql con el modulo nuevo instalado en el hombre llamado mrp_produce_new_products.sql.
-
-Mañana se debe crear el botón para tener productos nuevos en la orden de manufactura.
-
-~~~~~~~~~~~~~~~~~~
-Servers ejecutados
-~~~~~~~~~~~~~~~~~~
-./openerp-server -r openerp -w openerp
---addons-path=../addons/,../web/addons/,../web_example/,../mrp_produce_new_products -u
-mrp_produce_new_products -d mrp_produce_new_product
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas que se presentaron
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Ninguno por ahora
-
-30 de Agosto de 2013 - 5:37
----------------------------
+30 de Agosto del 2013 - 5:37 p.m
+--------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas solventados en el día
@@ -209,8 +51,8 @@ Problemas que se presentaron
   variaciones. por lo tanto se tuvo que editar el módulo mrp_subproduct_pt_planified que hacía esa
   funcionalidad pero no estaba migrado a version 7. Se mando un patch a Julio para que lo revisara.
 
-29 de Agosto de 2013 - 9:05 a.m
--------------------------------
+29 de Agosto del 2013 - 9:05 a.m
+--------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas solventados en el día
@@ -259,14 +101,14 @@ Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Cambiar la forma de obtener el producto principal para la referencia, ya que no siempre
-  estará en la posición 0, o la posición -1. (Resuelto `29 de Agosto de 2013 - 9:05 a.m`_ )
+  estará en la posición 0, o la posición -1. (Resuelto `29 de Agosto del 2013 - 9:05 a.m`_ )
 - Se debe reportar bug con respecto a que no se crean el stock.move del producto principal
   cuando en su BOM no tiene componentes.
 - Existe un módulo de Julio que ya agregaba nuevos items y además los cancelaba, mrp_request_return
   y mrp_request_return_cancel.
 
-28 de Agosto de 2013 - 2:48 p.m
--------------------------------
+28 de Agosto del 2013 - 2:48 p.m
+--------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas solventados en el día
@@ -363,13 +205,13 @@ Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Al producir un elemento adicional, las locaciones del stock.move de los que se produjo es de
-  stock a stock y deberia ser de production a stock. (Resuelto `28 de Agosto de 2013 - 2:48 p.m`_ )
+  stock a stock y deberia ser de production a stock. (Resuelto `28 de Agosto del 2013 - 2:48 p.m`_ )
 - Al producir todo lo que se tenía y luego se consume algo más, estaba dando un error ya que
   la referencia para consumir un producto se utilizaba el campo move_created_ids que ya
-  se encontraban vacío. (Resuelto `28 de Agosto de 2013 - 2:48 p.m`_ )
+  se encontraban vacío. (Resuelto `28 de Agosto del 2013 - 2:48 p.m`_ )
 
-27 de Agosto de 2013 - 4:33 p.m
--------------------------------
+27 de Agosto del 2013 - 4:33 p.m
+--------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas solventados en el día
@@ -445,14 +287,14 @@ Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Al agregar una materia prima nueva, se vuelven a agregar las estimadas automáticamente a los
-  procurement exceptions (Resuelto `28 de Agosto de 2013 - 2:48 p.m`_) 
+  procurement exceptions (Resuelto `28 de Agosto del 2013 - 2:48 p.m`_) 
 - La orden de abastecimiento pasa a Done pero sin el mensaje, se debe buscar el workflow
   correcto para pasar la orden a Done (El state de un stock.move debe quedar en Done, 
-  y queda en Waiting Another Move) (Resuelto `28 de Agosto de 2013 - 2:48 p.m`_)
-- EL stock.move de la materia prima nueva no pasa a Done (Resuelto `28 de Agosto de 2013 - 2:48 p.m`_ )
+  y queda en Waiting Another Move) (Resuelto `28 de Agosto del 2013 - 2:48 p.m`_)
+- EL stock.move de la materia prima nueva no pasa a Done (Resuelto `28 de Agosto del 2013 - 2:48 p.m`_ )
 
-26 de Agosto de 2013 - 5:28 p.m
--------------------------------
+26 de Agosto del 2013 - 5:28 p.m
+--------------------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -468,11 +310,11 @@ Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - El state de un stock.move debe quedar en Done, y queda en Waiting Another Move
-- La locacion de un stock.move está mal (Resuelto `27 de Agosto de 2013 - 4:33 p.m`_) 
-- Nunca se reduce los materiales nuevos de inventario (Resuelto `27 de Agosto de 2013 - 4:33 p.m`_)
+- La locacion de un stock.move está mal (Resuelto `27 de Agosto del 2013 - 4:33 p.m`_) 
+- Nunca se reduce los materiales nuevos de inventario (Resuelto `27 de Agosto del 2013 - 4:33 p.m`_)
 
-24 de Agosto de 2013 - 8:51 p.m
--------------------------------
+24 de Agosto del 2013 - 8:51 p.m
+--------------------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -492,26 +334,3 @@ Problemas solventados en el día
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Ya logra crear los stock.moves para lo que se produce y lo que se consume
-
-
-
-
-
-
-
-~~~~~
-¿Qué?
-~~~~~
-
-~~~~~~
-¿Cómo?
-~~~~~~
-
-~~~~~~~~
-¿Cuándo?
-~~~~~~~~
-
-~~~~~~~
-¿Dónde?
-~~~~~~~
-

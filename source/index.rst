@@ -3,19 +3,29 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to docs_knowledge's documentation!
-==========================================
+Welcome to Knowledge's Documentation
+====================================
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
-   
-   donde_quede
-   openerp
+   vim
    aplicacion
    postgresql
+
+Historial de Trabajo
+====================
+
+2013:
+
+.. toctree::
+   :maxdepth: 2
+
+   sep-2013.rst
+   ago-2013.rst
+
 
 Indices and tables
 ==================
