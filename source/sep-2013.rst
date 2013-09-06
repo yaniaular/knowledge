@@ -80,7 +80,7 @@ para conocer sus funcionalidades y cómo se configura debidamente, revisar el ma
 de MRP versión 29-Ago-2013 en la página 44 específicamente. 
 
 (Nota técnica: Se deshabilitó la ópcion de agregar nuevos consumidos por medio de 
-mrp_consume_produce, para eso se utilizará mrp_request_return)
+mrp_consume_produce, para eso se utilizará mrp_request_add_item)
 
 ~~~~~~~~~~~~~~~~~~
 Servers ejecutados
