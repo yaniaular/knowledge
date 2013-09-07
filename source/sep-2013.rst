@@ -17,7 +17,28 @@ Problemas solventados en el día
 Resumen del día
 ~~~~~~~~~~~~~~~
 
-^
+Se terminó el módulo de mrp_request_add_item.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Se hizo el merged
+https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-dev-mrp_request_add_item-yani
+
+
+Producto sólo lectura en el módulo mrp_consume_produce
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Se cambió a readonly el producto en los wizard de mrp_consume_produce
+https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-rev-mrp_consume_produce_product_readonly-yani
+
+Migrado el módulo mrp_subproduct_pt_planified a versión 7.0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-mig-mrp_subproduct_pt_planified_to_7.0-yani
+
+
+Migrado el módulo mrp_request_return a versión 7.0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-rev-mrp_request_return-yani/+merge/183963
+
+
+
 
 ~~~~~~~~~~~~~~~~~~
 Servers ejecutados
