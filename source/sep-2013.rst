@@ -4,6 +4,33 @@ Septiembre 2013
 
 .. contents:: Tabla de Contenido
 
+6 de Septiembre del 2013 - 5:00 p.m
+-----------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se terminó el módulo de mrp_workorder_variation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+éste módulo se encarga de agregar una tabla para las cantidades de los productos que entra
+y las cantidades de los productos que salen.
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 5 de Septiembre del 2013 - 5:00 p.m
 -----------------------------------
 
