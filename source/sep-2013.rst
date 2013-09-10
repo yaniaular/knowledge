@@ -4,12 +4,61 @@ Septiembre 2013
 
 .. contents:: Tabla de Contenido
 
+9 de Septiembre del 2013 - 5:00 p.m
+-----------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Merged de mrp_workorder_variation
+https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-dev-mrp_workorder_variation-yani/+merge/184377
+
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Traceability. Para manejar numero serial en varios paquetes.
+Regla en Warehouse -> Traceability -> Track serial number on products
+Warehouse -> Traceability -> Expiry date on serial numbers
+Warehouse -> Traceability -> Track serial number on logistic unit (pallets)
+
+Para crear modo de empaquetado con su EAN.
+Regla en Warehouse -> Allow to define several packaging methods on products 
+
+
+Ésto me va a poder mostrar los menúes Traceability
+- Serial Number ( lote de producción )
+- Packs ( )
+
+y además de eso una sección de traceability en los stock moves.
+Donde puedes escoger un Pack o un Serial Number para el stock move.
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../web_example/,../mrp_workorder_variation -u
+mrp_workorder_variation -d mrp_cluster
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Documentar la trazabilidad en Openerp
+- Documentar el Packaging en Openerp
+
 6 de Septiembre del 2013 - 5:00 p.m
 -----------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas solventados en el día
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Revisar Minuta
+- Mezclar lo que se hizo en mrp_consume_produce con mrp_request_add_item
 
 
 ~~~~~~~~~~~~~~~
@@ -22,14 +71,22 @@ Se terminó el módulo de mrp_workorder_variation
 éste módulo se encarga de agregar una tabla para las cantidades de los productos que entra
 y las cantidades de los productos que salen.
 
+TRazabilidad son las etiquetas
+Packaging es los de los Packs
+
 ~~~~~~~~~~~~~~~~~~
 Servers ejecutados
 ~~~~~~~~~~~~~~~~~~
+
+/openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../web_example/,../mrp_variation -u mrp_variation -d
+mrp_cluster
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+- Revisar documentación de packing y traceability en OpenERP
 
 5 de Septiembre del 2013 - 5:00 p.m
 -----------------------------------
@@ -64,12 +121,13 @@ Migrado el módulo mrp_request_return a versión 7.0
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-rev-mrp_request_return-yani/+merge/183963
 
-
-
-
 ~~~~~~~~~~~~~~~~~~
 Servers ejecutados
 ~~~~~~~~~~~~~~~~~~
+
+/openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../web_example/,../mrp_variation -u mrp_variation -d
+mrp_cluster
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas que se presentaron
