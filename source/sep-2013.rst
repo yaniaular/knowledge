@@ -19,6 +19,34 @@ Septiembre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+11 de Septiembre del 2013 - 9:36 p.m
+------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Reunión en Cluster. Presentar módulo de lotes y mermas.
+
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+- ./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../web_example/,../mrp_workorder_variation,../base_module_record-dev-yani/
+-u mrp_workorder_variation -d mrp_cluster --xmlrpc-port=8069 --no-xmlrpcs --no-netrpc
+
+- ./openerp-server -r openerp -w openerp
+  --addons-path=../addons/,../web/addons/,../web_example/,../mrp_shipping_packaging -u
+  mrp_shipping_packaging -d mrp_cluster_database --xmlrpc-port=8069 --no-xmlrpcs --no-netrpc
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presalesaentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 10 de Septiembre del 2013 - 5:00 p.m
 ------------------------------------
 
