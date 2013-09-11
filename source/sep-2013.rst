@@ -4,6 +4,65 @@ Septiembre 2013
 
 .. contents:: Tabla de Contenido
 
+.. 10 de Septiembre del 2013 - 5:00 p.m
+.. ------------------------------------
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. Problemas solventados en el día
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. ~~~~~~~~~~~~~~~
+.. Resumen del día
+.. ~~~~~~~~~~~~~~~
+.. ~~~~~~~~~~~~~~~~~~
+.. Servers ejecutados
+.. ~~~~~~~~~~~~~~~~~~
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. Problemas que se presentaron
+.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+10 de Septiembre del 2013 - 5:00 p.m
+------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Se termina el manual para las mermas.
+- Se crea un pequeño webservice para mrp
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Me descargué la librería oerplib para poder hacer un webservice
+``https://launchpad.net/oerplib``.
+en su carpeta de doc pude hacer un make html para poder visualizar la documentación.
+se actulizo la librería instalada con el comando
+``sudo cp -r oerplib/oerplib /usr/local/lib/python2.7/dist-packages/OERPLib-0.7.2-py2.7.egg/``
+y ésto permitió que pudiera funcionar la documentación que estaba visualizando.
+
+En la carpeta instancias se define el prefijo webservice para las carpetas que tengan definidos
+webservices. Y se define el prefijo script para archivos que no tengan que ver con branches ni
+webservice.
+
+Se hizo limpieza de base de datos. Se crea un criterio para crear base de datos.
+
+moduloVERSION_cliente ó moduloVERSION
+ejemplo: mrp7_cluster ó mrp7
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../web_example/,../mrp_workorder_variation,../base_module_record-dev-yani/
+-u mrp_workorder_variation -d mrp_cluster --xmlrpc-port=8069 --no-xmlrpcs --no-netrpc
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Terminar el manual de trazabilidad
+
+
 9 de Septiembre del 2013 - 5:00 p.m
 -----------------------------------
 
