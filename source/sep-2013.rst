@@ -19,16 +19,68 @@ Septiembre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+12 de Septiembre del 2013 - 5:00 p.m
+------------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Hoy he aprendido sobre como poder editar modelos prototipados, por ejemplo.
+
+stock.picking.out es un modelo que hace herencia prototipada de stock.picking, entonces se quiere
+agregar un campo nuevo a stock.picking.out. Se debe agregar dicho campo en ambos modelos, y luego
+se puede hacer la vista heredada del stock.picking.out y se agrega el campo nuevo.
+
+Cuando exista algún domain o alguna condición que incluya un campo como por ejemplo ``state`` de la
+siguiente manera ``modifiers="{'readonly': [['state', 'in', ['packing', 'done']]]}"`` el campo
+state debe estar presente en la vista, ya que sino, dará un error en el Openerp.
+
+Cuando se sobreescriba una vista o se tenga una vista en Openerp, ya sea form, tree, etc. y exista
+un botón ``<button name="%(stock.split_into)d"  ...`` el método se debe especificar a que módulo
+pertenece en caso de que esté en otro módulo distinto al de la vista como se puede observar en el
+ejemplo.
+
+Se terminó el módulo de mrp_shipping_packing 
+
+Se creo un script para poder cargar los iconos en cada módulo de mrp.
+``script_icons_mrp``
+
+Aprendí un poco más sobre expresiones regulares en vim
+
+se creó un branch con el cambio de los iconos para propornerlo a Nhomar y Moises
+``7.0-rev-icons_mrp_vauxoo-yani``
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../web_example/,../mrp_shipping_packaging -u
+mrp_shipping_packaging -d
+mrp_cluster_database --xmlrpc-port=8069 --no-xmlrpcs --no-netrpc
+
+
 11 de Septiembre del 2013 - 9:36 p.m
 ------------------------------------
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas solventados en el día
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- La gente de cluster está feliz con el módulo de lotes y todo lo que se ha hecho.
+
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
 
 Reunión en Cluster. Presentar módulo de lotes y mermas.
+
+Se debe crear un módulo que herede del modelo stock.tracking y agregar un campo partner, un ean y
+un state junto con su botón para avanzar de estado. Luego en stock.picking.out se debe agregar un
+filtro a move_lines donde solo permita agregar stock_moves con partner de pack igual al partner de
+la Delivery Orders. 
+
+Una vez que un pack esté Done no se puede volver a utilizar.
 
 
 ~~~~~~~~~~~~~~~~~~
@@ -44,8 +96,12 @@ Servers ejecutados
   mrp_shipping_packaging -d mrp_cluster_database --xmlrpc-port=8069 --no-xmlrpcs --no-netrpc
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas que se presalesaentaron
+Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Estaba trabajando con una vista con herencia prototipada y me daba problemas al tratar de agregar
+  un campo en dicha herencia 
+
 
 10 de Septiembre del 2013 - 5:00 p.m
 ------------------------------------
