@@ -19,6 +19,52 @@ Septiembre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+17 de Septiembre del 2013 - 5:00 p.m
+------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+16 de Septiembre del 2013 - 5:00 p.m
+------------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se hizo merge del módulo stock_shipping_packaging
+https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-dev-stock_shipping_packaging-yani/+merge/185889
+
+se habló lo de los iconos y a Nhomar le pareció buena idea. Debo proponer los iconos nuevos en un
+tiempo libre. Para eso tengo un scrip ``script_icons_mrp``.
+
+https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-icons/+merge/183520
+
+Se empezo con el tuto de javascript y openerp:
+
+en ``web/addons/web/doc`` se encuentra la documentación en sphinx.
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../web_example/,../stock_shipping_packaging -u
+stock_shipping_packaging -d stock_prueba --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
+
 12 de Septiembre del 2013 - 5:00 p.m
 ------------------------------------
 
@@ -63,6 +109,7 @@ mrp_cluster_database --xmlrpc-port=8069 --no-xmlrpcs --no-netrpc
 
 11 de Septiembre del 2013 - 9:36 p.m
 ------------------------------------
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas solventados en el día
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -366,27 +413,8 @@ Se tiene una reunión el 3 de Septiembre 2013 (Jose Javier, Armando, German, Hum
 Rafael, Katherine y Yanina), se discuten varios procesos de MRP llegando a un acuerdo
 mutuo, reflejado en la instancia de cluster, proyecto Suplivac. 
 
-~~~~~~~~~~~~~~~~~~
-Servers ejecutados
-~~~~~~~~~~~~~~~~~~
-
-Ninguno.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas que se presentaron
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Ninguno.
-
-
 2 de Septiembre del 2013 - 5:15 p.m
 -----------------------------------
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas solventados en el día
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Ninguno
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -411,10 +439,4 @@ Servers ejecutados
 ./openerp-server -r openerp -w openerp
 --addons-path=../addons/,../web/addons/,../web_example/,../mrp_produce_new_products -u
 mrp_produce_new_products -d mrp_produce_new_product
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas que se presentaron
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Ninguno por ahora
 
