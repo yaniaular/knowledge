@@ -19,23 +19,25 @@ Septiembre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-17 de Septiembre del 2013 - 5:00 p.m
+18 de Septiembre del 2013 - 5:00 p.m
 ------------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas solventados en el día
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~~~~
-Servers ejecutados
-~~~~~~~~~~~~~~~~~~
+Reunión con Cluster desde las 9:45 hasta las 12:00
+Practicando Javascript con Openerp
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas que se presentaron
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+17 de Septiembre del 2013 - 5:00 p.m
+------------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Practicando Javascript con Openerp
 
 
 16 de Septiembre del 2013 - 5:00 p.m
