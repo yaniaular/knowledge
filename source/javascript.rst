@@ -1,8 +1,4 @@
 
-
-
-
-
 ----------------------------------
 Herramientas para comprimir código
 ----------------------------------
@@ -69,4 +65,42 @@ $(document).ready(function() {
 $(document).ready(function() {
     $("h1").css("color","red");
 });
+
+---------------------------------------------
+Librerías javascript disponibles desde google
+---------------------------------------------
+
+code.google.com/apis/libraries
+
+------------------
+http://caniuse.com
+------------------
+
+Provee tablas de compatibilidad para características de HTML5 y CSS3.
+
+--------------------
+http://modernizr.com
+--------------------
+
+Permite detectar características de HTML5 y CSS3 facilmente.
+
+-------------------
+http://jqueryui.com
+-------------------
+
+Se puede crear páginas web interactivas fácilmente.
+
+-------------
+Documentación
+-------------
+
+https://developer.mozilla.org/en-US
+http://dev.opera.com
+http://jquery.com
+http://developer.yahoo.com/javascript
+http://developer.yahoo.com/performance
+http://stackoverflow.com
+
+
+
 
