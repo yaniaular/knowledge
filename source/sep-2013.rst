@@ -18,6 +18,57 @@ Septiembre 2013
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+24 de Septiembre del 2013 - 5:00 p.m
+------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Se terminó la tarea 204 de http://erp.vauxoo.com en el branch 
+  https://code.launchpad.net/~vauxoo/addons-vauxoo/trunk-dev-portal_project_kanban_fields-yani,
+  esperando por merge.
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se comentaron varias tareas del http://erp.vauxoo.com pendientes desde Abril y Junio. Algunas
+se mandaron a cancelar con Humberto.
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../trunk-dev-portal_project_kanban_fields-yani/ -u
+portal_project_kanban_fields -d project --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
+
+
+23 de Septiembre del 2013 - 5:00 p.m
+------------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se empezaron a ver los videos de jQuery y se documentó parte de la configuración de VIM.
+Se empezo con la tarea 204 de http://erp.vauxoo.com
+en el branch
+https://code.launchpad.net/~vauxoo/addons-vauxoo/trunk-dev-portal_project_kanban_fields-yani
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../web_example/,../web_example -u web_example -d
+web_example --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
+
+
+
+
 19 de Septiembre del 2013 - 5:00 p.m
 ------------------------------------
 
