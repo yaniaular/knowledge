@@ -21,6 +21,7 @@ Agregar instalador vundle
 
 https://github.com/gmarik/vundle
 http://kennedysgarage.com/articles/nerdtree
+https://github.com/gmarik/vundle/wiki
 
 Instalar vundle:
 
