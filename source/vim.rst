@@ -15,7 +15,6 @@ $mv ~/vim-tuning/.vimrc ~/.vim/
 
 $ln -s ~/.vim/.vimrc ~/.vimrc
 
--------------------------
 Agregar instalador vundle
 -------------------------
 

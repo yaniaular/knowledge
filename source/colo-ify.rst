@@ -1,7 +1,7 @@
 
------------------------
+=======================
 Instalacion de colo-ify
------------------------
+=======================
 
 $cd ~/.bazaar/plugins
 $bzr branch lp:bzr-colo colo

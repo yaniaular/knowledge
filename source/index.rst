@@ -15,6 +15,8 @@ Contents:
    vim
    aplicacion
    postgresql
+   javascript
+   colo-ify
 
 Historial de Trabajo
 ====================

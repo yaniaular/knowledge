@@ -1,4 +1,8 @@
 
+==========
+JavaScript
+==========
+
 ----------------------------------
 Herramientas para comprimir código
 ----------------------------------
@@ -33,7 +37,9 @@ jQuery
 ------
 
 **jQuery("#myDiv").addClass("highlight");**: Consultar por ID
+
 **jQuery(".someClass");**: Consultar clases
+
 **jQuery("p");**: Consultar elementos
 
 **jQuery("#myDiv").addClass("highlight");**:

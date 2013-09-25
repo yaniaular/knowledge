@@ -2,11 +2,13 @@
 PostgreSQL
 ==========
 
+-----------------------------
 Entrar con usuario postgreSQL
 -----------------------------
 
 $sudo su postgresql
 
+--------------------
 Borrar base de datos
 --------------------
 
