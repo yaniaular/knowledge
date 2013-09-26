@@ -44,6 +44,15 @@ Historial de Trabajo
    sep-2013.rst
    ago-2013.rst
 
+Referencias
+===========
+
+.. toctree::
+   :numbered:
+   :maxdepth: 1
+   
+   referencias
+
 
 Indices and tables
 ==================

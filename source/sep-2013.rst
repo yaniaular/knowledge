@@ -19,6 +19,44 @@ Septiembre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+26 de Septiembre del 2013 - 5:00 p.m
+------------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se ha estado trabajando con el Libro jQuery for Dummies, voy por la página 39. En Documents/Aptana
+Studio 3 Workspace/javascript-curso tengo el código del curso del libro. Estoy trabajando los
+archivos tanto en vim como en Aptana. 
+
+Se creó el webservice para delivery ``webservice-delivery``.
+
+Se discutió con Humberto las tareas de Delivery, tenemos un pack de tareas para poder crear el
+módulo de delivery, se utiliza el mismo POS y se dividen las cajas por categoría (delivery y
+restaurante). Humberto imprimió las tareas y tiene paquete de tareas para POS y el paquete de
+tareas para flete, asi como también el paquete de tareas difíciles o que necesitan que estén los
+módulo plasmados para empezarlos.
+
+Yo empecé hoy con la tarea 141 de la instancia de cluster.
+
+Se creo el branch de delivery con ``colo-ify``
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+./openerp-server -r openerp -w openerp --addons-path=../addons/,../web/addons/,../addons-vauxoo-7.0
+-d delivery --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Terminar de leer manual for Dummies de jQuery 
+- Hacer pruebas para finiquitar las 13 horas de mrp
+
+
 25 de Septiembre del 2013 - 5:00 p.m
 ------------------------------------
 
