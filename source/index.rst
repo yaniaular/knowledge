@@ -8,15 +8,29 @@ Welcome to Knowledge's Documentation
 
 Contents:
 
+
+Herramientas
+============
+
 .. toctree::
    :numbered:
    :maxdepth: 2
 
    vim
+   colo-ify
+   proyecto
    aplicacion
+
+Lenguajes
+=========
+
+.. toctree::
+   :numbered:
+   :maxdepth: 2
+
    postgresql
    javascript
-   colo-ify
+
 
 Historial de Trabajo
 ====================
