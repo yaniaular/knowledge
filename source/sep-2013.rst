@@ -19,6 +19,51 @@ Septiembre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+25 de Septiembre del 2013 - 5:00 p.m
+------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Hacer manual para explicar los de Packs, Serial Number y Órdenes de entrega.
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se comentaron varias tareas del http://erp.vauxoo.com pendientes desde Abril y Junio. Algunas
+se mandaron a cancelar con Humberto.
+
+Se crea nuevo manual para stock en
+https://code.launchpad.net/~vauxoo-private/vauxoo-private/documentation_common
+llamado manual_stock en la carpeta manuales.
+
+Se monta el manual en la tarea de Cluster que corresponde la 108 Packing y almacenaje de Hojas de
+Trabajo/Orden de Produccion.
+
+Se creo la carpeta webservice-stock para el webservice que se va a utilizar cuando empecemos a
+trabajar con delivery.
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../trunk-dev-portal_project_kanban_fields-yani/ -u
+portal_project_kanban_fields -d project --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Hacer manual para explicar los de Packs, Serial Number y Órdenes de entrega.
+- Hacer webservice para crear base de datos de Stock
+- Revisar documento en el Dropbox con respecto al sprint 7
+- terminar de ver videos de jQuery
+- Hacer pruebas para finiquitar las 13 horas de mrp
+
+
 24 de Septiembre del 2013 - 5:00 p.m
 ------------------------------------
 
