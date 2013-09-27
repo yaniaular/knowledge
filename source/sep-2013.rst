@@ -19,6 +19,25 @@ Septiembre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+27 de Septiembre del 2013 - 5:00 p.m
+------------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+#)
+Webservice para desarrollo de delivery.
+2 horas.
+2:00 p.m
+
+#)
+
+
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
 26 de Septiembre del 2013 - 5:00 p.m
 ------------------------------------
 

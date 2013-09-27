@@ -20,6 +20,8 @@ Herramientas
    colo-ify
    proyecto
    aplicacion
+   openerp
+   to_install
 
 Lenguajes
 =========
