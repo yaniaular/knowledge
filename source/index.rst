@@ -22,7 +22,7 @@ Herramientas
    aplicacion
    openerp
    to_install
-
+   comandos
 Lenguajes
 =========
 
@@ -45,6 +45,7 @@ Historial de Trabajo
 
    sep-2013.rst
    ago-2013.rst
+   todo_on_free_time
 
 Referencias
 ===========
