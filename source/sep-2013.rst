@@ -19,6 +19,47 @@ Septiembre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+30 de Septiembre del 2013 - 5:00 p.m
+------------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+
+#)
+Planificar con HUmberto las tareas:
+2:00 horas
+
+#)
+Icono de point of sale:
+00:20 horas
+9:00 a.m
+
+#)
+crear branch para trabajar:
+00:10 horas
+9:20 a.m
+
+#)
+Agregar campos al modelo product y point of sale
+y cuadrarlos agradable a la vista
+1:00 horas
+10:00 a.m
+
+#)revisar código de POS
+2:00 horas
+2:00 p.m
+
+
+#)
+
+
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
 27 de Septiembre del 2013 - 5:00 p.m
 ------------------------------------
 
