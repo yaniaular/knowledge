@@ -4,26 +4,11 @@ Septiembre 2013
 
 .. contents:: Tabla de Contenido
 
-.. 10 de Septiembre del 2013 - 5:00 p.m
-.. ------------------------------------
-.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. Problemas solventados en el día
-.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. ~~~~~~~~~~~~~~~
-.. Resumen del día
-.. ~~~~~~~~~~~~~~~
-.. ~~~~~~~~~~~~~~~~~~
-.. Servers ejecutados
-.. ~~~~~~~~~~~~~~~~~~
-.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. Problemas que se presentaron
-.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 30 de Septiembre del 2013 - 5:00 p.m
 ------------------------------------
 
 ~~~~~~~~~~~~~~~
-Resumen del d�a
+Resumen del día
 ~~~~~~~~~~~~~~~
 
 
@@ -47,7 +32,7 @@ y cuadrarlos agradable a la vista
 1:00 horas
 10:00 a.m
 
-#)revisar c�digo de POS
+#)revisar código de POS
 2:00 horas
 2:00 p.m
 
@@ -93,9 +78,9 @@ archivos tanto en vim como en Aptana.
 Se creó el webservice para delivery ``webservice-delivery``.
 
 Se discutió con Humberto las tareas de Delivery, tenemos un pack de tareas para poder crear el
-módulo de delivery, se utiliza el mismo POS y se dividen las cajas por categoría (delivery y
+módulo de delivery, se utiliza el mismo POS y se dividen las cajas por categorí­a (delivery y
 restaurante). Humberto imprimió las tareas y tiene paquete de tareas para POS y el paquete de
-tareas para flete, asi como también el paquete de tareas difíciles o que necesitan que estén los
+tareas para flete, asi como también el paquete de tareas difí­ciles o que necesitan que estén los
 módulo plasmados para empezarlos.
 
 Yo empecé hoy con la tarea 141 de la instancia de cluster.
@@ -124,7 +109,7 @@ Problemas que se presentaron
 Problemas solventados en el día
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Hacer manual para explicar los de Packs, Serial Number y Órdenes de entrega.
+- Hacer manual para explicar los de Packs, Serial Number y írdenes de entrega.
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -296,7 +281,7 @@ Se terminó el módulo de mrp_shipping_packing
 Se creo un script para poder cargar los iconos en cada módulo de mrp.
 ``script_icons_mrp``
 
-Aprendí un poco más sobre expresiones regulares en vim
+Aprendí­ un poco más sobre expresiones regulares en vim
 
 se creó un branch con el cambio de los iconos para propornerlo a Nhomar y Moises
 ``7.0-rev-icons_mrp_vauxoo-yani``
@@ -339,8 +324,9 @@ Servers ejecutados
 ~~~~~~~~~~~~~~~~~~
 
 - ./openerp-server -r openerp -w openerp
---addons-path=../addons/,../web/addons/,../web_example/,../mrp_workorder_variation,../base_module_record-dev-yani/
--u mrp_workorder_variation -d mrp_cluster --xmlrpc-port=8069 --no-xmlrpcs --no-netrpc
+  --addons-path=../addons/,../web/addons/,../web_example/,../mrp_workorder_variation,
+  ../base_module_record-dev-yani/
+  -u mrp_workorder_variation -d mrp_cluster --xmlrpc-port=8069 --no-xmlrpcs --no-netrpc
 
 - ./openerp-server -r openerp -w openerp
   --addons-path=../addons/,../web/addons/,../web_example/,../mrp_shipping_packaging -u
@@ -368,10 +354,10 @@ Problemas solventados en el día
 Resumen del día
 ~~~~~~~~~~~~~~~
 
-Me descargué la librería oerplib para poder hacer un webservice
+Me descargué la librerí­a oerplib para poder hacer un webservice
 ``https://launchpad.net/oerplib``.
 en su carpeta de doc pude hacer un make html para poder visualizar la documentación.
-se actulizo la librería instalada con el comando
+se actulizo la librerí­a instalada con el comando
 ``sudo cp -r oerplib/oerplib /usr/local/lib/python2.7/dist-packages/OERPLib-0.7.2-py2.7.egg/``
 y ésto permitió que pudiera funcionar la documentación que estaba visualizando.
 
@@ -406,7 +392,7 @@ Problemas solventados en el día
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Merged de mrp_workorder_variation
-https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-dev-mrp_workorder_variation-yani/+merge/184377
+  https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-dev-mrp_workorder_variation-yani/+merge/184377
 
 
 ~~~~~~~~~~~~~~~
@@ -545,7 +531,7 @@ Problemas solventados en el día
 Resumen del día
 ~~~~~~~~~~~~~~~
 
-Se envía un mensaje a cada tarea de suplivac con el resumen de la reunión del 3 de septiembre.
+Se enví­a un mensaje a cada tarea de suplivac con el resumen de la reunión del 3 de septiembre.
 
 **lp:~vauxoo/addons-vauxoo/7.0-rev-mrp_consume_produce_create_false-yani**
 
@@ -577,7 +563,7 @@ Solución Final. Acorde a lo hablado en la reunión de 3 de Septiembre 2013
 (Jose Javier, Armando, German, Humberto, Rafael, Katherine y Yanina), ésta tarea se 
 resuelve utilizando el módulo de mrp_request_return nativo de los addons-vauxoo, 
 para conocer sus funcionalidades y cómo se configura debidamente, revisar el manual 
-de MRP versión 29-Ago-2013 en la página 44 específicamente. 
+de MRP versión 29-Ago-2013 en la página 44 especí­ficamente. 
 
 (Nota técnica: Se deshabilitó la ópcion de agregar nuevos consumidos por medio de 
 mrp_consume_produce, para eso se utilizará mrp_request_add_item)
@@ -624,8 +610,8 @@ mutuo, reflejado en la instancia de cluster, proyecto Suplivac.
 Resumen del día
 ~~~~~~~~~~~~~~~
 
-Cree una carpeta llamar script_modulos la cual contiene un modulo totalmente vacío para
-empezar a trabajar, faltaría colocarle el nombre de quien está desarrollando.
+Cree una carpeta llamar script_modulos la cual contiene un modulo totalmente vací­o para
+empezar a trabajar, faltarí­a colocarle el nombre de quien está desarrollando.
 
 También contiene un script que se encarga de crear las carpetas y de mover el icon del 
 módulo. 
