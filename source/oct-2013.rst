@@ -27,6 +27,52 @@ Problemas solventados en el día
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
+#)
+Ver como funciona el pos para poder hacer el filtrado de los productos
+10:00 
+2 horas
+
+#)
+
+Hoy aprendí sobre la herencia delegada, como por ejemplo en el módulo de product/product.py líne
+536, en donde podemos observar que el modelo de product tiene una herencia delegada:  _inherits =
+{'product.template': 'product_tmpl_id'}, y tiene product_tmpl_id como campo many2one a la clase de
+product.template. En la tabla de product.product se pueden crear distintas formas de empaquetar a
+un producto como por ejemplo por paleta, caja, paquete, etc. Pero a pesar de que se empaquetan de
+manera distinta, de que tienen ean  distinto, entre otras cosas, comparten una información en común
+y esa la encontraremos en el modulo de produtc.template, y de esa manera de evita repetir tanta
+información.
+
+#)
+
+De modo que se agrego información al modulo product.product con dos booleanos por medio del nuevo
+module delivery_restaurant, para saber si el producto se mostrará en el restaurant y/o en el
+delivery. Tuve que hacer una consulta sql para poder agregar valores aleatorios a los registro yas
+existentes:
+
+    - update product_product set restaurant=true where id in (select id from product_product order by
+    random() limit 100);
+    - update product_product set delivery=true where id in (select id from product_product order by
+      random() limit 100);
+
+Esto hace que en la tabla product_product se modifique el campo restaurant o delivery a verdadero
+en donde el id sea igual a los registros seleccionados aleatoriamente en la consulta despues de la
+clausula IN.
+
+#)
+
+En el punto de venta estuve viendo como funciona la parte de ajvascript, y en el archivo models.js
+línea 174, agregue los campos nuevos delivery y restaurant, para poder consultarlos luego en el
+archivo widgets.js línea 576 
+
+_.each(products, function(prod){                                                                                                    
+     console.log(prod.name + "@@" +prod.restaurant);                                     
+    }                                                                                   
+); 
+
+esta _.each función de underscore.js hace que a cada elemento de products lo reciba la función e imprima
+la info que se desee.
+
 ~~~~~~~~~~~~~~~~~~
 Servers ejecutados
 ~~~~~~~~~~~~~~~~~~
