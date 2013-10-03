@@ -18,12 +18,96 @@ Octubre 2013
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
+
+02 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+#) Módulo delivery_restaurant de los addons-vauxoo (tarea de cluster 141):
+
+- Agregando los campos que necesito para hacer el filtrado. 
+
+Se pide un filtro en el punto de venta que dependiendo del tipo de caja  (en el modelo pos.config 
+existe un campo "deli_rest" que determina si la caja es para restaurante o delivery) se muestren  
+los  productos que le corresponde, ya que los productos tienen dos campos booleanos (restaurant y 
+delivery) que determinan si el producto se mostrara en cajas de delivery y/o restaurante.
+
+Para ésto, se tuvo que heredar de la clase PosModel en el archivo models.js de punto de venta, 
+donde se establece la data que se manejará en las funciones javascript, los campos  que se 
+necesitaron de producto son "restaurant y delivery" y el campo del punto de venta 
+(modelo pos.config)  "deli_rest".
+
+``delivery_restaurant/__openerp__.py``
+``Última modificación: 02/10/13 07:57, Estado: modificado, Tipo: archivo``
+
+        ],
+    'demo': [],
+    'test': [],
+    'js': [
+        'static/src/js/backbone-super-min.js',
+        'static/src/js/main.js',
+        'static/src/js/models.js',
+        ],
+    'active': False,
+    'installable': True,
+}
+
+
+``delivery_restaurant/static/src/js/main.js``
+``Última modificación: 02/10/13 07:57, Estado: añadido, Tipo: archivo``
+
+openerp.delivery_restaurant = function(instance){
+    var module = instance.point_of_sale;
+    delivery_restaurant_models(instance,module);
+    instance.delivery_restaurant = module;
+}
+
+
+``delivery_restaurant/static/src/js/models.js``
+``Última modificación: 02/10/13 07:42, Estado: añadido, Tipo: archivo``
+
+function delivery_restaurant_models(instance, module){
+
+    module.PosModel = module.PosModel.extend({
+        initialize : function(session, attributes) {
+            this._super(session, attributes);
+        },
+        
+        load_server_data : function(){
+            self = this;
+            loaded = this._super()
+                .then(function(){
+                    return self.fetch(
+                    'pos.config',
+                    ['deli_rest'],
+                    [['id','=', 
+                    self.get('pos_session').config_id[0]]]
+                    );
+                }).then(function(){
+                    return self.fetch(
+                        'product.product', 
+                        ['restaurant' , 'delivery'],
+                        [['sale_ok','=',true],['available_in_pos','=',true]]
+                        
+                        );
+                });
+            return loaded;
+        },
+
+    })
+
+}
+
+.. note::
+    Se debe tener en la carpeta js la librería backbone-super-min.js
+
+#) 
 
 01 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Problemas solventados en el día
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
