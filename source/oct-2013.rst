@@ -20,6 +20,154 @@ Octubre 2013
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
 
+08 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se eliminó el branch de ``product_dimensions`` porque ya se hizo una propuesta para eso.
+
+**Se están trabajando en los siguientes branches:**
+- https://code.launchpad.net/~vauxoo-private/vauxoo-private/7.0-dev-fleet_shipment-kty
+- https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-product_volumetric-dev-yani
+- https://code.launchpad.net/~vauxoo-private/vauxoo-private/fleet_delivery
+- https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-pos_delivery_restaurant-dev-yani
+
+**Se le delegará a Eduardo (Tareas lampara):** carga de data de javascript
+- https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-pos_product_filter-dev-yani
+
+**Se va a proponer en https://launchpad.net/openerp-product-attributes:**
+- https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-product_volumetric_weight-dev-yani
+
+**Merges pendiente:** Esto tiene que ver con el campo selection (delivery or restaurant) del modelo
+pos.config.
+- https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-pos_delivery_restaurant-dev-yani/+merge/189952
+
+Se tomó el día para organizar los sprints en la instancia de https://erp.vauxoo.com se crearon
+varias historias de usuario y además los criterios de aceptación juntos con las tareas, se cargaron
+las horas de ayer Lunes.
+
+
+07 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se comienza a trabajar con Katherine con flete, se quiere hacer el cálculo volumétrico con tres
+campos, altura, anchura, largo. Empezamos con el módulo fleet_shipment que trata los embarques y
+fleet_delivery que modifica el model fleet.vehicle para agregar el campo de capacidad volumétrica.
+
+Humberto descubrió que había una propuesta en https://launchpad.net/openerp-product-attributes
+donde un tipo había propuesto un modelo con dichos campos, pero lo rechazaron porque supuestamente
+ya había otro modulo que los tenía, sin embargo, ese módulo, tiene otras cosas mezcladas de stock,
+y no es conveniente. Ya que esos campos se necesitan en un solo mdulo para poder usarlos en otros
+procesos.
+
+https://code.launchpad.net/~sebastien.beau/openerp-product-attributes/openerp-product-attributes-product-dimension/+merge/171181
+
+
+04 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+clases con Nhomar a las 9:00 a.m
+
+se habló con Humberto para que se dedicarán 12 horas semanales a código entregable, no perder
+tiempo investigando o aprendiendo javascript ya que cluster compro solo 100 horas para 
+el sprint de delivery.
+
+
+Se termina la tarea 141, se dejo la parte de POS a eduardo, el branch es 
+https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-delivery_restaurant-dev-yani
+
+
+Se hablo con Oscar, hizo un módulo de control de vehículos a los empleados, se debe crear
+un branch a parte para poder agregar los modelos de unidad de transporte, embarque y pedidos
+de los clientes. El módulo de oscar es 
+https://code.launchpad.net/~vauxoo-private/vauxoo-private/fleet_papiao
+
+Se empieza con las tareas de flete: 144, 143, 142, 130 y 139.
+
+**Ver cursos:**
+
+https://docs.google.com/a/vauxoo.com/document/d/17YpvSBSOreOMeIIPYXsZwHdT9TXReL9k0lA1sZO25pU/edit
+
+prendiendo JavaScript, CSS, Jquery, Bootstrap, API OpenERP.
+
+
+1) JavaScript:
+2)  CSS:
+3) Jquery:
+4) Ajax: 
+5) BackboneJS. 
+7) Twiter Bootstraap
+http://bootsnipp.com/ (Recursos)
+8) Video de curso de nhomar en Belgica: Aun no público.
+n+1) Documentacion sobre la nueva API de OpenERP. [Como Referencia.]
+https://doc.openerp.com/trunk/web/qweb/
+https://doc.openerp.com/trunk/web/async/
+https://doc.openerp.com/trunk/web/rpc/
+https://doc.openerp.com/trunk/web/widget/   
+https://doc.openerp.com/trunk/web/module/
+
+Fase 2:
+1) Google Apps (Para reportes con JavaScript en google Docs.)
+2.- Adicional: Less (Linkear aquí)
+
+trabajo de Nhomar:
+https://code.launchpad.net/~vauxoo/web-addons/7.0-web_hideleftmenu
+
+
+**Configuracion de conexion VPN:**
+
+
+Buenas Tardes,
+
+    A continuación adjunto los certificados que me pediste que creara para el acceso de los 
+chicos de Vauxoo  a la VPN. Las instancias se encuentran disponibles en las 
+siguientes direcciones:
+         
+        10.8.0.1:10069 (Desarrollo)
+        10.8.0.1:11069 (Pruebas)
+        10.8.0.14: 9069 (Projecto)
+
+La dirección del servidor VPN es:
+
+        clusterbrands.dyndns.org:1194
+
+Nota: La tecnologia usada para configurar la VPN es OpenVPN. 
+
+HBTO dice:
+
+crea una carpeta "ovpn"
+y dentro pon estos archivos,
+desempaca el tar.gz
+
+y luego con sudo ejecuta el .sh
+
+sudo sh cnx.sh
+
+$mv fwdcertificadosvauxoo ovpn
+$cd ovpn/
+$ls
+- cnx.sh  config.conf  yaninaaular.tar.gz
+$tar -xvf yaninaaular.tar.gz
+- ca.crt  cnx.sh  config.conf  yaninaaular.crt  yaninaaular.key  yaninaaular.tar.gz
+$sudo sh cnx.sh
+
+conectar a http://10.8.0.14:9069/
+
+03 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
 02 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
 ~~~~~~~~~~~~~~~

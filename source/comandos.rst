@@ -1,5 +1,9 @@
 Comandos
 ========
+- **find, xargs y sed**: find . -name "index*" | xargs sed -i "s/jquery\-ui\.min\.js/info\.js/g"
+
+- **wget**: wget --wait=20 --limit-rate=20K -r -p -U jmarin http://ajmarin.alwaysdata.net/
+
 
 - **du**: Funciona para saber el espacio que ocupa un archivo o directorio en el disco duro.
 

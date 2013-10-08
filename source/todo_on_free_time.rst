@@ -1,7 +1,7 @@
 To Do On Free Time
 ==================
 
-Aprender:
+Aprender lenguajes:
 
 - Jquery
 - Backbones
@@ -15,6 +15,9 @@ Aprender:
 - HTML5
 - CSS5
 
+Aprender comandos:
+
+rsync: para hacer scp pero sin perder transferencia cuando se corte la conexion
 
 Luego:
 
