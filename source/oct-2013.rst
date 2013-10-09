@@ -20,6 +20,51 @@ Octubre 2013
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
 
+09 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Rafa me mandó a hacer la tarea asociada a ésta historia.
+https://erp.vauxoo.com/#id=13&view_type=form&model=user.story&menu_id=557&action=726
+La tarea está lista
+https://erp.vauxoo.com/?debug=#id=759&view_type=form&model=project.task&menu_id=136&action=138
+
+Procedí a empezar con la tarea asociada a base_module_record:
+https://code.launchpad.net/~vauxoo-private/vauxoo-private/7.0-base_module_record-dev-yani
+
+No está fácil :s.
+
+
+**Puntos a tratar:**
+- Tareas que se dejaron incompletas porque le falta parte javascript (141, 124 y 137)
+
+  Kathy explica a José Javier que se tiene y que debería hacer Eduardo.
+
+
+- Tareas sobre Zonas (126) y la (144) que consolida segun fecha, zona, turno y capacidad de carga
+
+Las zona va a ser un nuevo modelo de un one2many con el tipo de lugar (calle, avenida,
+urbanización, parroquia,etc) y el campo con el nombre del tipo de lugar.
+
+Luego los embarques se referencia a una zona.
+
+orden de venta tiene una ruta1 y se asigna a un embarque que pase por esa ruta1
+el campo de ruta no es obligatorio en un embarque.
+
+
+
+La validación de si el envio esta dentro de la zona es cuando se toma el pedido.
+
+- Aclarar tarea (139) ya que se tiene un peso real o volumetrico y no se sabe como comparar con que
+  capacidad de la unidad de transporte
+
+Se van a tomar en cuenta las dos capacidades volumétrica y real. Y cuando se exceda la capacidad de
+alguno, no seguir metiendo picking
+
+
 08 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
 
@@ -49,6 +94,13 @@ Se tomó el día para organizar los sprints en la instancia de https://erp.vauxo
 varias historias de usuario y además los criterios de aceptación juntos con las tareas, se cargaron
 las horas de ayer Lunes.
 
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../addons-vauxoo-7.0,../product_volumetric,../fleet_delivery
+-d delivery --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
 
 07 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
