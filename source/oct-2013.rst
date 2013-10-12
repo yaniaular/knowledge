@@ -19,6 +19,45 @@ Octubre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
+11 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se crea un módulo que extiende de account financial report para poder reemplazar los reportes en
+rml a webkit, donde se hace una importación desde el parser para poder acceder a los métodos. Ésto
+corresponde a la tarea 3963 de http://agrinos.openerp.la/ 
+
+https://code.launchpad.net/~vauxoo/account-financial-report/7.0-report_webkit_afr-dev-yani
+
+Tuve un problema porque al llamar al método print_report se estaba guardando el id del wizard de
+mala manera.
+
+10 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se creo el nuevo módulo para el control de rutas y/o zonas en fleet, se llama fleet_zone.
+
+Módulos creados:
+https://code.launchpad.net/~vauxoo-private/vauxoo-private/7.0-fleet_zone-dev-yani
+
+Empecé con la tarea de agrinos 3963
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../addons-vauxoo-7.0,../fleet_zone,../base_module_record-dev-yani/
+-u fleet_zone -d delivery --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
+
+
+
 
 09 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
@@ -34,6 +73,8 @@ https://erp.vauxoo.com/?debug=#id=759&view_type=form&model=project.task&menu_id=
 
 Procedí a empezar con la tarea asociada a base_module_record:
 https://code.launchpad.net/~vauxoo-private/vauxoo-private/7.0-base_module_record-dev-yani
+
+
 
 No está fácil :s.
 
@@ -77,8 +118,10 @@ Se eliminó el branch de ``product_dimensions`` porque ya se hizo una propuesta 
 **Se están trabajando en los siguientes branches:**
 - https://code.launchpad.net/~vauxoo-private/vauxoo-private/7.0-dev-fleet_shipment-kty
 - https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-product_volumetric-dev-yani
-- https://code.launchpad.net/~vauxoo-private/vauxoo-private/fleet_delivery
-- https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-pos_delivery_restaurant-dev-yani
+- https://code.launchpad.net/~vauxoo-private/vauxoo-private/fleet_delivery: 
+- https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-pos_delivery_restaurant-dev-yani: Solo
+agrega un campo selection al pos.config para determinar si es un resturante o un delivery.
+- 
 
 **Se le delegará a Eduardo (Tareas lampara):** carga de data de javascript
 - https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-pos_product_filter-dev-yani
