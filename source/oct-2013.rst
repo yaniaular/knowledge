@@ -19,6 +19,209 @@ Octubre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
+
+16 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+- Agregar campo many2one a embarque en la orden de venta (que es el mismo de pos.order)
+- Agregar campo capacidad de peso físico en el camion.
+- calcular peso volumétrico de un producto y colocar el campo de peso requerido.
+- Tomar en cuenta ambos pesos del pedido e ir decrementando de la capacidad hasta que una de ellas se
+  exceda, tomar en cuenta.
+- Al confirmar el embarque es cuando realmente se hace la consolidacion de las órdenes de venta.
+- Agregar un campo tipo en el modelo de embarque (delivery o flete)
+- Filtrar medio de transporte del embarque dependiendo del tipo de embarque (si es delivery o flete)
+- Vamos a tener ambas capacidades en el embarque peso volumétrico o peso físico.
+- La orden de venta tiene un many2many a picking y ese es el que realmente se meterá en el
+  embarque. la orden de venta tiene un campo many2many a picking y picking tiene un many2one. 
+  agregar campo many2one a embarque en el picking.
+ 
+many2one a Zone desde el POS.
+many2one a Zone desde el Embarque.
+many2many o one2many a orden de venta desde el embarque
+
+La orden de venta crea un picking y a partir de ese picking es que realmente se crea el que se va a
+enviar.
+Filtrar los pickings para que se tome en cuenta solo los que van a los clientes.
+se tienes los picking internos y los externos.
+
+En orden de venta:
+- Campo many2many a Embarque
+
+En el picking (existen dos picking internos y externo):
+- Campo many2one a Embarque (tomar por defecto el de la orden de venta)
+
+En el embarque:
+- one2many a órdenes de venta
+- one2many a picking internos
+- one2many a picking externos
+- many2one a Zona
+- campo many2one a vehiculo
+
+El estatus de lo que pase en el embarque, pasa tambien en la orden de venta.
+Cuando se crea un picking a partir de otro picking tomar el embarque del picking padre.
+
+
+
+15 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se estuvo revisando y con la siguiente dirección, el punto que se obtuvo fue más exacto en el mapa
+de google.
+
+10.454149, -66.928102
+E/S Km2, 2 Carretera Panamericana, Caracas, Distrito Metropolitano de Caracas, Venezuela
+
+Reunión con humberto para poder hacer planificación:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Vamos a darle a Jose Javier las tareas que faltan para que el pueda crear las historias de
+usuarios. DONE
+
+- Crear las tareas en un papelito y lo vamos a organizar en un pizarron luego esas notas la pasamos
+  a una tarea en la instancia.
+
+- Crear branch paralelo de addons-vauxoo/7.0 para hacer nuestros merges y no depender de un
+  revisor.
+
+- Vamos a seguir con lo de embarques. (Hacer merges y entregables)
+
+- Planificar tareas usando mapa de flete y delivery que hicimos con Jose Javier.
+
+Se crearon dos branchs paralelos para trabajar nuestros merges.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- lp:~vauxoo-private/vauxoo-private/fleet-cluster
+- lp:~vauxoo/addons-vauxoo/addons-vauxoo-cluster
+
+Se mandó un correo a Nhomar con respecto a lo que pienso de zona
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+José Javier, te cuento que lo de zonas podría tardar un poco mas de lo que se espera, te explico
+por qué:
+
+
+
+Hable con Nhomar sobre los problemas de ver si la dirección de una persona se encuentra dentro de
+la zona de un punto de venta.
+
+Propuesta de Nhomar:
+
+Google maps tiene una herramienta sobre la cual puedes dibujar rectángulos, polígonos y cualquier
+figura plana para poder determinar una zona sobre el mapa.
+
+https://developers.google.com/maps/documentation/javascript/examples/drawing-tools?hl=es
+
+Tengo entendido que Oscar y Nhomar desarrollaron un webservice que toma esa zona dibujada y la
+almacena en puntos (formados por longitud y latitude) que delimitan dicha zona.
+
+Ahora necesito saber como funciona ese webservice para poder obtener esa información dibujada en
+google maps a un campo one2many que se encontrará en un Zona.
+
+
+El punto geográfico de la dirección de un partner puede obtenerse escribiendo detallamente la
+dirección del partner en el campo street 2 (asumiendo que ya tuve que haber modificado el método
+geo_jquery_address del módulo crm_partner_assign para que tome en cuenta el campo street2 ) ya que
+dicho módulo se encarga de geolocalizar la dirección del partner y de guardar las coordenadas de su
+ubicación.
+
+Entonces, lo que se debe hacer es lo siguiente:
+
+Hablar con Oscar para que me diga como extraer los puntos del rectangulo o el polígono que se
+dibuje en el mapa para que devuelva la información de los puntos que lo delimitan y se pueda
+guardar en una zona. Teniendo así un one2many con los puntos de dicha zona.
+
+Lo siguiente que se debe hacer es guardar el punto gps de la dirección del partner que ya lo hace
+OpenERP
+
+Ahora lo que podría tomar tiempo sería:
+
+- Encontrar la manera de calcular si el punto de ubicación de un partner se encuentra dentro de los
+  puntos de una zona. 
+
+- Hacer un widget para que el punto de la dirección del partner se pueda ver de manera gráfica en
+  el formulario, y así el usuario pueda seleccionar en que punto vive la persona.
+
+Se finiquitaron algunas tareas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Tanto en la instancia de Vauxoo como la de Agrinos.
+
+Se terminaron de crear algunas instancias de Usuario.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Crear maestros de alcance de reparto a domicilio.
+- Notificaciones en cocina, barra y zona de ensamblaje
+
+mande un correo a josé javier para que nos ayude a terminar de definir las historias de usuario
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+14 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Hable con Nhomar sobre los problemas de ver si la dirección de una persona se encuentra dentro de
+la zona de un punto de venta.
+
+Propuesta de Nhomar:
+
+Google maps tiene una herramienta sobre la cual puedes dibujar rectangulos, polígonos y cualquier
+figura plana para poder determinar una zona sobre el mapa, ésto lo que hace es devolverte los
+puntos GPS de la figura que se ha dibujado sobre la imagen.
+
+El punto de un partner puede obtenerse escribiendo detallamente la dirección del partner y luego
+instalando el modulo ``crm_partner_assign`` que agrega un botón e información del punto gps en el
+mapa de google. es decir, el módulo se encarga de geolacalizar la dirección del partner y de
+guardar las coordenadas de su ubicación.
+
+Entonces, lo que se debe hacer es lo siguiente:
+
+- Hablar con oscar para que me diga como extraer los puntos del rectangulo o el polígono que se
+  dibuje en el mapa para que devuelva la infor y se pueda guardar en una zona. Tenienco así un
+  on2many con los puntos de dicha zona.
+- Lo siguiente que se debe hacer es guarddar el punto gps de la dirección del partner que ya lo
+  hace O
+ Entonces, lo que se debe hacer es lo siguiente:
+
+ - Hablar con oscar para que me diga como extraer los puntos del rectangulo o el polígono que se
+   dibuje en el mapa para que devuelva la info y se pueda guardar en una zona. Teniendo así un
+   on2many con los puntos de dicha zona. (callbacks)
+ - Lo siguiente que se debe hacer es guardar el punto gps de la dirección del partner que ya lo
+   hace OpenERP, pero hay que tomar en cuenta que la función del módulo ``crm_partner_assign``
+   llamada **geo_jquery_address** toma en cuenta ciertos parámetros como lo son la ciudad, el país,
+   la calle, etc y se necesita agregar otros parámetros necesarios como los son la urbanización, la
+   parroquia, el municipio, etc, para que la dirección sea mas detallada.
+- Luego de guardar el punto gps de un partner, se debe buscar algún método que se encarga de buscar
+  si el punto gps de un partner se encuentra dentro de una zona dibujada. Nhomar me dijo que no
+  invitiera tiempo calculándolo, que puede haber algún método en google maps que ya lo haga.
+- Hacer un widget para que el punto de la dirección del partner se pueda ver de manera gráfica.
+
+
+
+.. note:: tomar en cuenta que la dirección de vauxoo en la data demo no se está geolocalizando, hay
+    probar que esta pasando allí, si falta algún dato, a parte de que la zona postal es 1040.
+
+    Nhomar me dijo que hay que agregar un fenses que será un campo many2one al partner. No entendí
+    muy bien ésta parte de las fronteras.
+
+    Revisar branch de e-maps en vauxoo-private o en web-addons.
+
+    tomar en cuenta que google maps te permite una cantidad limitada de consultas al día, pero
+    cluster debe tener cuenta paga para eso
+
+
+Enviar correo a Cluster sobre propuesta.
+
+
 11 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
 
