@@ -20,6 +20,150 @@ Octubre 2013
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
 
+18 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+Ver videos de backbones (bootstrap)
+
+Al pie de la letra:
+- geolocalizacion:
+
+web-addons : tendremos todos los widgets genericos (accion de cliente, widget \*2many)
+
+Un modulo tercero que sea el puente entre ambos modulos (zone y widget map)
+1. Modulo puente: Vista usando el widget extra
+2. Otro modulo puente que tenga 
+
+ese modulo debe estar en python. Cargar data demo para los puntos, hacer metodo que valide si el
+punto del partner se encuentra en esa zona
+
+importantes
+
+Save Info sobreescribe el campo comments del partner.
+saved data file mensaje es cuando ya se guardo en open
+
+install googlemaps
+
+
+Yanina:
+1. gmaps_area_ids debe ser \*2many (puntos necesarios para conformar area, al menos 3), 
+   (gmaps_lat, gmaps_lon y many2one: gmaps_zone_id). Yanina.
+2. Modulito para geolocalizar de manera precisa. (Como el de Openerp, pero los campos iran con los
+nombres acordados con Nhomar, y la precision de los campos sera de 6) el módulo de openerp esta
+hecho para saber el pais de un partner 
+3. Crear data demo de puntos reales. Yanina. Crear vista en lista, 
+4. busqueda (group_by de zona en partner)
+5. Investigar algoritmo de gmaps llamado Area para saber si un punto está dentro de un área.
+7. Buscar developer key de google :) , con mi acc gmail.
+8. Nhomar documentará en su módulo como hace pull puntos desde javascript y push en el modelo TA 
+HECho
+
+Parte de aprendizaje:
+0. Buscar documentacion de la libreria googlemaps y API
+1. Ver videos de backbones (incluye renderizado de bootstrap, timepito libre)
+
+Devuelve un objeto punto, en python ya tiene atributos. Igual con Area.
+llamo a la funcion de google javascript y me deuvelve un objeto en python.
+
+
+Nhomar:
+1. UNa vez leido el registro de los puntos en el modelo, dibujar los puntos en el mapa. 
+(Capa vista) Encargado Nhomar.
+2. El proceso de salvar los puntos en el modelo, los datos se extraen desde el mapa (javascript).
+
+
+
+
+
+17 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+http://help.openerp.com/question/21529/how-to-extend-fieldsselection-options-without-overwriting-them/
+
+When you don't have control on the original model
+
+Say you want to modify the selection field type of the product categories. Excerpt of the code from the product addon, that you can't modify:
+
+class product_category(osv.osv):
+    # <snip>
+    _name = "product.category"
+    _description = "Product Category"
+    _columns = {
+    # <snip>
+        'type': fields.selection([('view','View'), ('normal','Normal')], 'Category Type', help="A category of the view type is a virtual category that can be used as the parent of another category to create a hierarchical structure."),
+    }
+ 
+In your module you need to alter the field in the _columns in the __init__ of the model:
+
+class product_category(orm.Model):
+    _inherit = 'product.category'
+
+    def __init__(self, cr, uid, name, context=None):
+        super(product_category, self).__init__(cr, uid, name, context)
+        option = ('special', 'Special')
+        type_selection = self._columns['type'].selection
+        if option not in type_selection:
+            type_selection.append(option)
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Hablé con Nhomar:
+~~~~~~~~~~~~~~~~~
+El branch https://code.launchpad.net/~vauxoo/addons-vauxoo/maps_oscar tiene un código javascript,
+tengo que crear un nuevo modulo de zonas, pero debo cambiar el action, por un action con tag a la
+clase en javascript desarrollada por Nhomar y Oscar, para que el nuevo modelo de zona pueda tomar
+ese action y poder hacer la marcación con google maps de una zona y taerme esos puntos y guardarlos
+en un one2many.
+
+Debo instalar web_bootstrap3 para que OpenERP puede reconocer la librería bootstrap.
+
+<fields name="params" funciona para colocar elementos dentro de un diccionario con parámetros
+adicionales para que mi vista pueda ser dinámica.
+
+José Javier aprobó 30 horas para éste desarrollo, ya se cargaron 4 horas por reunión y
+planificación.
+
+Se asignó tarea de filtro a Eduardo por la instancia de erp.vauxoo
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Meter módulo de ``pos_delivery_restaurant``
+
+Módulo de freight
+~~~~~~~~~~~~~~~~~
+
+**freight_weight:**
+    - Agrega campo a fleet.vehicle para la capacidad de peso volumétrico
+    - Agrega campo a fleet.vehicle para la capacidad de peso físico
+    - Agrega campo a fleet.vehicle type para determinar el tipo de vehiculo
+    - Agrega campo a product.product el campo de peso volumétrico, tomando el campo volume del
+      producto ya existente -> (volume/5000)
+    - Se agrega un nuevo decimal.precision para el peso volumétrico del producto de 6.
+
+**freight_zone:**
+    - Agrega un nuevo modelo de zonas.
+
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+**Módulo de zone con el action**
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../addons-vauxoo-7.0,../freight/7.0-freight_zone_mapsgoogle-dev-yani,../maps_oscar
+-u freight_zone_mapsgoogle -d freight --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
+
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../7.0-pos_product_filter-dev-yani -d delivery
+--xmlrpc-port=8069 --no-xmlrpcs --no-netrp
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../addons-vauxoo-7.0,../freight/7.0-freight_zone-dev2-yani
+-u freight_zone -d freight --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
+
 16 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
 
@@ -61,11 +205,14 @@ En el embarque:
 El estatus de lo que pase en el embarque, pasa tambien en la orden de venta.
 Cuando se crea un picking a partir de otro picking tomar el embarque del picking padre.
 
+Creamos un nuevo proyecto en launchpad:
+https://code.launchpad.net/~vauxoo/openerp-freight/trunk
 
+Donde pasamos todo lo relacionado con flete a éste proyecto, y tambíen el calculo de zonas que
+todavía hay problemas ocn respectos a las horas trabajadas
 
 15 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
-
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -74,6 +221,8 @@ Resumen del día
 Se estuvo revisando y con la siguiente dirección, el punto que se obtuvo fue más exacto en el mapa
 de google.
 
+Dirección de Vauxoo exacta en el google maps
+
 10.454149, -66.928102
 E/S Km2, 2 Carretera Panamericana, Caracas, Distrito Metropolitano de Caracas, Venezuela
 
@@ -81,7 +230,7 @@ Reunión con humberto para poder hacer planificación:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Vamos a darle a Jose Javier las tareas que faltan para que el pueda crear las historias de
-usuarios. DONE
+  usuarios. DONE
 
 - Crear las tareas en un papelito y lo vamos a organizar en un pizarron luego esas notas la pasamos
   a una tarea en la instancia.
@@ -119,6 +268,8 @@ https://developers.google.com/maps/documentation/javascript/examples/drawing-too
 
 Tengo entendido que Oscar y Nhomar desarrollaron un webservice que toma esa zona dibujada y la
 almacena en puntos (formados por longitud y latitude) que delimitan dicha zona.
+
+https://code.launchpad.net/~vauxoo/web-addons/7.0-gmap_poc
 
 Ahora necesito saber como funciona ese webservice para poder obtener esa información dibujada en
 google maps a un campo one2many que se encontrará en un Zona.
@@ -190,7 +341,8 @@ Entonces, lo que se debe hacer es lo siguiente:
   on2many con los puntos de dicha zona.
 - Lo siguiente que se debe hacer es guarddar el punto gps de la dirección del partner que ya lo
   hace O
- Entonces, lo que se debe hacer es lo siguiente:
+ 
+Entonces, lo que se debe hacer es lo siguiente:
 
  - Hablar con oscar para que me diga como extraer los puntos del rectangulo o el polígono que se
    dibuje en el mapa para que devuelva la info y se pueda guardar en una zona. Teniendo así un
@@ -259,9 +411,6 @@ Servers ejecutados
 --addons-path=../addons/,../web/addons/,../addons-vauxoo-7.0,../fleet_zone,../base_module_record-dev-yani/
 -u fleet_zone -d delivery --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
 
-
-
-
 09 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
 
@@ -276,8 +425,6 @@ https://erp.vauxoo.com/?debug=#id=759&view_type=form&model=project.task&menu_id=
 
 Procedí a empezar con la tarea asociada a base_module_record:
 https://code.launchpad.net/~vauxoo-private/vauxoo-private/7.0-base_module_record-dev-yani
-
-
 
 No está fácil :s.
 
