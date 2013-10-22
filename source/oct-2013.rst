@@ -19,6 +19,108 @@ Octubre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
+22 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Con respecto a Gmaps
+~~~~~~~~~~~~~~~~~~~~
+
+Desarrollar un módulo tercero que sea el puente entre ambos módulos de zone y widget de maps.
+**TO DO** 1. Modulo puente tendrá: Vista usando el widget extra.
+
+**DONE** 2. Otro módulo puente tendrá: Será en python, cargará data demo para los puntos, tendrá método que valide si el punto del partner se encuentra dentro de una zona. 
+
+Ya se tiene el módulo con los campos y la data demo. http://bazaar.launchpad.net/~vauxoo/openerp-freight/trunk/files/head:/freight_zone_mapsgoogle/
+
+La validación del punto está lista en código python el método se llama partner_insidepolygon, me hubiese gustado hacerlo a nivel de javascript, pues encontré esto https://developers.google.com/maps/documentation/javascript/examples/poly-containsLocation. Pero será para después.
+
+Funcionamiento del módulo de maps:
+1. Save Info: sobreescribe el campo comments del partner.
+2. Mensaje de "Saved data file" significa que ya se guardo en openerp.
+
+Para programar usando API de google:
+1. install googlemaps
+
+Yanina:
+
+Estará encargada de todo lo referente a los modelos python, se lista las acciones que tomará para lograr ésto.
+
+**DONE** 1. Agregar campos gmaps_area_ids debe ser \*2many (puntos necesarios para conformar area, al menos 3),  (gmaps_lat, gmaps_lon y many2one: gmaps_zone_id). 
+
+El módulo es http://bazaar.launchpad.net/~vauxoo/openerp-freight/trunk/files/head:/freight_zone_mapsgoogle/
+
+**DONE** 2. Módulo para geolocalizar de manera más precisa. 
+(Como el de Openerp, pero los campos irán con los nombres acordados con la API a desarrollar, y la precisión de los campos sera de 6) el módulo de openerp esta
+hecho para saber el pais de un partner, lo que realizará Yanina (reutilizando el algorithmo de OpenERP) será para conocer el punto exacto..
+
+El módulo es http://bazaar.launchpad.net/~vauxoo/openerp-freight/trunk/files/head:/freight_partner_assign_precise/
+
+**DONE** 3. Crear data demo de puntos reales (para efecto de pruebas automáticas).
+
+El módulo es  http://bazaar.launchpad.net/~vauxoo/openerp-freight/trunk/files/head:/freight_zone_mapsgoogle/
+
+**TO DO** 4.  Mejora de vistas actuales,
+**TO DO** 5. Mejora de vista de busqueda (group_by de zona en partner).
+
+**DONE** 6.- Investigar algoritmo de gmaps llamado Area para saber si un punto está dentro de un área (python).
+
+Se usó  http://vsbabylon.blogspot.com/2010/02/como-detectar-si-un-punto-esta-fuera-o.html basado en el algoritmo de jordan http://jsbsan.blogspot.com/2011/01/saber-si-un-punto-esta-dentro-o-fuera.html
+
+Parte de aprendizaje I+D:
+**DONE** 0. Buscar documentacion de la libreria googlemaps y API python
+
+Usar la API de google desde python no me funcionó, hablé con Oscar sobre ésto y me dijo que las key gratuitas dan problemas en python, me recomendó usarlas desde javascript.
+
+@Nhomar me avisas cuando tengas tu parte lista, porque no entiendo porque tenemos que tener un módulo puente usando el módulo extra.
+Voy a cargar las horas de ésto y a ponerme con unas cosas de agrinos mientras tanto. 
+
+
+
+21 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+
+Con respecto a Gmaps
+~~~~~~~~~~~~~~~~~~~~
+Estoy parada porque no me quiere cargar la api de google maps.
+Le pregunte a Oscar y quedamos en un hangout para ver que está sucediendo.
+
+
+Problema con multi-currency
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Como correo yaml:
+
+Al crear una factura en moneda extranjera, y que existan varias tasa de cambios distintas, la hacer
+pagos parciales, pueden haber perdidas o agnancias, pero openerp solo toma en cuenta las ganancias
+y/o perdidas cuando se termina de pagar la factura.
+
+factura del 1/1/2013
+
+al 15/06/2013 pagamos la mitad. 500 $
+Luego al 21/10/2013 se paga la otra mitad..
+Se registran los pagos al momentos, con su ganancia o perdida.
+
+Debit Credit
+67.81
+      454.55
+      65.41
+      327.03
+
+bzr revert 9230 en lso addons de agrinos
+
+se viola constraint check_currency_amount de account/account_move_line.py
+
+Buscar vuelta al proceso para ver si podemos conseguir una forma de no violar el constraint
+Los fixes que hagamos hacerlos pasar por el test yaml de openerp.
+
+El yaml que explota es donde apareve el -10.0
+
+Revisar porque está explotando.
 
 18 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
@@ -42,19 +144,21 @@ importantes
 Save Info sobreescribe el campo comments del partner.
 saved data file mensaje es cuando ya se guardo en open
 
-install googlemaps
+**LISTO** install googlemaps: pip install googlemaps
 
 
 Yanina:
-1. gmaps_area_ids debe ser \*2many (puntos necesarios para conformar area, al menos 3), 
+**LISTO** 1. gmaps_area_ids debe ser \*2many (puntos necesarios para conformar area, al menos 3), 
    (gmaps_lat, gmaps_lon y many2one: gmaps_zone_id). Yanina.
-2. Modulito para geolocalizar de manera precisa. (Como el de Openerp, pero los campos iran con los
+**LISTO 2** 2. Modulito para geolocalizar de manera precisa. (Como el de Openerp, pero los campos iran con los
 nombres acordados con Nhomar, y la precision de los campos sera de 6) el módulo de openerp esta
-hecho para saber el pais de un partner 
-3. Crear data demo de puntos reales. Yanina. Crear vista en lista, 
+hecho para saber el pais de un partner.
+**LISTO** 3. Crear data demo de puntos reales.
+3.1   Yanina. Crear vista en lista, 
 4. busqueda (group_by de zona en partner)
-5. Investigar algoritmo de gmaps llamado Area para saber si un punto está dentro de un área.
-7. Buscar developer key de google :) , con mi acc gmail.
+**LISTO** 5. Investigar algoritmo de gmaps llamado Area para saber si un punto está dentro de un área.
+http://vsbabylon.blogspot.com/2010/02/como-detectar-si-un-punto-esta-fuera-o.html
+**Ya la cree** 7. Buscar developer key de google :) , con mi acc gmail.
 8. Nhomar documentará en su módulo como hace pull puntos desde javascript y push en el modelo TA 
 HECho
 
