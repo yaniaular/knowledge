@@ -19,6 +19,7 @@ Octubre 2013
 .. Problemas que se presentaron
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
+
 22 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
 
@@ -79,13 +80,13 @@ Usar la API de google desde python no me funcionó, hablé con Oscar sobre ésto
 Voy a cargar las horas de ésto y a ponerme con unas cosas de agrinos mientras tanto. 
 
 
-
 21 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
 
 
 Con respecto a Gmaps
 ~~~~~~~~~~~~~~~~~~~~
+
 Estoy parada porque no me quiere cargar la api de google maps.
 Le pregunte a Oscar y quedamos en un hangout para ver que está sucediendo.
 
@@ -105,11 +106,17 @@ al 15/06/2013 pagamos la mitad. 500 $
 Luego al 21/10/2013 se paga la otra mitad..
 Se registran los pagos al momentos, con su ganancia o perdida.
 
-Debit Credit
-67.81
-      454.55
-      65.41
-      327.03
++-------+-------+
+| Debit | Credit|
++=======+=======+
+| 67.81 |       |
++-------+-------+
+|       | 454.55|
++-------+-------+
+|       | 65.41 |
++-------+-------+
+|       | 327.03|
++-------+-------+
 
 bzr revert 9230 en lso addons de agrinos
 
@@ -149,12 +156,12 @@ saved data file mensaje es cuando ya se guardo en open
 
 Yanina:
 **LISTO** 1. gmaps_area_ids debe ser \*2many (puntos necesarios para conformar area, al menos 3), 
-   (gmaps_lat, gmaps_lon y many2one: gmaps_zone_id). Yanina.
+(gmaps_lat, gmaps_lon y many2one: gmaps_zone_id). Yanina.
 **LISTO 2** 2. Modulito para geolocalizar de manera precisa. (Como el de Openerp, pero los campos iran con los
 nombres acordados con Nhomar, y la precision de los campos sera de 6) el módulo de openerp esta
 hecho para saber el pais de un partner.
 **LISTO** 3. Crear data demo de puntos reales.
-3.1   Yanina. Crear vista en lista, 
+3.1 Yanina. Crear vista en lista, 
 4. busqueda (group_by de zona en partner)
 **LISTO** 5. Investigar algoritmo de gmaps llamado Area para saber si un punto está dentro de un área.
 http://vsbabylon.blogspot.com/2010/02/como-detectar-si-un-punto-esta-fuera-o.html
@@ -188,26 +195,30 @@ When you don't have control on the original model
 
 Say you want to modify the selection field type of the product categories. Excerpt of the code from the product addon, that you can't modify:
 
-class product_category(osv.osv):
-    # <snip>
-    _name = "product.category"
-    _description = "Product Category"
-    _columns = {
-    # <snip>
-        'type': fields.selection([('view','View'), ('normal','Normal')], 'Category Type', help="A category of the view type is a virtual category that can be used as the parent of another category to create a hierarchical structure."),
-    }
+.. code-block :: python
+
+    class product_category(osv.osv):
+        # <snip>
+        _name = "product.category"
+        _description = "Product Category"
+        _columns = {
+        # <snip>
+            'type': fields.selection([('view','View'), ('normal','Normal')], 'Category Type', help="A category of the view type is a virtual category that can be used as the parent of another category to create a hierarchical structure."),
+        }
  
 In your module you need to alter the field in the _columns in the __init__ of the model:
 
-class product_category(orm.Model):
-    _inherit = 'product.category'
+.. code-block :: python
 
-    def __init__(self, cr, uid, name, context=None):
-        super(product_category, self).__init__(cr, uid, name, context)
-        option = ('special', 'Special')
-        type_selection = self._columns['type'].selection
-        if option not in type_selection:
-            type_selection.append(option)
+    class product_category(orm.Model):
+        _inherit = 'product.category'
+
+        def __init__(self, cr, uid, name, context=None):
+            super(product_category, self).__init__(cr, uid, name, context)
+            option = ('special', 'Special')
+            type_selection = self._columns['type'].selection
+            if option not in type_selection:
+                type_selection.append(option)
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -448,10 +459,10 @@ Entonces, lo que se debe hacer es lo siguiente:
  
 Entonces, lo que se debe hacer es lo siguiente:
 
- - Hablar con oscar para que me diga como extraer los puntos del rectangulo o el polígono que se
+- Hablar con oscar para que me diga como extraer los puntos del rectangulo o el polígono que se
    dibuje en el mapa para que devuelva la info y se pueda guardar en una zona. Teniendo así un
    on2many con los puntos de dicha zona. (callbacks)
- - Lo siguiente que se debe hacer es guardar el punto gps de la dirección del partner que ya lo
+- Lo siguiente que se debe hacer es guardar el punto gps de la dirección del partner que ya lo
    hace OpenERP, pero hay que tomar en cuenta que la función del módulo ``crm_partner_assign``
    llamada **geo_jquery_address** toma en cuenta ciertos parámetros como lo son la ciudad, el país,
    la calle, etc y se necesita agregar otros parámetros necesarios como los son la urbanización, la
@@ -649,15 +660,15 @@ https://docs.google.com/a/vauxoo.com/document/d/17YpvSBSOreOMeIIPYXsZwHdT9TXReL9
 prendiendo JavaScript, CSS, Jquery, Bootstrap, API OpenERP.
 
 
-1) JavaScript:
-2)  CSS:
-3) Jquery:
-4) Ajax: 
-5) BackboneJS. 
-7) Twiter Bootstraap
-http://bootsnipp.com/ (Recursos)
-8) Video de curso de nhomar en Belgica: Aun no público.
-n+1) Documentacion sobre la nueva API de OpenERP. [Como Referencia.]
+#) JavaScript
+#) CSS
+#) Jquery
+#) Ajax 
+#) BackboneJS. 
+#) Twiter Bootstraap http://bootsnipp.com/ (Recursos)
+#) Video de curso de nhomar en Belgica: Aun no público.
+#) Documentacion sobre la nueva API de OpenERP. [Como Referencia.]
+
 https://doc.openerp.com/trunk/web/qweb/
 https://doc.openerp.com/trunk/web/async/
 https://doc.openerp.com/trunk/web/rpc/
@@ -677,7 +688,7 @@ https://code.launchpad.net/~vauxoo/web-addons/7.0-web_hideleftmenu
 
 Buenas Tardes,
 
-    A continuación adjunto los certificados que me pediste que creara para el acceso de los 
+A continuación adjunto los certificados que me pediste que creara para el acceso de los 
 chicos de Vauxoo  a la VPN. Las instancias se encuentran disponibles en las 
 siguientes direcciones:
          
@@ -740,7 +751,9 @@ necesitaron de producto son "restaurant y delivery" y el campo del punto de vent
 ``delivery_restaurant/__openerp__.py``
 ``Última modificación: 02/10/13 07:57, Estado: modificado, Tipo: archivo``
 
-        ],
+.. code-block :: python
+
+            ],
     'demo': [],
     'test': [],
     'js': [
@@ -750,53 +763,57 @@ necesitaron de producto son "restaurant y delivery" y el campo del punto de vent
         ],
     'active': False,
     'installable': True,
-}
+    }
 
 
 ``delivery_restaurant/static/src/js/main.js``
 ``Última modificación: 02/10/13 07:57, Estado: añadido, Tipo: archivo``
 
-openerp.delivery_restaurant = function(instance){
-    var module = instance.point_of_sale;
-    delivery_restaurant_models(instance,module);
-    instance.delivery_restaurant = module;
-}
+.. code-block :: javascript
+
+    openerp.delivery_restaurant = function(instance){
+        var module = instance.point_of_sale;
+        delivery_restaurant_models(instance,module);
+        instance.delivery_restaurant = module;
+    }
 
 
 ``delivery_restaurant/static/src/js/models.js``
 ``Última modificación: 02/10/13 07:42, Estado: añadido, Tipo: archivo``
 
-function delivery_restaurant_models(instance, module){
+.. code-block :: javascript
 
-    module.PosModel = module.PosModel.extend({
-        initialize : function(session, attributes) {
-            this._super(session, attributes);
-        },
-        
-        load_server_data : function(){
-            self = this;
-            loaded = this._super()
-                .then(function(){
-                    return self.fetch(
-                    'pos.config',
-                    ['deli_rest'],
-                    [['id','=', 
-                    self.get('pos_session').config_id[0]]]
-                    );
-                }).then(function(){
-                    return self.fetch(
-                        'product.product', 
-                        ['restaurant' , 'delivery'],
-                        [['sale_ok','=',true],['available_in_pos','=',true]]
-                        
+    function delivery_restaurant_models(instance, module){
+
+        module.PosModel = module.PosModel.extend({
+            initialize : function(session, attributes) {
+                this._super(session, attributes);
+            },
+            
+            load_server_data : function(){
+                self = this;
+                loaded = this._super()
+                    .then(function(){
+                        return self.fetch(
+                        'pos.config',
+                        ['deli_rest'],
+                        [['id','=', 
+                        self.get('pos_session').config_id[0]]]
                         );
-                });
-            return loaded;
-        },
+                    }).then(function(){
+                        return self.fetch(
+                            'product.product', 
+                            ['restaurant' , 'delivery'],
+                            [['sale_ok','=',true],['available_in_pos','=',true]]
+                            
+                            );
+                    });
+                return loaded;
+            },
 
-    })
+        })
 
-}
+    }
 
 .. note::
     Se debe tener en la carpeta js la librería backbone-super-min.js
@@ -832,7 +849,7 @@ delivery. Tuve que hacer una consulta sql para poder agregar valores aleatorios 
 existentes:
 
     - update product_product set restaurant=true where id in (select id from product_product order by
-    random() limit 100);
+      random() limit 100);
     - update product_product set delivery=true where id in (select id from product_product order by
       random() limit 100);
 
@@ -846,10 +863,12 @@ En el punto de venta estuve viendo como funciona la parte de ajvascript, y en el
 línea 174, agregue los campos nuevos delivery y restaurant, para poder consultarlos luego en el
 archivo widgets.js línea 576 
 
-_.each(products, function(prod){                                                                                                    
-     console.log(prod.name + "@@" +prod.restaurant);                                     
-    }                                                                                   
-); 
+.. code-block :: javascript
+
+    _.each(products, function(prod){                                                                                                    
+         console.log(prod.name + "@@" +prod.restaurant);                                     
+        }                                                                                   
+    ); 
 
 esta _.each función de underscore.js hace que a cada elemento de products lo reciba la función e imprima
 la info que se desee.
