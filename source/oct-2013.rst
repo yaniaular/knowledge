@@ -27,6 +27,39 @@ Octubre 2013
 Resumen del día
 ~~~~~~~~~~~~~~~
 
+Problema multi-currency agrinos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+_check_currency_amount en account/account_move_line.py línea 629
+definición del método 609.
+
+
+Comentarios de Nhomar
+~~~~~~~~~~~~~~~~~~~~~
+
+**IMPORTANTE**
+
+- El modelo de web_gmaps_action ahora es un osv.AbstractModel (como mail.thread)
+- La documentación del módulo está en web_gmaps_action/doc/
+- Ya existen una acción a partner (Sólo demo)
+- Lo mismo que hizo con el módulo de partner debo hacerlo yo con el módulo de
+  freight_zone_googlemaps
+- Tengo que borrar todos los campos/columnas y métodos que definí en mi modelo y sólo colocar el
+  _inherit = ['gmaps.group']
+- El modelo de puntos ahora se llama gmaps_point
+- En los modelos Abstract debo referirme al modelo como self._name
+- En el modelo de puntos (gmaps_point) debo colocar el método partner_insidepolygon. Pero en vez de
+  recibir un partner, va a recibir un id con un puntos, y una lista de ids, con un conjunto de
+  puntos que forman el área.
+- Traer método de googleMaps al método abstracto, es decir, recibir data y retornar el objeto.
+  def convert_to_google_obj(cr ,uid, id, lat, lng, ... , context=None )
+- En setting -> databasestructure > list points, puedes modificar los puntos como modificas los
+  mensajes de mail.thread.
+- cambiar nombre del modelo en la data demo.
+- Crear data demo a partner de Nhomar.
+- La data demo es para validar el modelo.
+- modulo web_gmaps y web_gmaps_action
+
 Con respecto a Gmaps
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -80,6 +113,8 @@ Usar la API de google desde python no me funcionó, hablé con Oscar sobre ésto
 Voy a cargar las horas de ésto y a ponerme con unas cosas de agrinos mientras tanto. 
 
 
+
+
 21 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
 
@@ -97,7 +132,7 @@ Problema con multi-currency
 Como correo yaml:
 
 Al crear una factura en moneda extranjera, y que existan varias tasa de cambios distintas, la hacer
-pagos parciales, pueden haber perdidas o agnancias, pero openerp solo toma en cuenta las ganancias
+pagos parciales, pueden haber perdidas o ganancias, pero openerp solo toma en cuenta las ganancias
 y/o perdidas cuando se termina de pagar la factura.
 
 factura del 1/1/2013
@@ -125,7 +160,7 @@ se viola constraint check_currency_amount de account/account_move_line.py
 Buscar vuelta al proceso para ver si podemos conseguir una forma de no violar el constraint
 Los fixes que hagamos hacerlos pasar por el test yaml de openerp.
 
-El yaml que explota es donde apareve el -10.0
+El yaml que explota es donde aparece el -10.0
 
 Revisar porque está explotando.
 
