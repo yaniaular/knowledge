@@ -20,6 +20,136 @@ Octubre 2013
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
 
+25 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+
+**Addons con código de Luis, Factura multicurrency**
+
+**10.00:**
+{'account_id': 14, 'company_id': 1, 'currency_id': 3, 'date_maturity': False, 'period_id': 10,
+'date': '2013-10-25', 'partner_id': 6, 'move_id': 276L, 'name': '/', 'journal_id': 10, 'credit':
+0.0, 'debit': 9.09, 'amount_currency': 10.0}
+
+{'account_id': 62, 'company_id': 1, 'currency_id': 3, 'period_id': 10, 'date': '2013-10-25',
+'partner_id': 6, 'move_id': 276L, 'analytic_account_id': False, 'name': u'SAJ/2013/0035',
+'journal_id': 10, 'credit': 9.09, 'debit': 0.0, 'amount_currency': -10.0, 'quantity': 1}
+
+{'account_id': 62, 'company_id': 1, 'currency_id': 3, 'period_id': 10, 'date': '2013-10-25',
+'partner_id': 6, 'move_id': 276L, 'name': u'change: SAJ/2013/0035', 'journal_id': 10, 'credit':
+0.0, 'debit': 1.2999999999999998, 'amount_currency': 0.0, 'quantity': 1}
+
+{'account_id': 23, 'company_id': 1, 'currency_id': 3, 'period_id': 10, 'date': '2013-10-25',
+'partner_id': 6, 'move_id': 276L, 'name': u'change: SAJ/2013/0035', 'journal_id': 10, 'credit':
+1.2999999999999998, 'debit': 0.0, 'amount_currency': 0.0, 'quantity': 1}
+
+**-10.00:**
+
+.. error::
+    El primer move_line debe tener otra cuenta para las pérdidas, en los ejemplos vi que debería
+    ser 79, y el amoun_currency debe ser negativo, porque viene positivo.
+    Aunque no se de que lado debería ir en caso de que el pago sea negativo. Si por le debito o por
+    el crédito, debo hablar con humberto acerca de ésto. Todo se encuentra en account_move_line.py
+    en la línea 1225. En total se crean 4 move_lines. Se debe crear un condicional en caso de que
+    sea multicurrency y el pago sea negativo.
+
+**Addons sin código de Luis, Factura multicurrency**
+
+**-10.00:**
+
+{'account_id': 14, 'company_id': 1, 'currency_id': 3, 'date_maturity': False, 'period_id': 10,
+'date': '2013-10-25', 'partner_id': 6, 'move_id': 262L, 'name': '/', 'journal_id': 10, 'credit':
+9.09, 'debit': 0.0, 'amount_currency': 10.0}
+
+.. error::
+   ERROR!, Creo que en éste punto el valor de amount_currency debe estar negativo, ya que como es
+   una pérdida, el valor viene por el crédito, y el amount_currency debe ser negativo. Revisar
+   account_move_line línea 1223.
+
+**10.00:**
+
+{'account_id': 14, 'company_id': 1, 'currency_id': 3, 'date_maturity': False, 'period_id': 10,
+'date': '2013-10-25', 'partner_id': 6, 'move_id': 263L, 'name': '/', 'journal_id': 10, 'credit':
+0.0, 'debit': 9.09, 'amount_currency': 10.0}
+
+{'account_id': 62, 'company_id': 1, 'currency_id': 3, 'period_id': 10, 'date': '2013-10-25',
+'partner_id': 6, 'move_id': 263L, 'analytic_account_id': False, 'name': u'SAJ/2013/0006',
+'journal_id': 10, 'credit': 9.09, 'debit': 0.0, 'amount_currency': -10.0, 'quantity': 1}
+
+**Addons sin código de Luis, Factura monocurrency**
+
+**-10.0:**
+
+{'account_id': 79, 'company_id': 1, 'currency_id': False, 'date_maturity': False, 'period_id': 10,
+'date': '2013-10-25', 'partner_id': 6, 'move_id': 268L, 'name': '/', 'journal_id': 41, 'credit':
+10.0, 'debit': 0.0, 'amount_currency': 0.0}
+
+{'account_id': 62, 'company_id': 1, 'currency_id': False, 'period_id': 10, 'date': '2013-10-25',
+'partner_id': 6, 'move_id': 268L, 'analytic_account_id': False, 'name': u'SAJ/2013/0034',
+'journal_id': 41, 'credit': 10.0, 'debit': 0.0, 'amount_currency': False, 'quantity': 1}
+
+{'account_id': 62L, 'journal_id': 41, 'currency_id': False, 'period_id': 10, 'date': '2013-10-25',
+'partner_id': 6, 'move_id': 268L, 'analytic_account_id': False, 'name': u'BNK1/2013/0002',
+'company_id': 1, 'credit': 0.0, 'debit': 20.0, 'amount_currency': False}
+
+**10.0:**
+
+{'account_id': 79, 'company_id': 1, 'currency_id': False, 'date_maturity': False, 'period_id': 10,
+'date': '2013-10-25', 'partner_id': 6, 'move_id': 269L, 'name': '/', 'journal_id': 41, 'credit':
+0.0, 'debit': 10.0, 'amount_currency': 0.0}
+
+{'account_id': 62, 'company_id': 1, 'currency_id': False, 'period_id': 10, 'date': '2013-10-25',
+'partner_id': 6, 'move_id': 269L, 'analytic_account_id': False, 'name': u'SAJ/2013/0034',
+'journal_id': 41, 'credit': 10.0, 'debit': 0.0, 'amount_currency': False, 'quantity': 1}
+
+25 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Cree un botoncito para poder llamar al action de google maps de Nhomar, aun no guarda, ni recibe
+correctamente el res_id para poder guardar los puntos que se han seleccionado.
+
+Estuve revisando el código de multicurrency pero llegue al punto que debía revisar el
+account_move_line ya que el error viene de ahi en la línea 1229.
+
+
+23 de Octubre del 2013 - 5:00 p.m
+---------------------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+def compute de res_currency.py al devolver el valor, lo corta a dos decimales.
+
+Ver método first_move_line_get 1039. Hace todo bien
+
+debit = -90.91
+voucher.amount = -100
+
+sign = 0.0 - (90.91)
+voucher_amount = -100
+
+Con factura no multi-currency si funciona todo.
+
+Revisar move_line_pool.create línea 1400.
+
+Coloque el pago negativo y da error. Sin embargo cuando hago los yaml sin el código de Luis no da
+error.
+
+El pago negativo con multi-currency da error sin yaml.
+
+- Pago negativo manual con multi-currency sin el codigo de Luis (Error)
+- Pago negativo manual sin multicurrency (Bien)
+- Test yaml, sin codigo de Luis (Bien)
+
 22 de Octubre del 2013 - 5:00 p.m
 ---------------------------------
 
@@ -128,6 +258,20 @@ Le pregunte a Oscar y quedamos en un hangout para ver que está sucediendo.
 
 Problema con multi-currency
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+bzr merge -r 9231..9230
+
+Instalar account_voucher
+Activar permisos tećnicos
+Activar multi-currencies (Configuration -> Invoicing -> Allow multi currencies) Configurar cuentas
+gain y loss para exchange.
+
+Instalar account
+Miscellaneous -> Currencies
+
+Ir a USD, crear nueva tasa de cambio al 23/10/2013 de 1.1.
+Creamos una factura a cliente por 1000, le colocamos la moneda USD y fecha de 1/1/2013.
+
 
 Como correo yaml:
 
