@@ -20,12 +20,49 @@ Octubre 2013
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
 
-25 de Octubre del 2013 - 5:00 p.m
----------------------------------
+30 de Octubre del 2013
+----------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
+
+29 de Octubre del 2013
+----------------------
+
+Branch donde Eduardo hace el filtro en javascript para poder ver los productos dependiendo del POS.
+https://code.launchpad.net/~team-cluster/addons-vauxoo/7.0-pos_product_filter-dev-eochoa
+
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+28 de Octubre del 2013
+----------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se reportó un bug para el error de la tarea
+http://agrinos.openerp.la/?db=agrinos#id=3995&view_type=form&model=project.task
+
+que tiene que ver cuando se tiene una factura de cliente y se hace un pago en negativo con la
+factura en multicurrency, entonces ocurría una excepción, con el parche propuesot en la resolución
+del bug, se resuelve éste problema, sin embargo al ejecutar los test yaml persiste el error, toda
+la información que se necesita saber está en el log de la tarea.
+
+25 de Octubre del 2013
+----------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+Preguntar:
+
+En que columan debe ir si el pago es negativo.
+Como se calculan las peridas o ganancias 
 
 
 **Addons con código de Luis, Factura multicurrency**
@@ -88,6 +125,10 @@ Resumen del día
 'date': '2013-10-25', 'partner_id': 6, 'move_id': 268L, 'name': '/', 'journal_id': 41, 'credit':
 10.0, 'debit': 0.0, 'amount_currency': 0.0}
 
+{'account_id': 79, 'company_id': 1, 'currency_id': False, 'date_maturity': False, 'period_id': 10,
+'date': '2013-10-25', 'partner_id': 6, 'move_id': 268L, 'name': '/', 'journal_id': 41, 'credit':
+10.0, 'debit': 0.0, 'amount_currency': 0.0}
+
 {'account_id': 62, 'company_id': 1, 'currency_id': False, 'period_id': 10, 'date': '2013-10-25',
 'partner_id': 6, 'move_id': 268L, 'analytic_account_id': False, 'name': u'SAJ/2013/0034',
 'journal_id': 41, 'credit': 10.0, 'debit': 0.0, 'amount_currency': False, 'quantity': 1}
@@ -106,8 +147,8 @@ Resumen del día
 'partner_id': 6, 'move_id': 269L, 'analytic_account_id': False, 'name': u'SAJ/2013/0034',
 'journal_id': 41, 'credit': 10.0, 'debit': 0.0, 'amount_currency': False, 'quantity': 1}
 
-24 de Octubre del 2013 - 5:00 p.m
----------------------------------
+24 de Octubre del 2013
+----------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -120,8 +161,8 @@ Estuve revisando el código de multicurrency pero llegue al punto que debía rev
 account_move_line ya que el error viene de ahi en la línea 1229.
 
 
-23 de Octubre del 2013 - 5:00 p.m
----------------------------------
+23 de Octubre del 2013
+----------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -150,8 +191,8 @@ El pago negativo con multi-currency da error sin yaml.
 - Pago negativo manual sin multicurrency (Bien)
 - Test yaml, sin codigo de Luis (Bien)
 
-22 de Octubre del 2013 - 5:00 p.m
----------------------------------
+22 de Octubre del 2013
+----------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -245,8 +286,8 @@ Voy a cargar las horas de ésto y a ponerme con unas cosas de agrinos mientras t
 
 
 
-21 de Octubre del 2013 - 5:00 p.m
----------------------------------
+21 de Octubre del 2013
+----------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -311,8 +352,8 @@ El yaml que explota es donde aparece el -10.0
 
 Revisar porque está explotando.
 
-18 de Octubre del 2013 - 5:00 p.m
----------------------------------
+18 de Octubre del 2013
+----------------------
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
@@ -371,8 +412,8 @@ Nhomar:
 
 
 
-17 de Octubre del 2013 - 5:00 p.m
----------------------------------
+17 de Octubre del 2013
+----------------------
 
 http://help.openerp.com/question/21529/how-to-extend-fieldsselection-options-without-overwriting-them/
 
@@ -464,8 +505,8 @@ Servers ejecutados
 --addons-path=../addons/,../web/addons/,../addons-vauxoo-7.0,../freight/7.0-freight_zone-dev2-yani
 -u freight_zone -d freight --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
 
-16 de Octubre del 2013 - 5:00 p.m
----------------------------------
+16 de Octubre del 2013
+----------------------
 
 - Agregar campo many2one a embarque en la orden de venta (que es el mismo de pos.order)
 - Agregar campo capacidad de peso físico en el camion.
@@ -511,8 +552,8 @@ https://code.launchpad.net/~vauxoo/openerp-freight/trunk
 Donde pasamos todo lo relacionado con flete a éste proyecto, y tambíen el calculo de zonas que
 todavía hay problemas ocn respectos a las horas trabajadas
 
-15 de Octubre del 2013 - 5:00 p.m
----------------------------------
+15 de Octubre del 2013
+----------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -613,8 +654,8 @@ mande un correo a josé javier para que nos ayude a terminar de definir las hist
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-14 de Octubre del 2013 - 5:00 p.m
----------------------------------
+14 de Octubre del 2013
+----------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -674,8 +715,8 @@ Entonces, lo que se debe hacer es lo siguiente:
 Enviar correo a Cluster sobre propuesta.
 
 
-11 de Octubre del 2013 - 5:00 p.m
----------------------------------
+11 de Octubre del 2013
+----------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -690,8 +731,8 @@ https://code.launchpad.net/~vauxoo/account-financial-report/7.0-report_webkit_af
 Tuve un problema porque al llamar al método print_report se estaba guardando el id del wizard de
 mala manera.
 
-10 de Octubre del 2013 - 5:00 p.m
----------------------------------
+10 de Octubre del 2013
+----------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -711,8 +752,8 @@ Servers ejecutados
 --addons-path=../addons/,../web/addons/,../addons-vauxoo-7.0,../fleet_zone,../base_module_record-dev-yani/
 -u fleet_zone -d delivery --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
 
-09 de Octubre del 2013 - 5:00 p.m
----------------------------------
+09 de Octubre del 2013
+----------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -756,8 +797,8 @@ Se van a tomar en cuenta las dos capacidades volumétrica y real. Y cuando se ex
 alguno, no seguir metiendo picking
 
 
-08 de Octubre del 2013 - 5:00 p.m
----------------------------------
+08 de Octubre del 2013
+----------------------
 
 ~~~~~~~~~~~~~~~
 Resumen del día
@@ -795,8 +836,8 @@ Servers ejecutados
 --addons-path=../addons/,../web/addons/,../addons-vauxoo-7.0,../product_volumetric,../fleet_delivery
 -d delivery --xmlrpc-port=8069 --no-xmlrpcs --no-netrp
 
-07 de Octubre del 2013 - 5:00 p.m
----------------------------------
+07 de Octubre del 2013
+----------------------
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
@@ -814,8 +855,8 @@ procesos.
 https://code.launchpad.net/~sebastien.beau/openerp-product-attributes/openerp-product-attributes-product-dimension/+merge/171181
 
 
-04 de Octubre del 2013 - 5:00 p.m
----------------------------------
+04 de Octubre del 2013
+----------------------
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
@@ -907,14 +948,14 @@ $sudo sh cnx.sh
 
 conectar a http://10.8.0.14:9069/
 
-03 de Octubre del 2013 - 5:00 p.m
----------------------------------
+03 de Octubre del 2013
+----------------------
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
 
-02 de Octubre del 2013 - 5:00 p.m
----------------------------------
+02 de Octubre del 2013
+----------------------
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
@@ -1005,8 +1046,8 @@ necesitaron de producto son "restaurant y delivery" y el campo del punto de vent
 
 #) 
 
-01 de Octubre del 2013 - 5:00 p.m
----------------------------------
+01 de Octubre del 2013
+----------------------
 ~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
@@ -1040,10 +1081,6 @@ existentes:
 
 Esto hace que en la tabla product_product se modifique el campo restaurant o delivery a verdadero
 en donde el id sea igual a los registros seleccionados aleatoriamente en la consulta despues de la
-clausula IN.
-
-#)
-
 En el punto de venta estuve viendo como funciona la parte de ajvascript, y en el archivo models.js
 línea 174, agregue los campos nuevos delivery y restaurant, para poder consultarlos luego en el
 archivo widgets.js línea 576 
