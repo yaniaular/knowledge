@@ -20,6 +20,66 @@ Octubre 2013
 .. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
 
+31 de Octubre del 2013
+----------------------
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+Se tiene dos campos one2many, invoice_ids que se relaciona con account.invoice y ai_aml_ids que se
+relaciona con account.invoice.line. Se desea que al agregar un item en ai_aml_ids, no me muestre
+los asientos contables que se generan a partir de las facturas que se tiene agregadas en el campo
+invoice_ids. 
+
+Lo que se hizo fue la reescritura del método _search, el cual es llamado cuando se tiene un domain
+en el campo en la vista. Entonces lo que se hace es pasar los valores de invoice_ids por context
+desde el campo ai_aml_ids en la vista. AL hacer click en Add Item de ai_aml_ids, se hace la llamada
+al método _search, donde la varible args contiene los argumentos que el usuario establece en el 
+domain de la vista para poder hacer el filtrado.
+
+Al tener los ids de las facturas del campos invoice_ids, procedemos a recolectar los
+account.move.lines que se relacionan a dichas facturas, y luego se agrega esa restriccion id not in
+[move_lines] al parámetro args, y se hace el super al método original con la variable args
+modificada.
+
+.. code-block :: python
+
+    class account_move_line(osv.Model):
+        _inherit = 'account.move.line'
+        
+
+        def _search(self, cr, uid, args, offset=0, limit=None, order=None, context=None, count=False,
+                access_rights_uid=None):
+
+            move_obj = self.pool.get('account.move.line')
+
+            lista_invoice = context.get('has_invoice_ids', False)
+            lista_invoice = lista_invoice and lista_invoice[0] or []
+            lista_invoice = lista_invoice and lista_invoice[2] or []
+
+            no_incluir = ['id', 'not in', [] ]
+            l_ids = []
+            
+            if lista_invoice:
+                for inv in lista_invoice:
+                    moves_up = move_obj.search(cr, uid,[('invoice','=',inv)] )
+                    l_ids = l_ids + moves_up
+            
+            no_incluir[2]+=l_ids
+
+            args.append(no_incluir)
+
+            return super(account_move_line, self)._search(cr, uid, args, offset=offset, limit=limit,
+                    order=order, context=context,count=count, access_rights_uid=access_rights_uid)
+    
+En la vista, se debe agregar las variables que necesitemos en el context para poder visualizarlas
+en el _search. Esto se hace en el campo que se desea filtrar.
+
+.. code-block :: xml
+    
+    context="{'has_invoice_ids':invoice_ids}
+
 30 de Octubre del 2013
 ----------------------
 
@@ -27,12 +87,15 @@ Octubre 2013
 Resumen del día
 ~~~~~~~~~~~~~~~
 
+
+
 29 de Octubre del 2013
 ----------------------
 
 Branch donde Eduardo hace el filtro en javascript para poder ver los productos dependiendo del POS.
 https://code.launchpad.net/~team-cluster/addons-vauxoo/7.0-pos_product_filter-dev-eochoa
 
+https://code.launchpad.net/~team-cluster/addons-vauxoo/7.0-pos_product_filter-dev-eochoa/+merge/193126
 
 ~~~~~~~~~~~~~~~
 Resumen del día
