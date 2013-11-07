@@ -4,6 +4,18 @@ Comandos
 
 - **wget**: wget --wait=20 --limit-rate=20K -r -p -U jmarin http://ajmarin.alwaysdata.net/
 
+- **youtube-dl**:
+
+Actualizar: sudo youtube-dl --update
+Restart: sudo youtube-dl
+
+youtube-dl -tc http://www.youtube.com/watch?v=IsUsVbTj2AY
+youtube-dl -tc -x --audio-format mp3 _hsa8DfV_i8
+
+t : guardar con el titulo original.
+c : si se descontinua la descarga, la continua al ejecutar de nuevo.
+x : extraer audio, y borrar video.
+k : no permitir que borre el video al extraer audio.
 
 - **du**: Funciona para saber el espacio que ocupa un archivo o directorio en el disco duro.
 

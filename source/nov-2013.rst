@@ -1,0 +1,127 @@
+==============
+Noviembre 2013
+==============
+
+.. contents:: Tabla de Contenido
+
+06 de Noviembre del 2013
+------------------------
+
+Se agregan dos características al módulo de account reconcile advanced, donde se eliminan los
+asientos contables que ya esten incluidos en alguna factura peusta en la lista por el usuario.
+
+Se elimina los asientos contables adicionales creados cuando sobra dinero de un anticipo. En su
+lugar se concilió el asiento contable del anticipo con la deuda pagada por el mismo.
+
+
+05 de Noviembre del 2013
+------------------------
+
+El error estaba en que el resultado esperado en los yaml no tomaba en cuenta los taxes, por lo
+tanto se modificaron los taxes de la factura para que pudiera dar los resultados correctos.
+
+~~~~~~~~~~~~~~~~~~~~~~
+Para correr test yaml:
+~~~~~~~~~~~~~~~~~~~~~~
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../7.0-ara-debits-yani -u account_reconcile_advance -d
+ara-debit --xmlrpc-port=10000 --no-xmlrpcs --no-netrp --log-level=test -i account_reconcile_advance
+--test-enable
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Guardar data de test yaml en la base de datos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+--test-commit
+
+cada partner tiene dos cuenta:
+
+cxc recivable
+cxp payable
+
+para saber que transacciones se ha hecho con ese partner.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+Siempre llevará un método:
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+context = context or {}
+ids = isinstance(ids, (int, long)) and [ids] or ids
+res = dict.fromkeys(ids, 0.0)
+
+
+04 de Noviembre del 2013
+------------------------
+
+Se hizo el método de account_reconcile_advance desde cero.
+en el nuevo branch ara-debit-yani.
+
+Se estuvieron haciendos las pruebas para poder comprobar la correcitud del algoritmo.
+No pasó los test yaml.
+
+Eliminar líneas que contngas un "pdb":
+
+%g/pdb/d
+
+
+01 de Noviembre del 2013
+------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas solventados en el día
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~
+Resumen del día
+~~~~~~~~~~~~~~~
+
+POC:
+~~~~
+
+- Anticipo por 1000
+- Anticipo por 500
+- Factura por 700
+- Deuda manual de:
+
+A.
+
++--------+--------+--------+
+|        |  Debit | Credit | 
++========+========+========+
+|  CxC   |  600   |        |
++--------+--------+--------+
+| Ingreso|        |  600   |
++--------+--------+--------+
+
+B.
+
++--------+--------+--------+
+|        |  Debit | Credit | 
++========+========+========+
+|  CxC   |  800   |        |
++--------+--------+--------+
+| Ingreso|        |  800   |
++--------+--------+--------+
+
+C.
+
++--------+--------+--------+
+|        |  Debit | Credit | 
++========+========+========+
+|  CxC   |  900   |        |
++--------+--------+--------+
+| Ingreso|        |  900   |
++--------+--------+--------+
+
+~~~~~~~~~~~~~~~~~~
+Servers ejecutados
+~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Problemas que se presentaron
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Se debe hacer un filtro en invoice_ids y voucher_ids que no incluya las facturas que tengan
+entradas en la parte de aml.
+

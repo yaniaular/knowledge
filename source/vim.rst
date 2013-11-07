@@ -66,4 +66,11 @@ filetype plugin indent on     " required!
 " NOTE: comments after Bundle command are not allowed..
 
 
+Expresiones regulares
+---------------------
+
+- %s/\s\+$//e quitar espacios en blanco de las últimas líneas
+- g/^$/d eliminar líneas en blanco
+- g/pdb/d eliminar cualquier línea que contenga la palabra pdb
+- %s/$/hola/e agregar hola al final de la línea
 

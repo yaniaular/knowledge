@@ -4,22 +4,6 @@ Octubre 2013
 
 .. contents:: Tabla de Contenido
 
-.. 01 de Octubre del 2013 - 5:00 p.m
-.. ---------------------------------
-.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. Problemas solventados en el día
-.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. ~~~~~~~~~~~~~~~
-.. Resumen del día
-.. ~~~~~~~~~~~~~~~
-.. ~~~~~~~~~~~~~~~~~~
-.. Servers ejecutados
-.. ~~~~~~~~~~~~~~~~~~
-.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. Problemas que se presentaron
-.. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. trabajamos en delivery el 30 de sep, 1 de octubre y 2 de octubre
-
 31 de Octubre del 2013
 ----------------------
 
