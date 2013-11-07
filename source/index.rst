@@ -23,6 +23,8 @@ Herramientas
    openerp
    to_install
    comandos
+   bazaar
+
 Lenguajes
 =========
 
@@ -43,6 +45,7 @@ Historial de Trabajo
    :numbered:
    :maxdepth: 1
 
+   nov-2013.rst
    oct-2013.rst
    sep-2013.rst
    ago-2013.rst
