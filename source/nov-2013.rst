@@ -4,6 +4,177 @@ Noviembre 2013
 
 .. contents:: Tabla de Contenido
 
+28 de Noviembre del 2013
+------------------------
+
+./openerp-server -c openerp_serverrc.cfg -u freight_zone_mapsgoogle,web_gmaps_action,web_test -d
+freight
+
+- configurar una apy key de google en el archivo de configuración.
+
+gmaps_api_key =
+https://maps.googleapis.com/maps/api/js?key=AIzaSyAQkpZnT7v8YKNvkjzPfDQA2qR5VP2BpaE&sensor=true
+
+Instalar módulo de freight_zone_mapsgoogle:
+https://code.launchpad.net/~vauxoo/web-addons/7.0-web_hideleftmenu
+
+
+25 de Noviembre del 2013
+------------------------
+
+Trabajar con gmaps again
+
+
+19 al 22 de Noviembre del 2013
+------------------------------
+
+Hacer reporte de libro de compra y venta en webkit
+https://code.launchpad.net/~vauxoo-private/vauxoo-private/l10n_ve_fiscal_book_webkit
+
+./openerp-server -r openerp -w openerp
+--addons-path=../addons/,../web/addons/,../addons-vauxoo-7.0/,../ovl70,../7.0-report_webkit_afr-_data_dev-jorge/,../l10n_ve_fiscal_book_webkit/
+-u l10n_ve_fiscal_book_webkit,account_financial_report_exportable --xmlrpc-port=10000 --no-xmlrpcs
+--no-netrp
+
+
+18 de Noviembre del 2013
+------------------------
+
+Probar webservice con la base de datos de erp.vauxoo y agrinos, revisar correo de Tulio.
+Hacer pruebas para probar la correctitud del algoritmo de phases.
+
+15 de Noviembre del 2013
+------------------------
+
+Tarea de la instancia de erp.vauxoo.
+[HU] Cambiar campo owner a m2o apuntando a res.users
+
+
+
+14 de Noviembre del 2013
+------------------------
+
+Herencia delegada:
+~~~~~~~~~~~~~~~~~~
+
+_name = "product.product"
+_inherits = {'product.template': 'product_tmpl_id'}
+
+Hago herencia delegada de una clase "product.template" a mi clase "product.product" y puedo
+utilizar los campos de "product.template" para mi clase "product.product", pero no estoy editando
+la clase "product.template" sino que hago una copia de los metadatos de esa clase y los agrego a mi
+producto.
+
+
+Hay un error cuando se intenta crear una historia de usuario ya que al crear la cuenta analitica no
+se le esta pasando un name, y es requerido. Se hizo un pdb y no se llego a una conclusion concreta,
+debo seguir el dia de mañana revisando, sino se le tendra que asignar un nombre temporal.
+
+https://erp.vauxoo.com/#id=848&view_type=form&model=project.task&action=138
+
+13 de Noviembre del 2013
+------------------------
+
+Gaby me asigno unas tareas en erp vauxoo que tienen que ver con historias de usuario.
+
+- instalar user_history
+- instalar project_long_term
+- Permisos User Story Manager
+- Permisos technical features
+
+https://code.launchpad.net/~vauxoo/addons-vauxoo/7.0-hu_phases-yani/
+
+12 de Noviembre del 2013
+------------------------
+
+No hubo Luz. Sin embargo Humberto me explico el proceso para multicurrency en Account reconcile
+advance.
+
+11 de Noviembre del 2013
+------------------------
+
+Se hace un fix en el algoritmo para que cuando no quede dinero en el aml_sum de un anticipo donde
+ya se había usado parcialmente en otro momento, tome en cuenta que el anticipo se dejo de usar fue
+cuando quedo con saldo 0.
+
+
+08 de Noviembre del 2013
+------------------------
+
+Prueba de concepto
+
+Factura por 700
+Anticipo por 150
+Hago un anticipo con la factura y el anticipo previamente creados
+
+Deuda manual de 450
+Anticipo de 200
+
+misma deuda manual de "450" (250)
+anticipo de 50
+
+misma deuda manual de "450" (200)
+anticipo de 500
+
+misma factura de "700" (550)
+misma anticipo de "500" (300)
+
+
++-----+-----+-----+-----+-----+-----+
+| Acc | Debt| Cred|  Ref| sob | Typ |
++-----+-----+-----+-----+-----+-----+
+| CxC | 200 |     |  A9 |     |     |
++-----+-----+-----+-----+-----+ Asi |
+| CxC |     | 200 |  A8 |     |     |
++-----+-----+-----+-----+-----+-----+
+| CxC |     | 500 |  A9 | -300|     |
++-----+-----+-----+-----+-----+ Ant |
+| Bnk | 500 |     |     |     |     |
++-----+-----+-----+-----+-----+-----+
+| CxC | 450 |     |  A8 |     |     |
++-----+-----+-----+-----+-----+ Deu |
+| Bnk |     | 450 |     |     |     |
++-----+-----+-----+-----+-----+-----+
+| CxC |     | 200 |  A4 |     |     |
++-----+-----+-----+-----+-----+ Ant |
+| Bnk | 200 |     |     |     |     |
++-----+-----+-----+-----+-----+-----+
+| CxC | 200 |     | A4  |     |     |
++-----+-----+-----+-----+-----+ Asi | 
+| CxC |     | 200 | A8  |     |     |
++-----+-----+-----+-----+-----+-----+
+| CxC |     |  50 | A6  |     |     |
++-----+-----+-----+-----+-----+ Ant |
+| Bnk | 50  |     |     |     |     |
++-----+-----+-----+-----+-----+-----+
+| CxC | 700 |     | A3  |     |     |
++-----+-----+-----+-----+-----+ Fact|
+| Bnk |     | 700 |     |     |     |
++-----+-----+-----+-----+-----+-----+
+| CxC |     | 150 | A2  |     |     |
++-----+-----+-----+-----+-----+ Ant |
+| Bnk | 150 |     |     |     |     |
++-----+-----+-----+-----+-----+-----+
+| CxC | 150 |     | A2  |     |     |
++-----+-----+-----+-----+-----+ Asi |
+| CxC |     | 150 | A3  |     |     |
++-----+-----+-----+-----+-----+-----+
+
+
+.. |
+.. +-----+-----+-----+-----+-----+
+.. |
+.. +-----+-----+-----+-----+-----+-----+
+
+
+
+07 de Noviembre del 2013
+------------------------
+
+Tomar factura más vieja o aml más viejo.
+Tomar anticipo más viejo
+Se eliminan av_aml con pagos parciales positivos, que ya fueron usados en su totalidad.
+
 06 de Noviembre del 2013
 ------------------------
 

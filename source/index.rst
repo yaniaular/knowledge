@@ -34,6 +34,7 @@ Lenguajes
 
    postgresql
    javascript
+   web
 
 
 Historial de Trabajo

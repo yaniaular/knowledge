@@ -382,3 +382,14 @@ cd addons-vauxoo
 bzr join workcenter
 bzr add
 bzr ci
+
+
+
+Copiar branch por ssh
+=====================
+
+
+bzr branch bzr+ssh://nhomar@192.168.0.102/home/nhomar/Instancias/trunk-website-al/addons-al
+
+
+
