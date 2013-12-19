@@ -1,4 +1,5 @@
 Instalación de SASS
+-------------------
 
 
 Comando de instalación de GEM
@@ -19,6 +20,7 @@ sudo gem install listen rb-fsevent
 
 
 ¿Qué es SASS?
+-------------
 
 http://es.wikipedia.org/wiki/Sass_(lenguaje_de_hojas_de_estilo)
 
@@ -87,3 +89,35 @@ $ sass --update l10n_mx_facturae_css.scss
 	Una vez realizado este paso si tenemos abierto nuestro preview_invoice.html en el navegador solo bastará dar F5 para refrescar nuestro reporte y ctrl+p para ver nuestro reporte como se afecto con los cambios realizados.
 
 	En caso de querer visualizar ya este reporte en OpenERP, necesitamos copiar el contenido del archivo l10n_mx_facturae_css.css que se generó o actualizo después del paso anterior dentro del tag <css>, OJO si el html tuvo cambios de diseño en el html se deben realizar también en el archivo .mako para poder ver nuestro diseño como lo tenemos en el preview_inovice.html. Una vez realizado el copiado del css en el xml y actualizado nuestro .mako (en caso de cambios de diseño) reiniciamos nuestro servidor con un -u nombre_del_modulo para que se actualice nuestro css y generamos la factura para ver nuestro reporte en OpenERP.
+
+
+
+Compass
+-------
+
+Es un framework para creación de CSS open-source. Simplifica, administra y automatiza el manejo
+de archivos css y scss usando sass. Esta desarrollada en ruby.
+
+Crear un proyecto compass:
+
+$ compass create
+
+Con esto, se creara un archivo de configuracion ``config.rb``
+en el cual se puede determinar la carpeta de salida ``css`` la carpeta de los archivos de 
+entrada ``scss``, el directio principal ``/``, la carpeta con las imágenes y código javascript.
+
+Se pueden borrar las carpetas predeterminadas y crear otras nuevas con el nombre a gusto.
+Si se han modificado los archivos scss, se puede actualizar lo css con el siguiente comando.
+
+$ compass compile
+
+Para más información consultar el help de compass.
+
+$compass --help
+
+Compila con Sass
+----------------
+
+Para compilar con sass solo necesitamos el archivo scss y el destino del css por ejemplo:
+
+$ sass scss/file.scss css/file.css
