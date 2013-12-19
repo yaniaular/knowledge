@@ -112,3 +112,27 @@ set clipboard=unnamedplus
 aplicaciones de tu entorno de escritorio favorito!
 
 http://gespadas.com/vim-clipboard
+
+
+
+Comandos
+========
+
+i + <Enter>: Separar el resto de la línea hacia la siguiente línea.
+<Shift> + j: Unir la línea de abajo con la de arriba
+<Ctrl> + v: Modo visual por caracter
+<Shift> + v: Modo visual por línea
+t + <Caracter>: Mover el cursor hasta el <Caracter>    
+o: Nueva línea hacia abajo
+<Shift> + o: Nueva línea hacia arriba
+[command]set clipboard=unnamedplus: permitir copiar y pegar desde otros entornos.
+u: Deshacer
+<Ctrl> + r: Rehacer
+d: Entrar en modo borrar, luego de escribir d debes decirle que borrará.
+    - d + w: Borrar palabra
+    - d + t + <Caracter>: Borrar hasta caracter
+    - d + d: Borrar línea
+
+q + <Cualquier Letra>: Empieza a grabar las acciones que hagas en VIM.
+q: Terminas de grabar.
+q + <La misma letra>: Repite todas las acciones grabadas en dicha letra.
