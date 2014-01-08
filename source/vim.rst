@@ -135,4 +135,4 @@ d: Entrar en modo borrar, luego de escribir d debes decirle que borrará.
 
 q + <Cualquier Letra>: Empieza a grabar las acciones que hagas en VIM.
 q: Terminas de grabar.
-q + <La misma letra>: Repite todas las acciones grabadas en dicha letra.
+@ + <La misma letra>: Repite todas las acciones grabadas en dicha letra.
