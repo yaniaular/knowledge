@@ -95,12 +95,24 @@ $ sass --update l10n_mx_facturae_css.scss
 Compass
 -------
 
+- sudo apt-get install libcompass-ruby
+- sudo apt-get install rubygems
+- sudo apt-get compass
+
+o para debian sequeeze
+
+- sudo apt-get install libhaml-ruby
+- sudo apt-get install ruby-compass
+- sudo apt-get install ruby-sass
+- sudo apt-get install rubygems
+- gem install haml
+
 Es un framework para creación de CSS open-source. Simplifica, administra y automatiza el manejo
 de archivos css y scss usando sass. Esta desarrollada en ruby.
 
 Crear un proyecto compass:
 
-$ compass create
+- compass create
 
 Con esto, se creara un archivo de configuracion ``config.rb``
 en el cual se puede determinar la carpeta de salida ``css`` la carpeta de los archivos de 
@@ -109,15 +121,30 @@ entrada ``scss``, el directio principal ``/``, la carpeta con las imágenes y c�
 Se pueden borrar las carpetas predeterminadas y crear otras nuevas con el nombre a gusto.
 Si se han modificado los archivos scss, se puede actualizar lo css con el siguiente comando.
 
-$ compass compile
+- compass compile
+
+Con el comando watch puedes decirle al compass que monitoree cualquier cambio que se haga en un
+scss y lo replique al css que corresponda.
+
+- compass watch .
 
 Para más información consultar el help de compass.
 
-$compass --help
+- compass - -help
+
 
 Compila con Sass
 ----------------
 
 Para compilar con sass solo necesitamos el archivo scss y el destino del css por ejemplo:
 
-$ sass scss/file.scss css/file.css
+- sass scss/file.scss css/file.css
+
+Tambien es posible monitorear directamente con el comando siguiente:
+
+- sass --watch scss:css --debug-info
+
+donde scss y css son las carpetas con los archivos de extensión scss y css.
+
+**Referencias**: http://cambio.name/personal/content/uso-de-sass-y-compass-para-generar-css 
+

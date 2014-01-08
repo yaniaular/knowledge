@@ -17,6 +17,11 @@ c : si se descontinua la descarga, la continua al ejecutar de nuevo.
 x : extraer audio, y borrar video.
 k : no permitir que borre el video al extraer audio.
 
+- **rsync**: Transferir archivos por scp, cuando hay interrupciones, se reanuda el archivo donde
+  quedo.
+
+    rsync -avz openerp8.tar kathy@192.168.1.120:~/
+
 - **du**: Funciona para saber el espacio que ocupa un archivo o directorio en el disco duro.
 
 Modo de empleo: du [OPCIÓN]... [FICHERO]...
