@@ -1,0 +1,32 @@
+
+==========
+Enero 2014
+==========
+
+.. contents:: Tabla de Contenido
+
+7 de Enero del 2014
+-------------------
+
+Leímos un libro con Humberto sobre TDD, donde hacen un ejemplo con multicurrency en Java.
+
+Debemos terminarlo de leer en nuestro tiempo libre.
+
+8 de Enero del 2014
+-------------------
+
+Trabajando con las tareas de Gaby, la 848.
+
+13 de Enero del 2014
+--------------------
+
+Descargar lp:edima
+
+Carga de data Inicial.
+
+Hablar con Julio para saber como cargo la data xml
+
+Ya pregunte a los señores de EDIMA los datos para hacer la carga de la compañía.
+
+
+
