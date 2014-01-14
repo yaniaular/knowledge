@@ -18,3 +18,4 @@ Linux KDE
    Docky
 
 
+- Boot repair: reparar boot desde linux

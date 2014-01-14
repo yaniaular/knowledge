@@ -392,4 +392,9 @@ Copiar branch por ssh
 bzr branch bzr+ssh://nhomar@192.168.0.102/home/nhomar/Instancias/trunk-website-al/addons-al
 
 
+Bug y commit
+============
 
+Hacer un Link o Linkear un bug a un commit
+
+bzr ci --fixes=lp:BUGXXXXXX

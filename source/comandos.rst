@@ -39,9 +39,9 @@ para las opciones cortas.
                           dispersos, fragmentación interna, bloques indirectos,
                           etc.
   -B, --block-size=TAM  escala los tamaños por TAM antes de mostrarlos.
-                          P. ej., `-BM' muestra los tamaños en unidades de
+                          P. ej., '-BM' muestra los tamaños en unidades de
                           1.048.576 bytes. Vea el formato de TAMAÑO más abajo.
-  -b, --bytes           equivalente a `--apparent-size --block-size=1'
+  -b, --bytes           equivalente a '--apparent-size --block-size=1'
   -c, --total           produce un "total"
   -D, --dereference-args  sigue solamente los enlaces listados en la línea de
                           órdenes
@@ -77,7 +77,7 @@ para las opciones cortas.
                            atime, access, use, ctime o status
       --time-style=ESTILO muestra las fechas/horas usando el estilo ESTILO:
                           full-iso, long-iso, iso, +FORMATO
-                          FORMATO se intepreta como `date'
+                          FORMATO se intepreta como 'date'
       --help     muestra esta ayuda y finaliza
       --version  informa de la versión y finaliza
 
@@ -92,3 +92,4 @@ de los siguientes:
 KB 1000, K 1024, MB 1000*1000, M 1024*1024, y así sucesivamente para G, T, P,
 E, Z, Y.
 
+- **lynx**: navegador por consola

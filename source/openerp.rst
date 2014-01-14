@@ -36,3 +36,11 @@ en javascritp siempre debes inicializar las variables en el init, el init es par
 atributos de los objetos.
 
 init (super_apply: ) -> start 
+
+------
+id xml
+------
+
+ grep -rn --include=*.xml search . | grep field | grep model
+<field name="fields_id" search="[('model','=','product.category'),('name','=','property_account_income_categ')]"/>
+

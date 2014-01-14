@@ -9,12 +9,12 @@ Aprender lenguajes:
 - Javascript
 - Qweb
 - DOM
-- Bootstrop
+- Bootstrap
 - Underscore.js
 - Ajax
 - HTML5
 - CSS5
-
+- KVM
 
 IMPORTANTES:
 
