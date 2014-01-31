@@ -79,7 +79,7 @@ Copiar al Clipboard
 
 set clipboard=unnamedplus
 
-Una de las cosas más frustrantes con las que me encontré hace mucho tiempo, al conocer Vim, es el dolor de cabeza que implicaba el copiar/cortar y pegar texto desde Vim a cualquier otra aplicación bajo X Window en Linux, y viceversa. Recuerdo haber instalado varios plugins, haber configurado de diversas maneras URxvt para lograr el objetivo, pero ninguna de estas “soluciones” me dejaba satisfecho.
+Una de las cosas más frustrantes con las que me encontré hace mucho tiempo, al conocer Vim, es el dolor de cabeza que implicaba el copiar/cortar y pegar texto desde Vim a cualquier otra aplicación bajo X Window en Linux, y viceversa. Recuerdo haber instalado varios plugins, haber configurado de diversas maneras URxvt para lograr el objetivo, pero ninguna de estas "soluciones" me dejaba satisfecho.
 
 Hace apenas pocas semanas, por fin me decidí a usar exclusivamente Vim para toda edición de texto (luego de varios intentos frustrados en el pasado), y todos los días Vim me sorprende con su poder, cada día descubro algo nuevo… pero había dejado pendiente el detalle arriba mencionado. Hoy por fin me puse a investigar más a fondo, y no paro de reirme de lo sencillo que es solucionar el bendito problema, ¡sin plugins ni trucos raros!
 
@@ -136,3 +136,18 @@ d: Entrar en modo borrar, luego de escribir d debes decirle que borrará.
 q + <Cualquier Letra>: Empieza a grabar las acciones que hagas en VIM.
 q: Terminas de grabar.
 @ + <La misma letra>: Repite todas las acciones grabadas en dicha letra.
+
+----------------
+Plugins para CSV
+----------------
+
+http://www.vim.org/scripts/script.php?script_id=2830
+
+Se descargar el archivo .vmb luego se abre con vim y se ejecuta :so %
+para que se creen los 5 archivos en las carpetas correspondientes a 
+doc/ ftplugin/ plugin/ syntax/ ftdetect/
+
+Luego de que se copien los archivox csv.vim en dichas carpetas ya se podrá usar
+el plugin al abrir un csv
+
+

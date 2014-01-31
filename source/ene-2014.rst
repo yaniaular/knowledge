@@ -28,5 +28,11 @@ Hablar con Julio para saber como cargo la data xml
 
 Ya pregunte a los señores de EDIMA los datos para hacer la carga de la compañía.
 
+31 de Enero del 2014
+--------------------
+
+Bug que me asigno Humberto
+Explicar csv en documentación de Vauxoo
+
 
 

@@ -20,3 +20,10 @@ Borrar base de datos
 --------------------
 
 dropdb nombre_base_de_datos
+
+-------------------------------------------------
+Exportar datos a csv desde base de datos postgres
+-------------------------------------------------
+
+COPY stock_warehouse TO '/tmp/warehouse_199.csv' DELIMITER ',' CSV HEADER;
+
