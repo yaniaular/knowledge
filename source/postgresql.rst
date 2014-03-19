@@ -27,3 +27,9 @@ Exportar datos a csv desde base de datos postgres
 
 COPY stock_warehouse TO '/tmp/warehouse_199.csv' DELIMITER ',' CSV HEADER;
 
+-----------------------------
+Ejecutar script desde el psql
+-----------------------------
+
+bd=#\i limpiar.sql
+

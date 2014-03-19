@@ -1,0 +1,144 @@
+
+==========
+Marzo 2014
+==========
+
+.. contents:: Tabla de Contenido
+
+6 de Marzo del 2014
+-------------------
+
+Reunión con Humberto, Katherine, José y Saul.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Estado que se aprobará
+Nivel de aprobación
+Persona que va a aprobar.
+
+1. Un campo que debe tener asignado un empleado es Position. (Project Manager, Human Resources Manager, P&C Manager, Finance and Administration Manager, etc)
+
+2. La Position a su vez, debe tener asociado un Authority Level. (L1 o L2)
+
+3. Un empleado puede pertencer a un grupo especial Group. (MC, BOD, CC, u Officers)
+
+4. Un documento (Requisition, Tender Plan, etc)  puede ser aprobado por un empleado con cierta Position, Authority Level o un Group. El documento tendrá un campo con un valor por dólares Amount. Dependiendo del Amount, el documento será aprobado o no por alguna de las entes.
+
+
+
+Relacionar 1, 2 y 3.
+
+Position (hr.job) tiene un campo Authority_Level.
+
+Position (hr.job) está relacionado (many2one) con Group (hr.deparment) 
+
+Un Documento (Requisition, Tender Plan, etc) tiene un many2many a un modelo nuevo llamémoslo   schedule.power.line
+
+def _get_power_requisiton(...):
+	“””
+	retorna los ids de las personas con derecho de aprobar por defecto
+	“””
+	......
+	# trasladar el modelo actual (purchase.requisition) a  los schedule.power.line creados
+	......
+	return ids
+
+_model = “approval.line”
+_columns = {
+	state : selection('draft, ..., etc')
+	power_ids: many2many('schedule.power.line', 'table_rel', 'requisition_id', 'document_id')
+}
+_default: {
+	 'power_ids' : _get_power_requisiton
+}
+
+_name = 'hr.job'
+_column = {
+'auth_level' :selection([L1,L2,PM,MC,BOD])
+*'department_id': m2o('hr.deparment')*
+}
+
+_model = “approval.line”
+_columns = {
+	'document_id' : id
+	'model' : many2one('ir.model') 
+	'group': many2one('hr.deparment')
+	'rol': many2one('hr.job')
+	'amount_min' : float
+	'amount_max' : float 
+	'approved': bool
+} 
+
+Manejar power_ids como many2many, con default power_ids que extrae los ids de un método en especial,
+lo saque de /addons/project/project.py +281 y /addons/project/project.py +305
+Te explico brevemente, los documentos pueden ser aprobados tanto por 1, 2 o 3. Y pienso que deben estar relacionados de cierta manera, estoy de acuerdo con el modelo de hr.job.
+
+pero no estoy de acuerdo con:
+
+_inherit='hr.employee'
+_columns={
+level_ids: m2m(hr.job) domain =[(auth_level=True)]
+}
+
+Pues ya empleado tiene relación con hr.job  que contiene la información del  Authority_Level y  Group al que pertenece, y el hr.job en sí, ya sería la Position (campo name).
+
+Creo que nos podríamos ahorrar schedule.power si vemos como funciona el modelo project.task.type.
+
+No sé si es un poco descabellado ando medio dormida, pero quisiera saber tu opinión, lo que me gustaría es tratar de crear lo menos posible modelos nuevos, aunque nos lleve un poquito mas de tiempo leer e investigar como funcionan los demás. Creo yo, para no cometer los errores que cometimos en cluster.
+
+7 de Marzo del 2014
+-------------------
+
+Leer documentación CICSA:
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Leer el manual de contrato
+Leer el libro de delegación de poder
+Revisar correos de rafa de cicsa
+Revisar documentos de cicsa https://drive.google.com/a/vauxoo.com/#folders/0B6iJAVelZw_IeE9OWXM3dkhtSUk
+
+Leer documentación scrum:
+~~~~~~~~~~~~~~~~~~~~~~~~~
+http://www.gazafatonarioit.com/2014/03/algunas-notas-sobre-gestion-del.html
+
+Aplicaciones a usar en el navegador:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+https://drive.draw.io/
+
+- Draw.io
+- Mindmeister
+
+Branch de CICSA:
+~~~~~~~~~~~~~~~~
+https://code.launchpad.net/~cicsa-ve-team/cicsa-ve/trunk
+
+Manual de contrato
+~~~~~~~~~~~~~~~~~~
+
+El propósito de este Manual es establecer los principios y las directrices para 
+regular la ejecución de las actividades de licitación de Carabobo 
+INGENIERIA Y CONSTRUCCIONES, SA (CICSA) para la compra de 
+de bienes y contratación de servicios para la construcción de instalaciones de producción 
+y la construcción de instalaciones XHO Upgrader asociados a este proyecto.
+
+
+14 de Marzo del 2014
+--------------------
+
+
+Crear prueba de concepto para ver HU cargadas en una instancia vauxoo desde mi dominio
+yanina@yanina.openerp.la
+
+mimaquina$ scp base_de_datos/vauxoo-2013-11-18.sql yanina@yanina.openerp.la:~/open7/
+
+yanina@testvauxoo$ createdb -O yanina -T template0 -E UTF8 poc_script_hu
+yanina@testvauxoo$ psql -d poc_script_hu -f open7/vauxoo-2013-11-18.sql -U yanina
+
+yanina@testvauxoo$ python hu.py --db poc_script_hu --user administrador --pass administrador --port 20000
+
+
+17 de marzo 2014
+----------------
+
+acc_obj._browse_class.__dict__.get('__osv__')
+
+Consultar columnas de un modelo.
