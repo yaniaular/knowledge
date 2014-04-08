@@ -142,3 +142,117 @@ yanina@testvauxoo$ python hu.py --db poc_script_hu --user administrador --pass a
 acc_obj._browse_class.__dict__.get('__osv__')
 
 Consultar columnas de un modelo.
+
+
+19 de Marzo del 2014
+--------------------
+
+Sobre el script de HU
+~~~~~~~~~~~~~~~~~~~~~
+
+Se termino el script para la carga de HU
+https://code.launchpad.net/~vauxoo-private/vauxoo-private/script_hu_cicsa-dev-yani
+
+Se creo una instancia en yanina@yanina.openerp.la en el puerto 20000
+con base de datos llamada poc_script_hu.
+
+Se utilizó el sql del 17 de marzo del 2014 de vauxoo, se puede acceder a los respaldos en
+
+usuario: downloads
+host: backup.vauxoo.com
+
+Se llevaron a cabo los siguentes pasos en la instancia de prueba.
+
+
+
+Sobre csv_tools o csv2xml
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Kathy me comento que:
+
+te cuento que el branch/serie que dijo Gaby ya le emrge el primer branch el csv_tools 
+que es el modulo grafico openerp para la herramienta csv2xml
+
+Hola @Yani. Esos csv lo puedes agregar al branch 
+https://code.launchpad.net/~vauxoo-private/vauxoo-private/csv2xml
+
+25 de Marzo del 2014
+====================
+
+Con respecto a los csv
+----------------------
+
+https://code.launchpad.net/~vauxoo-private/vauxoo-private/csv2xml
+
+1. Para crear la carpeta que contenga el esqueleto de los archivos csv de la empresa usaremos el comando create de la siguiente manera:
+
+$csv2xml create /home/.../csv_mycompany
+
+Donde csv_mycompany es la carpeta con el esqueleto de los archivos csv.
+
+2. Luego de crear la carpeta con los archivos csv (vacíos por ahora), podrás editarlos libremente con data real de la compañía.
+
+3. Después de llenar los csv con los datos de la compañia, queremos crear los xml, por lo cual necesitamos la ruta del módulo donde se tendrán toda la data xml de la compañía, para nuestro ejemplo usaremos /home/.../mycompany_xml_data_module
+
+Entonces usaremos el comando
+
+$csv2xml update /home/.../mycompany_xml_data_module /home/.../csv_mycompany
+
+NOTA IMPORTANTE: dentro del módulo  /home/.../mycompany_xml_data_module ya debe estar creada la carpeta data.
+
+
+Cambios para historias de usuario
+---------------------------------
+
+- Cambiar el envio de emails al user_story
+- Quita de la vista en lista del criterio de aceptación el campo development y difficulty
+- Esa plantilla esta en el modulo expired_task_information/ en los addons-vauxoo. Agregar
+  plantilla a correos de user_story
+
+
+Problema Attribute Error al consultar un campo de un objetos de User Story
+--------------------------------------------------------------------------
+
+Cuando se obtenia un objeto de user.story por medio de browse, y se intenta hacer un 
+hu_obj.name, ocurría un error. Attributte Error currency_id.
+
+Se hizo un pdb y se descubrió que, en el modelo se hacía un inherits a otros modelos, entre
+los cuales estaba el campo funcional de currency_id.
+
+Entonces, al hacer un hu_obj.read(), se pudo observar que el campo many2one a uno de los modelos
+que se tenía como inherits, era de Valor False, por lo tanto se concluyó que, como el campo
+era False, y al trata de consultar currency_id, entonces ocuarria el error. Parece ser un bug de 
+OpenERP, es decir, se hacía algo como False.currency_id.
+
+Al final, se eliminaron las herencias porque no se necesitaban, y se resolvió el problema.
+
+
+Pruebas unitarias para Openerp con OE, Reglas de Vauxoo Valencia
+----------------------------------------------------------------
+
+docstest lo usa oerplib.
+unittest2 lo usa oe.
+robotframe es un framwework para pruebas de ATDD.
+
+1) Pylint
+2) A/TDD
+3) Vim
+
+Inherits
+--------
+
+Cuando se hace un inherits en openerp, lo que se hace es que el modelo que hace el inherits, agrega
+los campos a su tabla del modelo heredado. Pero "agregar columnas a su tabla" es algo imaginario,
+puesto que si te vas a la tabla en postgres, esto no es verdad, sin embargo, lo bueno de esto, 
+es que puedes mostrar esos campos en la vista como si fueran propios del modelo.
+
+26 de Marzo del 2014
+====================
+
+Cosas por hacer
+---------------
+
+- Tarea 1184, sobre mejoras en user story.
+- Permisos , tarea 811
+
+

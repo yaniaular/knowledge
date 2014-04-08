@@ -8,6 +8,17 @@ Welcome to Knowledge's Documentation
 
 Contents:
 
+OpenERP
+=======
+
+.. toctree::
+   :numbered:
+   :maxdepth: 2
+   
+   gmaps
+   oe
+   tdd
+   atdd
 
 Herramientas
 ============
@@ -15,7 +26,9 @@ Herramientas
 .. toctree::
    :numbered:
    :maxdepth: 2
-
+   
+   python
+   nginx
    vim
    colo-ify
    proyecto
@@ -24,6 +37,7 @@ Herramientas
    to_install
    comandos
    bazaar
+   linux
 
 Lenguajes
 =========
@@ -46,10 +60,13 @@ Historial de Trabajo
    :numbered:
    :maxdepth: 1
 
-   nov-2013.rst
-   oct-2013.rst
-   sep-2013.rst
-   ago-2013.rst
+   
+   mar-2014
+   ene-2014
+   nov-2013
+   oct-2013
+   sep-2013
+   ago-2013
    todo_on_free_time
 
 Referencias

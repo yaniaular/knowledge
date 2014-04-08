@@ -33,3 +33,9 @@ Ejecutar script desde el psql
 
 bd=#\i limpiar.sql
 
+---------
+Backup DB
+---------
+
+pg_dump dbname > outfile
+

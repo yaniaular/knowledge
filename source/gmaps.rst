@@ -1,3 +1,6 @@
+GMAPS
+=====
+
 Éste módulo intenta construir una pequeña API para desarrolladores que les permita mostrar datos usando la API de
 Googlemaps, pudiendo así, evitar gastar un motón de tiempo incrustando cosas complicadas en
 OpenERP.

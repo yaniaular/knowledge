@@ -2,7 +2,7 @@
 NGINX
 =====
 
-sudo apt-get install nginx
+sudo apt-get install nginx nginx-common nginx-full
 
 editar /etc/nginx/sites-enabled/default
 y establecer el

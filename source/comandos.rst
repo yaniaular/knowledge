@@ -31,6 +31,7 @@ directorios.
 
 Los argumentos obligatorios para las opciones largas son también obligatorios
 para las opciones cortas.
+
   -a, --all             muestra resultados para todos los ficheros, no sólo
                         para los directorios
       --apparent-size   muestra los tamaños aparentes, en lugar del uso de
