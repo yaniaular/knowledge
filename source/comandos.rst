@@ -124,3 +124,9 @@ Saludos.
 **formatear pendriver**:
 sudo fdisk -l
 sudo mkfs.vfat -F 32 -n Mi_Memoria /dev/sdc1
+
+**comandos en dropbox**:
+
+- **dropbox filestatus**
+
+  

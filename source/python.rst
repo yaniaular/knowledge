@@ -45,3 +45,8 @@ el argparse se debe colocar el encabezado...
     def argument_parser():
         parser = argparse.ArgumentParser(
 
+------
+py2exe
+------
+
+Convierte script a un ejecutable.
