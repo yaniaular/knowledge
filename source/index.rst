@@ -38,6 +38,7 @@ Herramientas
    comandos
    bazaar
    linux
+   error
 
 Lenguajes
 =========

@@ -150,4 +150,10 @@ doc/ ftplugin/ plugin/ syntax/ ftdetect/
 Luego de que se copien los archivox csv.vim en dichas carpetas ya se podrá usar
 el plugin al abrir un csv
 
+----------------------------
+Problema con link a python 3
+----------------------------
 
+sudo vim /usr/bin/bpython
+
+editar path de python en la primera linea
