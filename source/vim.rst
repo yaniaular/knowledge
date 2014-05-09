@@ -137,6 +137,9 @@ q + <Cualquier Letra>: Empieza a grabar las acciones que hagas en VIM.
 q: Terminas de grabar.
 @ + <La misma letra>: Repite todas las acciones grabadas en dicha letra.
 
+" + <Cualquier letra> + <Copia lo que quieras guardar>: GUarda en un registro algo
+" + <la misma letra> + p: pega lo que guardaste en ese registro
+
 ----------------
 Plugins para CSV
 ----------------

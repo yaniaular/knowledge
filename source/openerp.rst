@@ -149,3 +149,56 @@ fields_view_get
 
         return res
 
+Hacer un readonly con el campo de una vista padre
+-------------------------------------------------
+
+.. code-block :: xml
+
+    <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="attributes">
+        <attribute name="readonly">[('order_id.state' ,'=', 'modify')]</attribute>
+    </xpath>
+
+Debes tener un campo que se relacione al modelo con el cual quieres comparar el valor.
+http://stackoverflow.com/questions/19682040/in-openerp-how-to-show-or-hide-a-field-based-on-domain-from-its-parent-many2on
+
+Campo funcional en openerp
+--------------------------
+
+
+.. code-block :: python
+
+    def _set_order_state(self, cr, uid, ids, field_name, arg, context=None):
+        """
+        Este método es llamado luego de llamar a _get_order_line o luego de que
+        algún campo dentro del modelo purchase order line cambie.
+        """
+        res = {}
+        po_obj = self.pool.get('purchase.order')
+        for pol_brw in self.browse(cr, uid, ids, context=context):
+            res[pol_brw.id] = pol_brw.order_id.state
+        return res
+
+    def _get_order_line(self, cr, uid, ids, context=None):
+        """
+        Cada vez que el campo state del modelo purchase.order cambie
+        entonces llamara al metodo _get_order_line que se encargara de
+        filtrar las purchase.order.line como yo desee, este caso, retornara
+        la lista de ids de las purchase order line que contiene la
+        purchase order que cambio. Este método siempre retorna ids
+        del modelo original donde se encuentra el campo funcional.
+        """
+        res = []
+        po_obj = self.pool.get('purchase.order')
+        for po_brw in po_obj.browse(cr, uid, ids, context=context):
+            res += [ol.id for ol in po_brw.order_line]
+        return res
+
+    _columns = {
+        'order_state': fields.function(_set_order_state, type='char', string='State',
+                                        store={
+                                        'purchase.order': (_get_order_line, ['state'], 10),
+                                        }, 
+                                        method = True,
+                                        ),
+        }
+

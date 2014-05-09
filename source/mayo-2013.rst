@@ -1,0 +1,85 @@
+
+Creando vista para el workflow de CICSA
+---------------------------------------
+
+Cosas por hacer
+~~~~~~~~~~~~~~~
+
+Cambiar los write a los action de los nodos.
+Colocas el nullauthorize cuando se desapruebe un documento
+
+Considerar si un purchase order line tiene varios stock moves
+
+Tarea 1317
+~~~~~~~~~~
+
+res = self.authorize(cr, uid, ids, context=context)
+if not res:
+    return False
+res = self.ask_authorization(cr, uid, ids, context=context)
+if not res.get('auth_ok'):
+    return False
+
+- En el proceso de revisión de la lista de proveedor, se tienen dos botones que envía a PCB o 
+  a la actualización de la lista, directamente a CICSA, que pasaría si uno de los involucrados
+  hace click en submit to pCB y el otro hace click en el boton de submit to cicsa?
+
+  Debería existe algún campo check que permita poder decididr antes, que botón se deberá mostrar?
+  para evitar problemas futuros?
+
+- Arreglar error ortografi comitte por committee
+
+- agregar self.nullauthorize cuando se haga click en el boton de desaprobar.
+- Averiguar el metodo discard, metodo
+
+Tarea 1336
+~~~~~~~~~~
+
+**DONE**
+-e) Agregar super a metodo write de purchase.order para que cuando llegue a estado 'approved' cambie a la fecha de hoy (30 min)
+    Ya existe un campo y se llama date_approve que se modifica en el metodo wkf_approve_order.
+    Solo es visible si el usuario tiene permisos de technical features.
+
+-d) Agregar campo last_update al la vista _form_ del modelo purchase.order (30 min) 
+-c) Agregar campo last_update tipo fecha al modelo purchase.order (30 min)
+-b) Agregar campo version al modelo purchase.order tipo integer (30 min)
+-a) Agregar campo version a vista _form_ del del modelo purchase.order (30 min)
+a) modificar workflow de modelo purchase.order: agregar conjunto [picking] ---transición----> (router_2): en este proceso la transicion entre los dos se dispara con un botón "Modificar Orden de Compra", / Escribir transicion / escribir nodo router_2  (60 min)
+b) Agregar Boton tipo workflow a la vista _form_ con string "Modificar Orden de Compra" solo visible cuando la purchase.order su estado sea "approved" (30 min)
+c) Modificar workflow de modelo purchase.order: agregar conjunto (router_2) ---transición ---validar-cancelación-total---> (cancel) se incrementa en uno el campo de versiones. (120 min)
+d) Modificar workflow de modelo purchase.order: agregar conjunto (router_2) ---transición ---validar-cancelación-parcial---> (cancel_2) (120 min)
+e) Modificar workflow de modelo purchase.order: agregar conjunto (cancel_2) ---transición ---buton-devolver-me-arrepiento---> [picking]. Esto es llevar a la purchase.order a su estado "approved" nuevamente (120 min)
+
+f) Agregar Boton tipo workflow a la vista _form_ con string "Devolver a Estado Normal" solo visible cuando la purchase.order su estado sea "cancel_2" (30 min)
+j) Agregar Boton tipo workflow a la vista _form_ con string "Aprobar Modificación" solo visible cuando la purchase.order su estado sea "new_draft" (30 min)
+
+**PENDING**
+
+
+Cuando intento cancelar una orden de compra, revisa si los picking relacionados con dicha orden de
+compra están en estado draft o cancel. Entonces, en tal caso, se debe cancelar primero los
+picking
+
+tengo un problema, no puedo pasar del subflow act_picking directamente a un nodo del purchase order
+esto es debido a que no estamos en ese flujo, sino que estamos en el subflujo.
+
+g) Modificar workflow de modelo purchase.order: agregar conjunto (cancel_2) ---transición ---buton-proceder-modificación-PO---> (new_draft). Esto es llevar a la purchase.order a su estado nuevo "new_draft" aqui todos los campos de la PO se hacen modificables tal como se muestran en "draft" nuevamente, se incrementa en 1 el valor de la version de la PO (300 min)
+
+**UNDEFINED**
+
+h) Agregar super a método write() de purchase.order  y purchase.order.line para:
+h.1.- si una linea de purchase.order es nueva se realiza el cambio y se escribe en el log, si se modifica posteriormente, no realizar alertas. (120 min)
+h.2.- si una línea de purchase.order se está modificando:
+h.2.a.- si el valor que nuevo es mayor a la cantidad recibida, realizar el cambio, escribirlo en log, y continuar (120 min)
+h.2.b.- si el valor nuevo es menor que la cantidad recibida, dejar valor anterior silenciosamente y escribir en el log que el cambio no se pudo realizar, (120 min)
+h.3.- si una línea de puchase.order se está eliminando
++h.3.a.- y se han recibido mercancía, no ejecutar la eliminación silenciosamente, escribirlo en log diciendo que el cambio no se realizó por dicha razon, y dejar el valor original (120 min)
++h.3.b.- y no se recibió mercancía, ejecutar la eliminación y escribirlo en el log (120 min)
+i) Modificar workflow de modelo purchase.order: agregar conjunto (new_draft) ---transición ---buton-aprobar-modificación---> [picking]. 
+-i.1.-Esto es llevar a la purchase.order a su estado "approved" nuevamente de manera forzada, pues [picking] no volverá a ejecutar su método, (240 min)
+-i.2.- Habiendo hecho la consolidación del picking considerando:
++i.2.a.- eliminar / o anular lineas que ya se consideren totalmente recibidas del picking que aún tiene estos elementos por recibir (240 min) 
++i.2.b.- consolidar lineas que no se han realizado en un picking en estado por recibir (240 min)
++i.2.c.- si el picking se queda con cero elementos entonces realizar trigger para finalización del workflow. (180 min).
+k) Revisión funcional y entrega a usuario (80min)
+l) Documentación del proceso de Modificación de una Orden de Compra Aprobada (240 min)
