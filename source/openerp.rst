@@ -155,7 +155,7 @@ Hacer un readonly con el campo de una vista padre
 .. code-block :: xml
 
     <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="attributes">
-        <attribute name="readonly">[('order_id.state' ,'=', 'modify')]</attribute>
+        <attribute name="readonly">[('order_state' ,'=', 'modify')]</attribute>
     </xpath>
 
 Debes tener un campo que se relacione al modelo con el cual quieres comparar el valor.
@@ -202,3 +202,36 @@ Campo funcional en openerp
                                         ),
         }
 
+llamada a funciones desde xml
+-----------------------------
+
+
+.. code-block :: xml
+
+    <record id="stock_move_raffle_demo2004" model="stock.move">
+        <field name="product_id" ref="bingo_master.product_template_ticket"/>
+        <field name="product_qty">1</field>
+        <field name="name">651</field>
+        <field name="type">internal</field>
+        <field name="product_uom" ref="product.product_uom_unit"/>
+        <field name="location_id" ref="stock.stock_location_stock"/>
+        <field name="location_dest_id" ref="stock_location_raffle"/>
+        <field name="prodlot_id" ref="stock_production_lot_example_651"/>
+    </record>
+
+    <function
+        eval='[[ ref("stock_move_raffle_demo2004"),]]'
+        id="validate_raffle_move3"                                          
+        model="stock.move"                                                                       
+        name="action_done"/> 
+
+
+
+https://bazaar.launchpad.net/~vauxoo-private/vauxoo-private/8.0-devilsoul-change-pos/view/head%3A/bingo_raffle/demo/stock_move_demo.xml#L20046
+
+Modificar crear y editar de campos many2one
+-------------------------------------------
+
+.. code-block :: xml
+
+    options="{'create': false, 'create_edit': false}"

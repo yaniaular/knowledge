@@ -5,10 +5,21 @@ Creando vista para el workflow de CICSA
 Cosas por hacer
 ~~~~~~~~~~~~~~~
 
-Cambiar los write a los action de los nodos.
-Colocas el nullauthorize cuando se desapruebe un documento
+DONE revisar campos en order_lines (taxes) que aun se puede editar.
+cuando se editan mas de dos líneas ocurre un error.
+Considerar si un purchase order line tiene varios stock moves.
+DONE pedirle a jose que haga merge en cicsa
 
-Considerar si un purchase order line tiene varios stock moves
+Colocas el nullauthorize cuando se desapruebe un documento.
+hacer prueba de concepto de la transición del workflow.
+estudiar campos que deben ser solo lectura o debe verse al hace las transciciones en el workflow.
+cambiar nombre de módulo purchase_requisition_workflow a cicsa_purchase_requisition_workflow.
+revisar coigo unittest de kathy
+Cambiar los write a los action de los nodos.
+
+revisar documentación de kathy y de saul
+
+Aplicar pylint al código
 
 Tarea 1317
 ~~~~~~~~~~
@@ -35,6 +46,11 @@ if not res.get('auth_ok'):
 Tarea 1336
 ~~~~~~~~~~
 
+**Documentacion**
+
+Documentar que al usar éste modulo de purchase_order_change_management.
+Se deba tneer cuidado
+
 **DONE**
 -e) Agregar super a metodo write de purchase.order para que cuando llegue a estado 'approved' cambie a la fecha de hoy (30 min)
     Ya existe un campo y se llama date_approve que se modifica en el metodo wkf_approve_order.
@@ -52,21 +68,6 @@ e) Modificar workflow de modelo purchase.order: agregar conjunto (cancel_2) ---t
 
 f) Agregar Boton tipo workflow a la vista _form_ con string "Devolver a Estado Normal" solo visible cuando la purchase.order su estado sea "cancel_2" (30 min)
 j) Agregar Boton tipo workflow a la vista _form_ con string "Aprobar Modificación" solo visible cuando la purchase.order su estado sea "new_draft" (30 min)
-
-**PENDING**
-
-
-Cuando intento cancelar una orden de compra, revisa si los picking relacionados con dicha orden de
-compra están en estado draft o cancel. Entonces, en tal caso, se debe cancelar primero los
-picking
-
-tengo un problema, no puedo pasar del subflow act_picking directamente a un nodo del purchase order
-esto es debido a que no estamos en ese flujo, sino que estamos en el subflujo.
-
-g) Modificar workflow de modelo purchase.order: agregar conjunto (cancel_2) ---transición ---buton-proceder-modificación-PO---> (new_draft). Esto es llevar a la purchase.order a su estado nuevo "new_draft" aqui todos los campos de la PO se hacen modificables tal como se muestran en "draft" nuevamente, se incrementa en 1 el valor de la version de la PO (300 min)
-
-**UNDEFINED**
-
 h) Agregar super a método write() de purchase.order  y purchase.order.line para:
 h.1.- si una linea de purchase.order es nueva se realiza el cambio y se escribe en el log, si se modifica posteriormente, no realizar alertas. (120 min)
 h.2.- si una línea de purchase.order se está modificando:
@@ -83,3 +84,4 @@ i) Modificar workflow de modelo purchase.order: agregar conjunto (new_draft) ---
 +i.2.c.- si el picking se queda con cero elementos entonces realizar trigger para finalización del workflow. (180 min).
 k) Revisión funcional y entrega a usuario (80min)
 l) Documentación del proceso de Modificación de una Orden de Compra Aprobada (240 min)
+

@@ -129,4 +129,9 @@ sudo mkfs.vfat -F 32 -n Mi_Memoria /dev/sdc1
 
 - **dropbox filestatus**
 
+- **rm:**
+
+  Para colocar un mensaje de estar seguro de borrar un archivo con rm se debe crear un alias
+  alias rm='rm -i'
+
   
