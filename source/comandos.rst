@@ -134,4 +134,6 @@ sudo mkfs.vfat -F 32 -n Mi_Memoria /dev/sdc1
   Para colocar un mensaje de estar seguro de borrar un archivo con rm se debe crear un alias
   alias rm='rm -i'
 
+- **wc <file>**: contar palabras de un archivo
+
   

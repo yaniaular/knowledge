@@ -19,3 +19,4 @@ Y para finalizar, ya solo nos queda actualizar la nueva base de datos.
 ``aptitude update && aptitude safe-upgrade``
 
 
+

@@ -6,16 +6,18 @@ Cosas por hacer
 ~~~~~~~~~~~~~~~
 
 DONE revisar campos en order_lines (taxes) que aun se puede editar.
-cuando se editan mas de dos líneas ocurre un error.
-Considerar si un purchase order line tiene varios stock moves.
+DONE cuando se editan mas de dos líneas ocurre un error.
 DONE pedirle a jose que haga merge en cicsa
+Considerar si un purchase order line tiene varios stock moves.
 
-Colocas el nullauthorize cuando se desapruebe un documento.
-hacer prueba de concepto de la transición del workflow.
+DONE hacer prueba de concepto de la transición del workflow.
+DONE Colocas el nullauthorize cuando se desapruebe un documento.
 estudiar campos que deben ser solo lectura o debe verse al hace las transciciones en el workflow.
 cambiar nombre de módulo purchase_requisition_workflow a cicsa_purchase_requisition_workflow.
 revisar coigo unittest de kathy
 Cambiar los write a los action de los nodos.
+colocar los write en los action
+corregir comite
 
 revisar documentación de kathy y de saul
 
