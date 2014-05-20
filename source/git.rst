@@ -71,4 +71,6 @@ sudo apt-get install bzr-git
 bzr branch lp:~yanina-aular/+junk/curriculum
 cd curriculum 
 curl -u 'yaniaular' https://api.github.com/user/repos -d '{"name":"curriculum"}'
-bzr dpush github:yaniaular/curriculum,branch=master
+bzr dpush github:yaniaular/curriculum,branch=master --no-rebase
+
+--no-rebase es para que no sincronize bzr con git
