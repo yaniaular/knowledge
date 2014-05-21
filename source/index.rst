@@ -15,8 +15,8 @@ OpenERP
    :numbered:
    :maxdepth: 2
    
+   openerp
    gmaps
-   oe
    tdd
    atdd
    vauxoo
@@ -34,7 +34,6 @@ Herramientas
    colo-ify
    proyecto
    aplicacion
-   openerp
    to_install
    comandos
    bazaar
