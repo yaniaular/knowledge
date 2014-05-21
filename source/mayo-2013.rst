@@ -87,3 +87,40 @@ i) Modificar workflow de modelo purchase.order: agregar conjunto (new_draft) ---
 k) Revisión funcional y entrega a usuario (80min)
 l) Documentación del proceso de Modificación de una Orden de Compra Aprobada (240 min)
 
+
+CICSA
+-----
+
+Leer las historias de usuario, ir criterio por criterio e ir explicando el módulo
+
+Se debe crear una instancia de prueba con los usuarios y autoridades de cada uno.
+
+Montar instancia de prueba en servidor de producción 
+de CICSA (Pedirle a Tulio), agregar branch de lp:cicsa
+
+La documentación debe estar perfecta para poder generar pruebas reales
+
+Los usuarios ya deben estar creados antes de empezar a 
+explicar a los usuarios de CICSA.
+
+Llevar carpeta negra de HU.
+
+Preparar guión para DJ y para los usuarios de CICSA
+
+Evaluar idea de videos en vez de documentos.
+
+¿qué? ¿para qué? (Realizar antes del desarrollo)
+¿cómo? (Videos, comenzando cada video ir a las H.U y recorrer los criterios de aceptación e ir
+mostrando como funciona en OpenERP)
+
+Entregar documentación cuando se expliquen las funcionalidad.
+
+¿Se podrá coloca la documentación en github?
+
+Historias de usuario: 92, 95 y 104
+
+Diálogo con DJ
+--------------
+
+
+

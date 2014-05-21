@@ -19,6 +19,7 @@ OpenERP
    oe
    tdd
    atdd
+   vauxoo
 
 Herramientas
 ============
@@ -37,8 +38,10 @@ Herramientas
    to_install
    comandos
    bazaar
+   git
    linux
    error
+   
 
 Lenguajes
 =========
@@ -68,6 +71,7 @@ Historial de Trabajo
    oct-2013
    sep-2013
    ago-2013
+   mayo-2013
    todo_on_free_time
 
 Referencias

@@ -254,5 +254,3 @@ Cosas por hacer
 
 - Tarea 1184, sobre mejoras en user story.
 - Permisos , tarea 811
-
-
