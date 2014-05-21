@@ -9,17 +9,27 @@ Cosas por hacer
 ~~~~~~~~~~~~~~~
 
 DONE revisar campos en order_lines (taxes) que aun se puede editar.
+
 DONE cuando se editan mas de dos líneas ocurre un error.
+
 DONE pedirle a jose que haga merge en cicsa
+
 Considerar si un purchase order line tiene varios stock moves.
 
 DONE hacer prueba de concepto de la transición del workflow.
+
 DONE Colocas el nullauthorize cuando se desapruebe un documento.
+
 estudiar campos que deben ser solo lectura o debe verse al hace las transciciones en el workflow.
+
 cambiar nombre de módulo purchase_requisition_workflow a cicsa_purchase_requisition_workflow.
+
 revisar coigo unittest de kathy
+
 Cambiar los write a los action de los nodos.
+
 colocar los write en los action
+
 corregir comite
 
 revisar documentación de kathy y de saul
@@ -64,33 +74,59 @@ Se deba tneer cuidado
     Ya existe un campo y se llama date_approve que se modifica en el metodo wkf_approve_order.
     Solo es visible si el usuario tiene permisos de technical features.
 
+
 -d) Agregar campo last_update al la vista _form_ del modelo purchase.order (30 min) 
+
 -c) Agregar campo last_update tipo fecha al modelo purchase.order (30 min)
+
 -b) Agregar campo version al modelo purchase.order tipo integer (30 min)
+
 -a) Agregar campo version a vista _form_ del del modelo purchase.order (30 min)
+
 a) modificar workflow de modelo purchase.order: agregar conjunto [picking] ---transición----> (router_2): en este proceso la transicion entre los dos se dispara con un botón "Modificar Orden de Compra", / Escribir transicion / escribir nodo router_2  (60 min)
+
 b) Agregar Boton tipo workflow a la vista _form_ con string "Modificar Orden de Compra" solo visible cuando la purchase.order su estado sea "approved" (30 min)
+
 c) Modificar workflow de modelo purchase.order: agregar conjunto (router_2) ---transición ---validar-cancelación-total---> (cancel) se incrementa en uno el campo de versiones. (120 min)
+
 d) Modificar workflow de modelo purchase.order: agregar conjunto (router_2) ---transición ---validar-cancelación-parcial---> (cancel_2) (120 min)
+
 e) Modificar workflow de modelo purchase.order: agregar conjunto (cancel_2) ---transición ---buton-devolver-me-arrepiento---> [picking]. Esto es llevar a la purchase.order a su estado "approved" nuevamente (120 min)
 
 f) Agregar Boton tipo workflow a la vista _form_ con string "Devolver a Estado Normal" solo visible cuando la purchase.order su estado sea "cancel_2" (30 min)
+
 j) Agregar Boton tipo workflow a la vista _form_ con string "Aprobar Modificación" solo visible cuando la purchase.order su estado sea "new_draft" (30 min)
+
 h) Agregar super a método write() de purchase.order  y purchase.order.line para:
+
 h.1.- si una linea de purchase.order es nueva se realiza el cambio y se escribe en el log, si se modifica posteriormente, no realizar alertas. (120 min)
+
 h.2.- si una línea de purchase.order se está modificando:
+
 h.2.a.- si el valor que nuevo es mayor a la cantidad recibida, realizar el cambio, escribirlo en log, y continuar (120 min)
+
 h.2.b.- si el valor nuevo es menor que la cantidad recibida, dejar valor anterior silenciosamente y escribir en el log que el cambio no se pudo realizar, (120 min)
+
 h.3.- si una línea de puchase.order se está eliminando
+
 +h.3.a.- y se han recibido mercancía, no ejecutar la eliminación silenciosamente, escribirlo en log diciendo que el cambio no se realizó por dicha razon, y dejar el valor original (120 min)
+
 +h.3.b.- y no se recibió mercancía, ejecutar la eliminación y escribirlo en el log (120 min)
+
 i) Modificar workflow de modelo purchase.order: agregar conjunto (new_draft) ---transición ---buton-aprobar-modificación---> [picking]. 
+
 -i.1.-Esto es llevar a la purchase.order a su estado "approved" nuevamente de manera forzada, pues [picking] no volverá a ejecutar su método, (240 min)
+
 -i.2.- Habiendo hecho la consolidación del picking considerando:
+
 +i.2.a.- eliminar / o anular lineas que ya se consideren totalmente recibidas del picking que aún tiene estos elementos por recibir (240 min) 
+
 +i.2.b.- consolidar lineas que no se han realizado en un picking en estado por recibir (240 min)
+
 +i.2.c.- si el picking se queda con cero elementos entonces realizar trigger para finalización del workflow. (180 min).
+
 k) Revisión funcional y entrega a usuario (80min)
+
 l) Documentación del proceso de Modificación de una Orden de Compra Aprobada (240 min)
 
 
@@ -125,7 +161,142 @@ Entregar documentación cuando se expliquen las funcionalidad.
 
 Historias de usuario: 92, 95 y 104
 
+modulo de bdp
+-------------
+
+Me di cuenta que al colocar 2 o más votos a una autoridad, 
+ésta cantidad se aplicará a cualquier estado que se configure, 
+y puede que se presente el momento en que necesite, por ejemplo, 
+1 voto cuando estoy en draft, y 3 cuando estoy en progress de una misma autoridad.
+
+Se debe evaluar la posibilidad de solicitar autorizaciones a diferentes entes desde un mismo estado
+y dependiendo del estado destino, es decir, cuando desde un mismo estado se puede pasar a
+diferentes estado, y cada uno de esos caminos se necesite aprobacion de diferentes personas
+
+Arreglar vista de schedule power cuando son modelos copias de un model principal.
+
+Cuando se tiene varios empleados con el mismo nivel de autoridad, y se solicita autorización a ese
+nivel, entonces se toma el primer empleado que encuentre.
+
+En el log, cuando no se tiene configurada una autoridad, se muestra el nombre del estado a nivel de
+código, se debe mostrar el estado a nivel de usuario, es decir el string.
+
 Diálogo con DJ
 --------------
 
-X. 
+#. Crear base de datos CICSA con Data Demo.
+
+#. Permisos de Características Técnicas.
+
+#. Instalar módulo CICSA Purchase Requisition Workflow (bdp, purchase_requisition,
+   bdp_purchase_requisition, cicsa_bdp_data).
+
+#. Nos vamos al menu Employee Tags, donde podemos observar las Autoridades implicadas en el 
+   proceso de una requisición de compra, que son las que se han creado hasta ahora.
+
+#. Al entrar en la ficha (Finance Budget Approval) por ejemplo, se especifica la cantidad de votos
+   necesarios por parte de dicha Autoridad en los documentos, es decir, por ejemplo, si tenemos 
+   tres usuarios Aura, Dj y Gabriel, donde los tres son autoridades con nivel de 
+   (Finance Budget Approval), entonces, si se requiere 3 votos de personas con Autoridad (Finance
+   Budget Approval), al solicitar la aprobación en un documento, en nuestra tabla de aprobaciones
+   estarán dichos usuarios. Esto es lo que concierne a la creación de autoridades.
+
+#. Ahora que tenemos la autoridades, necesitamos establecer en que momento y en que documento
+   necesitaremos aprobación de ellos. Nos vamos a la ficha de Schedule Power, donde tenemos la
+   lista de peticiones de autorización. Por ejemplo, entremos en la ficha de (Approval by Approving
+   Authority), como se puede observar, los más importante acá es definir el estado en el cual se
+   solicita autorización, el documento donde se necesita la autorización y la tabla con las
+   autoridades involucradas junto con el amount máximo que manejará cada uno. Por ejemplo, si en mi
+   documento se maneja mas de (5000) entonces, se solicitará aprobación a una persona con autoridad
+   de (Nivel 1).
+
+#. En ésta reunión, trabajaremos con un solo usuario (Administrator), entonces, nos iremos a la
+   ficha de empleados, y escogeremos tres empleados para asignarle el usuario (Administrator)
+   (Administrator, Antony y Christophe) y le asignaremos una Autoridad (Finance Budget Approval a
+   Antony y Level 1 a Christophe) por ahora.
+
+#. Ahora vamos a la ficha donde creamos un purchase requisition, colocamos un nombre y un monto 
+   por (6000). Al avanzar de estado, entonces, podremos observar que se pide autorización a un 
+   (Finance Budget Approval) que corresponde al empleado (Antony Lesuisse), entonces si hacemos 
+   click en (Approve and Send...) (Antony) autoriza y a su vez se pide autorización a (Level 1) 
+   ya que el monto es por (6000) que es mayor a (5000).
+
+#. Aprobamos, y al llegar al estado de (Done Requisition Process), hemos terminado el primer proceso del
+   workflow de una requisición de compra, y a partir de aquí podemos empezar el siguiente proceso
+   que corresponde a la revisión de la lista de proveedores. (Long List - Short List of Bidders).
+
+#. Al hacer click al botón para pasar al siguiente proceso, entonces pasará a un estado (Review
+   Bidders Long List), y partir de aquí, en el menú de (Purchase Requisition) ya no será visible
+   éste documento, puesto que ya no es parte del proceso.
+
+#. Si nos dirijimos al menu de (Long List-Short List of Bidders). Podemos ver el documento que
+   estabamos manejando anteriormente, y si nos dirijimos nuevamente al menu (Purchase Requisitions)
+   ya no podremos ver el documento.
+
+#. Entonces, entramos en la ficha del documento que estamos trabajando nuevamente, pero esta vez
+   desde otro menú (Long List-Short List of Bidders). Pasamos al estado (Preparing Contract
+   Strategy) y aun no solicitamos autoridad de nadie, al tratar de hacer click en (Ready Contract
+   Strategy), no nos permite pasar al siguiente estado, entonces nos vamos al log, abajo, y podemos
+   ver que se ha escrito un mensaje que nos dice que no se han configurado autoridades para el
+   estado (contract_strategy)
+
+#. Entonces, nos vamos al empleado asociado con el usuario que estamos usando, y le agregamos la
+   autoridad de (Management Committee / Project Manager), guardamos, regresamos a la Purchase 
+   Requisition, volvemos a hacer click es (Ready Contract), revisamos la tabla de autorizaciones, 
+   y ésta vez si se pudo solicitar la autorización, puesto que ya existe una persona con ese rol 
+   necesario.
+
+#. También es posible delegar la autorización a otro empleado, siempre y cuando sea de mayor rango,
+   si observamos la línea de la autorización, podemos observar una flecha azul, si hacemos click 
+   en ella, no pasa nada, ya que, el unico empleado con permisos de (Management Committee / 
+   Project Manager) es (Christophe Simonis). Entonces le asignamos la autoridad (Management
+   Committee) o una superior a otro usuario (Administrator), volvemos a la PR, y al hacer click 
+   nuevamente en la flechita azul, esta vez si delegará la autoridad al usuario próximo, en este 
+   caso (Administrator). Al tratar de hacer click en el botón, nos dirá un mensaje diciendo que no 
+   están configuradas autoridades para el estado actual, por lo tanto vamos a tomar un usuario que
+   tendrá todas las autoridades y continuar observando la continuidad del workflow.
+
+   Vamos con (Fabien Meghazi), y colocamos todas las autoridades a ese empleado, (Colocar usuario
+   Administrator)
+   
+#. Se recorre el workflow hasta llegar a (Tender Plan) estado (Pending Approval by Contract
+   Committee). Llegamos al puntos donde se debe decidir si se aprueba o no el documentos, cuando se
+   desaprueba, se pide revisión nuevamente.
+
+#. Luego en el estado (Pending Approval by Approving Authority), se puede tomar dos caminos, pedir
+   autorización a (Petrocarabobo) o pasar directamente a enviar el (Tender Plan). 
+
+#. Seguir el Workflow hasta el final.
+
+
+Segundo módulo:
+
+
+#. Creamos una PO, agregamos:
+
+   Invoice Control: Based on incoming shipments
+
+   Líneas:
+
+   USB Adapter      10.00
+   Graphics Card    5.00
+   Computer Case    1.00
+   Blank CD         20.00
+
+#. En este momento el documento se encuentra en estado Draft, y se puede editar, sin embargo, al
+   pasar al estado Confirmado haciendo click en el boton (Confirm Order), es imposible editarlo,
+   para eso tenemos al módulo (Purchase Order Change Management) que nos permitirá editar la PO aún
+   estando confirmada. Cabe destacar que éste módulo sólo funciona si Invoice Control: Based on
+   incoming shipments.
+
+#. Procedemos a confirmar la PO.
+
+#. Si intentamos editar el documento, podrás observar que es imposible.
+
+#. 
+
+#. Instalar módulo (Purchase Order Change Management) 
+   
+#. Volvemos a la PO anterior, y podemos observar un botón llamado (Force Modify) el cual aparece
+   gracias al módulo que acabamos de instalar.
+
