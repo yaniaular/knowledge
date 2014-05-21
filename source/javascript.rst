@@ -36,41 +36,63 @@ Librerías en JavaScript
 jQuery
 ------
 
-**jQuery("#myDiv").addClass("highlight");**: Consultar por ID
+Consultar por ID:
 
-**jQuery(".someClass");**: Consultar clases
+.. code :: javascript                
 
-**jQuery("p");**: Consultar elementos
+    jQuery("#myDiv").addClass("highlight");
+    
+Consultar clases:
 
-**jQuery("#myDiv").addClass("highlight");**:
-                **.removeClass("highlight");**:
-                **.toggleClass("highlight");**:
-$ == jQuery
+.. code :: javascript                
+
+    jQuery(".someClass");
+
+Consultar elementos:
+
+.. code :: javascript                
+
+    jQuery("p");
+
+Llamada multiple a elementos:
+
+.. code :: javascript                
+
+    jQuery("#myDiv").addClass("highlight");
+                    .removeClass("highlight");
+                    .toggleClass("highlight");
+
+.. note::
+
+    $ es lo mismo que jQuery
 
 Ejemplos de eventos:
 
-$("#pageID").click(function() {
-    $("pageID").text("You clicked me!");
-});
+.. code :: javascript                
 
-$("h2").click(function() {
-    $(this).text("You clicked me!");
-});
-//this se refiere a h2
 
-$("p").click(function() {
-    $(this).fadeOut(2000);
-});
-//Desaparece el elemento en 2 segundos
+    $("#pageID").click(function() {
+        $("pageID").text("You clicked me!");
+    });
 
-$(document).ready(function() {
-    $("#pageID").text("The DOM is fully loaded.");
-});
-// instancia de window.onload, cuando se cargue el DOM de window entonces se ejecutará la función
+    $("h2").click(function() {
+        $(this).text("You clicked me!");
+    });
+    //this se refiere a h2
 
-$(document).ready(function() {
-    $("h1").css("color","red");
-});
+    $("p").click(function() {
+        $(this).fadeOut(2000);
+    });
+    //Desaparece el elemento en 2 segundos
+
+    $(document).ready(function() {
+        $("#pageID").text("The DOM is fully loaded.");
+    });
+    // instancia de window.onload, cuando se cargue el DOM de window entonces se ejecutará la función
+
+    $(document).ready(function() {
+        $("h1").css("color","red");
+    });
 
 ---------------------------------------------
 Librerías javascript disponibles desde google
