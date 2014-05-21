@@ -38,25 +38,25 @@ jQuery
 
 Consultar por ID:
 
-.. code :: javascript                
+.. code-block :: javascript                
 
     jQuery("#myDiv").addClass("highlight");
     
 Consultar clases:
 
-.. code :: javascript                
+.. code-block :: javascript                
 
     jQuery(".someClass");
 
 Consultar elementos:
 
-.. code :: javascript                
+.. code-block :: javascript                
 
     jQuery("p");
 
 Llamada multiple a elementos:
 
-.. code :: javascript                
+.. code-block :: javascript                
 
     jQuery("#myDiv").addClass("highlight");
                     .removeClass("highlight");
@@ -68,7 +68,7 @@ Llamada multiple a elementos:
 
 Ejemplos de eventos:
 
-.. code :: javascript                
+.. code-block :: javascript                
 
 
     $("#pageID").click(function() {

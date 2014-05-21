@@ -67,7 +67,7 @@ Pyflakes
 lxml
 ----
 
-.. code-block::python
+.. code-block :: python
 
     doc = etree.XML(res['arch'])
     mess = doc.xpath("//field[@name='message_follower_ids']")

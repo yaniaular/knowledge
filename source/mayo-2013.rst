@@ -1,3 +1,6 @@
+Mayo 2013
+=========
+
 
 Creando vista para el workflow de CICSA
 ---------------------------------------
@@ -26,12 +29,14 @@ Aplicar pylint al código
 Tarea 1317
 ~~~~~~~~~~
 
-res = self.authorize(cr, uid, ids, context=context)
-if not res:
-    return False
-res = self.ask_authorization(cr, uid, ids, context=context)
-if not res.get('auth_ok'):
-    return False
+.. code-block :: python
+
+    res = self.authorize(cr, uid, ids, context=context)
+    if not res:
+        return False
+    res = self.ask_authorization(cr, uid, ids, context=context)
+    if not res.get('auth_ok'):
+        return False
 
 - En el proceso de revisión de la lista de proveedor, se tienen dos botones que envía a PCB o 
   a la actualización de la lista, directamente a CICSA, que pasaría si uno de los involucrados
@@ -54,6 +59,7 @@ Documentar que al usar éste modulo de purchase_order_change_management.
 Se deba tneer cuidado
 
 **DONE**
+
 -e) Agregar super a metodo write de purchase.order para que cuando llegue a estado 'approved' cambie a la fecha de hoy (30 min)
     Ya existe un campo y se llama date_approve que se modifica en el metodo wkf_approve_order.
     Solo es visible si el usuario tiene permisos de technical features.
@@ -122,4 +128,4 @@ Historias de usuario: 92, 95 y 104
 Diálogo con DJ
 --------------
 
-
+X. 
