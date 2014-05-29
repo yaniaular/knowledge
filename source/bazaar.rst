@@ -398,3 +398,21 @@ Bug y commit
 Hacer un Link o Linkear un bug a un commit
 
 bzr ci --fixes=lp:BUGXXXXXX
+
+Sobre conflicts o conflictos en bazaar
+======================================
+
+This conflict happens when there are conflicting changes in the working tree and the merge source, but the conflicted items are not text files. They may be binary files, or symlinks, or directories. It can even happen with files that are deleted on one side, and modified on the other.
+
+Like text conflicts, Bazaar will emit THIS, OTHER and BASE files. (They may be regular files, symlinks or directories). But it will not include a “main copy” of the file with herringbone conflict markers. It will appear that the “main copy” has been renamed to THIS or OTHER.
+
+To resolve that kind of conflict, you should rebuild FILE from either version or a combination of both.
+
+bzr resolve recognizes the following actions:
+
+--action=take-this will issue bzr mv FILE.THIS FILE,
+--action=take-other will issue bzr mv FILE.OTHER FILE,
+--action=done will just mark the conflict as resolved.
+Any action will also delete the previously generated .BASE, .THIS and .OTHER files if they are still present in the working tree.
+
+Bazaar cannot auto-detect when conflicts of this kind have been resolved.

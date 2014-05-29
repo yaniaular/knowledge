@@ -140,6 +140,8 @@ q: Terminas de grabar.
 " + <Cualquier letra> + <Copia lo que quieras guardar>: GUarda en un registro algo
 " + <la misma letra> + p: pega lo que guardaste en ese registro
 
+<Seleccionas los parrafos> + g + q: Arregla el parrafo tomando en cuenta los 99 caracteres
+
 ----------------
 Plugins para CSV
 ----------------

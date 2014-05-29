@@ -18,5 +18,14 @@ Y para finalizar, ya solo nos queda actualizar la nueva base de datos.
 
 ``aptitude update && aptitude safe-upgrade``
 
+Establecer IP
+-------------
 
+Paso 1. Configurar la IP 
+ifconfig eth0 172.16.113.41 netmask 255.255.0.0 
 
+Paso 2. Configurar GateWay 
+route add default gw 172.16.113.1 
+
+Paso 3. Configurar DNS 
+echo nameserver 172.16.112.200 > /etc/resolv.conf 

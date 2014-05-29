@@ -164,10 +164,9 @@ Historias de usuario: 92, 95 y 104
 modulo de bdp
 -------------
 
-Me di cuenta que al colocar 2 o más votos a una autoridad, 
-ésta cantidad se aplicará a cualquier estado que se configure, 
-y puede que se presente el momento en que necesite, por ejemplo, 
-1 voto cuando estoy en draft, y 3 cuando estoy en progress de una misma autoridad.
+Me di cuenta que al colocar 2 o más votos a una autoridad, ésta cantidad se aplicará a cualquier
+estado que se configure, y puede que se presente el momento en que necesite, por ejemplo, 1 voto
+cuando estoy en draft, y 3 cuando estoy en progress de una misma autoridad.
 
 Se debe evaluar la posibilidad de solicitar autorizaciones a diferentes entes desde un mismo estado
 y dependiendo del estado destino, es decir, cuando desde un mismo estado se puede pasar a
@@ -293,10 +292,51 @@ Segundo módulo:
 
 #. Si intentamos editar el documento, podrás observar que es imposible.
 
-#. 
+#. Además de eso, al confirmar la PO, se crean también los Envíos entrantes (Income Shipments). 
+   Purchase -> Incoming Shipments. Que corresponden a dicha PO. Es por eso, que se hace imposible 
+   la modificación (por ahora) ya que está la existencia de este documento.
 
 #. Instalar módulo (Purchase Order Change Management) 
    
 #. Volvemos a la PO anterior, y podemos observar un botón llamado (Force Modify) el cual aparece
    gracias al módulo que acabamos de instalar.
 
+#. Antes de empezar a modificar la PO, vamos a recibir algunos productos en los Envíos Entrantes
+   (Income Shipments).
+
+   Receive:
+
+   USB Adapter      5.00
+   Computer Case    1.00
+
+#. Volvemos a la PO, hacemos click en Force Modify. Entramos en un estado donde OpenERP nos
+   pregunta si estamos realmente seguro de modificar la orden de compra. Hacemos click en Continue
+   with Modification. Una vez en el estado Modify, podemos editar las líneas de las PO.
+
+   #) Entonces, primero, ya hemos recibido 5.00 cantidades de USB Adapter, por lo tanto, si intentamos
+   reducir la cantidad a 4.00, no nos dejara. Hacemos click en Edit, y cambiamos ese numerito 10.00
+   USB Adapter por 4.00, hacemos click en Save, y el numero 10.00 ha vuelto, además de eso, en el
+   log de mensajes está el error que nos dice porque no se ha logrado reducir dicho número.
+
+   Ahora en vez de 4.00, Colocaremos la cantidad de 5.00, que es justo lo que ya se ha recibido.
+   editamos y guardamos. El cambio fue hecho, y podemos revisar en nuestra Envio entrante, y el
+   movimiento de inventario que correspondia a lo que aún no se recibía, ha desaparecido.
+
+   #) Luego, vamos a incrementar la cantidad de Graphics Cards a recibir, editamos, cambiamos 5.00
+   por 7.00. El cambio se ha hecho satisfactoriamente y el stock move que correspondía a ese
+   producto también ha aumentado.
+
+   #) Con la línea de Computer Case, el cual es sólo 1 producto, vamos a proceder a eliminar la
+   línea de la Orden de Compra, editamos, hacemos click en la papelera que está en línea, guardamos
+   y el cambio NO se ha hecho efectivo, ya que, en nuestro Envío entrante ya hemos recibido el
+   Computer Case, y por tanto es imposible borrar la línea.
+
+   #) Sin embargo, No hemos recibido ninguno de los 20 Blank CD, por lo cual intentemos borrar esa
+   línea de la Orden de Compra. Editamos, Borramos, guardamos y Listo. Podemos chequear que en el
+   envío entrante, también se ha borrado el movimiento de inventario pendiente que correspondia a
+   esa línea de producto.
+
+   #) Por último, vamos a probar agregar una línea nueva, editamos, hacemos click en Add Item, y
+   colocaremos que recibiremos Processor AMD 8-Core cantidad 3.00, Guardamos, y listo. Podemos
+   chequear nuevamente el Income Shipments y corroborar que el nuevo movimiento de inventario fue
+   creado.
