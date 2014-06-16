@@ -87,4 +87,12 @@ sudo mkfs.vfat -F 32 -n Mi_Memoria /dev/sdc1
 
 - **wc <file>**: contar palabras de un archivo
 
+- **screen**: 
+
+  crear screen: screen -S NOMBRE
+  salir de screen: Ctrl + a -> d
+  listar screen: screen -list
+  entrar a screen: screen -x NOMBRE
+    (o el id en su defecto, el que aparece en -list)
+
   

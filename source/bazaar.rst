@@ -390,6 +390,7 @@ Copiar branch por ssh
 
 
 bzr branch bzr+ssh://nhomar@192.168.0.102/home/nhomar/Instancias/trunk-website-al/addons-al
+bzr+ssh://yanina@172.16.113.41/home/yanina/branches/instancias/7.0/
 
 
 Bug y commit

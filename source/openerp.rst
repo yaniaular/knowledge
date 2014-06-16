@@ -47,6 +47,22 @@ id xml
 
     <field name="fields_id" search="[('model','=','product.category'),('name','=','property_account_income_categ')]"/>
 
+You can use the delete tag in xml. Dont remove the xml data records you have created in the xml
+file. In the new version just add the delete tag at the end of the file.
+
+.. code-block :: xml
+
+    <delete id="module_name.xml_record_id" model="hr.employee"/>
+
+If we do not want to display a menu, we can delete its information in the database with the
+following two xml commands, 1 to remove its id is stored in table "ir_model_data", 1 to clear its
+name stored in table "ir_ui_menu".
+
+.. code-block :: xml
+
+<delete model="ir.model.data" search="[('name','=','menu_hr_attendance_sigh_in_out')]" />
+<delete model="ir.ui.menu" search="[('name','=','Sign in / Sign out')]" />
+
 WorkFlows
 ---------
 
@@ -205,6 +221,8 @@ Campo funcional en openerp
 llamada a funciones desde xml
 -----------------------------
 
+https://bazaar.launchpad.net/~vauxoo-private/vauxoo-private/8.0-devilsoul-change-pos/view/head%3A/bingo_raffle/demo/stock_move_demo.xml#L20046
+
 
 .. code-block :: xml
 
@@ -302,3 +320,47 @@ doctest
 -------
 
 http://sphinx-doc.org/ext/doctest.html
+
+Actualizar datos o data XML en openerp al acutalizar módulo
+-----------------------------------------------------------
+
+Hi,
+
+simply add the id parameter to the record. Example from one of my modules (with anonymized data)
+
+.. code-block :: xml
+
+    <data noupdate="0">
+    <record id="testpartner" model="res.partner">
+    <field name="name">Test</field>
+    </record>
+    </data>
+
+This searches the partner with the id "testpartner". if there is no record, it is created. if there is, the provided fields are updated.
+
+If you then - for example - change the file to this:
+
+.. code-block :: xml
+
+    <data noupdate="0">
+    <record id="testpartner" model="res.partner">
+    <field name="name">Test 2</field>
+    </record>
+    </data>
+
+and then select the module, click "Update Module" and then run the update action (or start the server with the update-parameter to do it outside of the GUI), the record will be updated to "Test 2" in the name field.
+
+This works perfectly for me.
+
+best regards
+
+tuo
+
+Mensaje de confirmacion en un boton de Openerp
+----------------------------------------------
+
+    
+.. code-block :: xml
+
+    <button name="signal_disapprove_cc" states="approve_cc" string="Disapprove by CC" type="workflow"
+        confirm="Do you confirm DISAPPROVE this document?"/>
