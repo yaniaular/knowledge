@@ -95,4 +95,28 @@ sudo mkfs.vfat -F 32 -n Mi_Memoria /dev/sdc1
   entrar a screen: screen -x NOMBRE
     (o el id en su defecto, el que aparece en -list)
 
-  
+ **chmod**:
+
+Relación Numérica con los Permisos
+
+0 = Ningún permiso (Lectura = 0 + Escritura = 0 + Ejecución = 0)
+1 = Permiso de Ejecución (Lectura = 0 + Escritura = 0 + Ejecución = 1)
+2 = Permiso de Escritura (Lectura = 0 + Escritura = 2 + Ejecución = 0)
+3 = Permiso de Escritura y Ejecución (Lectura = 0, Escritura = 2, Ejecución = 1)
+4 = Permiso de Lectura (Lectura = 4 + Escritura = 0 + Ejecución = 0)
+5 = Permiso de Lectura y Ejecución (Lectura = 4 + Escritura = 0 + Ejecución = 1)
+6 = Permiso de Lectura y Escritura (Lectura = 4 + Escritura = 2 + Ejecución = 0)
+7 = Permiso de Lectura, Escritura y Ejecución (Lectura = 4 + Escritura = 2 + Ejecución = 1)
+
+Luego, por cada Identidad, podemos obtener un número comprendido entre 0 y 7, que delimitarán por
+Identidad, claramente, sus privilegios en particular sobre un archivo o carpeta.
+
+¿Entonces, que es, por ejemplo, chmod 644?  Son los Permisos que tiene asignados cada Identidad,
+sobre un archivo o carpeta, según su Relación Numérica. Siempre siguiendo este orden:
+
+Propietario = 6 (Puede Leer y Escribir)
+Grupo = 4 (solo puede Leer)
+Otros = 4 (solo puede Leer)
+
+Nota: Evidentemente el comando chmod contiene muchas más opciones y formas de asignar permisos,
+puedes consultarlas consultando el manual del comando, para ello abre un terminal y teclea:
