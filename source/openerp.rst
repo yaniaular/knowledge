@@ -315,6 +315,65 @@ lo puede probar por ejemplo con account de esta forma:
 
 oe run-tests -m account -d bdp_02 -p 8069 --addons=/home/hbtosuse/instancias/7.0/addons/,/home/hbtosuse/instancias/7.0/web/addons
 
+Configurar oe conrrectamente
+----------------------------
+
+Configuramos nuestro archivo 
+
+yanina@yani-kde:~$ sudo vim /etc/postgresql/9.3/main/pg_hba.conf 
+yanina@yani-kde:~$ sudo /etc/init.d/postgresql restart
+
+.. code-block : shell
+
+    local   all             postgres                                peer
+
+    # TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+    # "local" is for Unix domain socket connections only
+    **local   all             openerp                                 md5**
+    local   all             all                                     peer
+    # IPv4 local connections:
+
+Colocamos el usuario a usar con conexion md5
+
+Luego creamos nuestro usuario en el sistema (linux) openerp:
+
+yanina@yani-kde:~$ adduser openerp
+yanina@yani-kde:~$ sudo su openerp
+openerp@yani-kde:~$
+
+Le damos permisos al usuario openerp para que pueda ejecutar todos los script del user yanina
+
+yanina@yani-kde:~$chmod 755 carpeta_con_branches/ -R
+
+
+Luego, al instalar oe, descargandolo de los repositorios:
+
+lp:~openerp/openerp-command/7.0/
+
+editamos el archivo vim openerpcommand/run_tests.py, y colocamos 
+
+config['admin_passwd'] = 'openerp'
+config['db_password'] = 'openerp'
+
+en las lineas 105 y 106.
+
+Instalamos el script sudo python setup.py install
+
+Luego ejecutamos: 
+
+openerp@yani-kde:~$ oe run-tests -m cicsa_purchase_requisition_workflow -d cicsa_server -p 8069
+--addons=/home/yanina/branches/instancias/7.0/addons,
+/home/yanina/branches/instancias/7.0/web/addons/,
+/home/yanina/branches/instancias/7.0/addons-vauxoo-cicsa,
+/home/yanina/branches/instancias/7.0/vx_account-financial-report,
+/home/yanina/branches/instancias/7.0/vx_ovl70_trunk,
+/home/yanina/branches/instancias/7.0/0companies/cicsa/del_amouth_bdp_purchase_requisition-dev-yani
+
+por ejemplo.
+
+Debemos tener en cuenta que el usuario de postgres usado en config['admin_passwd'] debe ser el
+owner de la base de datos especificada en los parametros del script.
 
 doctest
 -------
