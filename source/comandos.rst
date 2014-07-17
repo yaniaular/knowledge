@@ -120,3 +120,9 @@ Otros = 4 (solo puede Leer)
 
 Nota: Evidentemente el comando chmod contiene muchas más opciones y formas de asignar permisos,
 puedes consultarlas consultando el manual del comando, para ello abre un terminal y teclea:
+
+**sudo apt-get install fcrackzip*:
+
+Encuentra la contraseña o password de un archivo comprimido (zip)
+
+$ fcrackzip -v -b -p aaaaaa -u your_zip_file.zip

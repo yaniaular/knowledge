@@ -64,6 +64,18 @@ Revertir cambios en archivos
 
 git reset <file>
 
+Quitar cambios del commit
+-------------------------
+
+git checkout <file>
+
+Log y Diff grafico
+------------------
+
+gitk
+
+http://git-scm.com/book/en/Git-Basics-Viewing-the-Commit-History#Using-a-GUI-to-Visualize-History
+
 Migrar de launchpad to git
 --------------------------
 
@@ -74,3 +86,13 @@ curl -u 'yaniaular' https://api.github.com/user/repos -d '{"name":"curriculum"}'
 bzr dpush github:yaniaular/curriculum,branch=master --no-rebase
 
 --no-rebase es para que no sincronize bzr con git
+
+Git y Bazaar
+------------
+
+Git y Bazaar te permiten mantener en un mismo repo ambos control de versiones
+
+GitEye-1.6.1-linux.x86_64.zip
+-----------------------------
+
+Entorno gráfico de git

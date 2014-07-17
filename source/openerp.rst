@@ -423,3 +423,451 @@ Mensaje de confirmacion en un boton de Openerp
 
     <button name="signal_disapprove_cc" states="approve_cc" string="Disapprove by CC" type="workflow"
         confirm="Do you confirm DISAPPROVE this document?"/>
+
+Reportes Webkit
+---------------
+
+El modulo donde está el reporte debe depender de report_webkit
+se debe instalar el paquete 
+sudo apt-get install wkhtmltopdf
+
+Crear un botón que se use para mandar a imprimir el reporte.
+
+view/module_name_view.xml
+
+.. code-block :: xml
+
+    <?xml version='1.0' encoding='UTF-8'?>
+    <openerp>
+        <data>
+            <record model="ir.ui.view" id="module_name_report_form_inherit">
+                <field name="name">module.name.report.form</field>
+                <field name="model">module.name</field>
+                <field name="inherit_id" ref="module_name.view_module_name_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//header" position="inside">
+                        <button name="print_report" string="Print Webkit" type="object" icon="gtk-print"/>
+                    </xpath>
+                </field>
+            </record>
+        </data>
+    </openerp>
+
+Luego debes crear un xml, para crear el reporte, indicando sus caracaterísticas y su ubicacion
+
+report/report.xml
+
+.. code-block :: xml
+
+        <?xml version='1.0' encoding='UTF-8'?>
+        <openerp>
+            <data>
+
+               <record id="module_name_report_webkit" model="ir.actions.report.xml">
+                    <field name="report_type">webkit</field>
+                    <field name="report_name">module_name_report_webkit</field>
+                    <field eval="[(6,0,[])]" name="groups_id"/>
+                    <field eval="0" name="multi"/>
+                    <field eval="0" name="auto"/>
+                    <field eval="0" name="header"/>
+                    <field name="model">module.name</field>
+                    <field name="type">ir.actions.report.xml</field>
+                    <field name="name">Purchase requisition Webkit</field>
+                    <field name="report_rml">cicsa_module_name_report/report/module_name_report.mako</field>
+                    <field name="report_file">cicsa_module_name_report/report/module_name_report.mako</field>
+                </record> 
+                <record id="property_module_name_report_webkit" model="ir.property">
+                    <field name="name">module_name_report_webkit_property</field>
+                    <field name="fields_id" ref="report_webkit.field_ir_act_report_xml_webkit_header"/>
+                    <field eval="'ir.header_webkit,'+str(ref('cicsa_module_name_report.requisition_landscape_header'))" model="ir.header_webkit" name="value"/>
+                    <field eval="'ir.actions.report.xml,'+str(ref('cicsa_module_name_report.module_name_report_webkit'))" model="ir.actions.report.xml" name="res_id"/>
+                </record>
+            </data>
+        </openerp>
+
+    Adicional a eso, debes tener un header creado si lo deseas. Esto es en caso de que se tenga
+    un registro ir.property como se muestra arriba, si no se desea el ir.property, se puede eliminar
+    y solo dejar la accion del reporte, si se coloca el property, se debe agregar el codigo a
+    continuacion
+
+    data/requisition_webkit_header.xml
+
+    .. code-block :: xml
+
+
+    <?xml version="1.0" ?>
+    <openerp>
+        <data noupdate="1">
+            <record id="requisition_landscape_header" model="ir.header_webkit">
+                <field name="footer_html"><![CDATA[
+    <html>
+        <head>
+            <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+            <script>
+                function subst() {
+                var vars={};
+                var x=document.location.search.substring(1).split('&');
+                for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+                var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+                for(var i in x) {
+                var y = document.getElementsByClassName(x[i]);
+                for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                    }
+                }
+            </script>
+        </head>
+        <% import datetime %>
+        <body style="border:0; margin: 0;" onload="subst()">
+            <table style="border-top: 1px solid black; width: 1080px">
+                <tr style="border-collapse:collapse;">
+                    <td style="text-align:left;font-size:10;width:350px;">${formatLang( str(datetime.datetime.today()), date_time=True)}</td>
+                    <td style="text-align:center;font-size:10;width:350px;">${user.name}</td>
+                    <td style="text-align:right;font-size:10;width:350px;">Page&nbsp;<span class="page"/></td>
+                    <td style="text-align:left;font-size:10;width:30px">&nbsp;of&nbsp;<span class="topage"/></td>
+                </tr>
+            </table>
+        </body>
+    </html>]]></field>
+                <field name="orientation">Landscape</field>
+                <field name="format">A4</field>
+                <field name="html"><![CDATA[
+    <html>
+        <head>
+            <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+            <script>
+                function subst() {
+                var vars={};
+                var x=document.location.search.substring(1).split('&');
+                for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+                var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+                for(var i in x) {
+                var y = document.getElementsByClassName(x[i]);
+                for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                    }
+                }
+            </script>
+            <style type="text/css">
+                ${css}
+            </style>
+        </head>
+        <body style="border:0; margin: 0;" onload="subst()">
+            <table class="header" style="border-bottom: 0px solid black; width: 100%">
+                <tr>
+                    <td style="text-align:left; font-size:11px; font-weight: bold;"><span style="text-transform:uppercase; font-size:12px;">${report_name}</span> - ${company.partner_id.name | entity} - ${company.currency_id.name | entity}</td>
+                </tr>
+            </table> ${_debug or ''|n} </body>
+    </html>]]>
+                </field>
+                <field eval="0.0" name="margin_top"/>
+                <field name="css"><![CDATA[
+
+    body, table, td, span, div {
+        font-family: Helvetica, Arial;
+    }
+
+    .act_as_table {
+        display: table;
+    }
+    .act_as_row  {
+        display: table-row;
+    }
+    .act_as_cell {
+        display: table-cell;
+    }
+    .act_as_thead {
+        display: table-header-group;
+    }
+    .act_as_tbody {
+        display: table-row-group;
+    }
+    .act_as_tfoot {
+        display: table-footer-group;
+    }
+    .act_as_caption {
+        display: table-caption;
+    }
+    act_as_colgroup {
+        display: table-column-group;
+    }
+
+    .list_table, .data_table {
+        width: 1080px;
+        table-layout: fixed
+    }
+
+    .bg, .act_as_row.labels {
+        background-color:#F0F0F0;
+    }
+
+    .list_table, .data_table, .list_table .act_as_row {
+        border-left:0px;
+        border-right:0px;
+        text-align:left;
+        font-size:9px;
+        padding-right:3px;
+        padding-left:3px;
+        padding-top:2px;
+        padding-bottom:2px;
+        border-collapse:collapse;
+    }
+
+    .list_table .act_as_row.labels, .list_table .act_as_row.initial_balance, .list_table .act_as_row.lines {
+        border-color:gray;
+        border-bottom:1px solid lightGrey;
+    }
+
+    .data_table .act_as_cell {
+        border: 1px solid lightGrey;
+        text-align: center;
+    }
+
+    .data_table .act_as_cell, .list_table .act_as_cell {
+        word-wrap: break-word;
+    }
+
+    .data_table .act_as_row.labels {
+        font-weight: bold;
+    }
+
+    .initial_balance .act_as_cell {
+        font-style:italic;
+    }
+
+    .account_title {
+        font-size:10px;
+        font-weight:bold;
+        page-break-after: avoid;
+    }
+
+    .act_as_cell.amount {
+        word-wrap:normal;
+        text-align:right;
+    }
+
+    .list_table .act_as_cell{
+        padding-left: 5px;
+    }
+    .list_table .act_as_cell.first_column {
+        padding-left: 0px;
+    }
+
+    .sep_left {
+        border-left: 1px solid lightGrey;
+    }
+
+    .overflow_ellipsis {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .open_invoice_previous_line {
+        font-style: italic;
+    }
+
+    .clearance_line {
+        font-style: italic;
+    }
+
+    ]]>
+                </field>
+                <field name="name">Requisition Landscape Header</field>
+            </record>
+
+            <record id="requisition_portrait_header" model="ir.header_webkit">
+                <field name="footer_html"><![CDATA[
+    <html>
+        <head>
+            <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+            <script>
+                function subst() {
+                var vars={};
+                var x=document.location.search.substring(1).split('&');
+                for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+                var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+                for(var i in x) {
+                var y = document.getElementsByClassName(x[i]);
+                for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                    }
+                }
+            </script>
+        </head>
+        <% import datetime %>
+        <body style="border:0; margin: 0;" onload="subst()">
+            <table style="border-top: 1px solid black; width: 1080px">
+                <tr style="border-collapse:collapse;">
+                    <td style="text-align:left;font-size:10;width:350px;">${formatLang( str(datetime.datetime.today()), date_time=True)}</td>
+                    <td style="text-align:center;font-size:10;width:350px;">${user.name}</td>
+                    <td style="text-align:right;font-size:10;width:350px;">Page&nbsp;<span class="page"/></td>
+                    <td style="text-align:left;font-size:10;width:30px">&nbsp;of&nbsp;<span class="topage"/></td>
+                </tr>
+            </table>
+        </body>
+    </html>]]></field>
+                <field name="orientation">Portrait</field>
+                <field name="format">A4</field>
+                <field name="html"><![CDATA[
+    <html>
+        <head>
+            <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+            <script>
+                function subst() {
+                var vars={};
+                var x=document.location.search.substring(1).split('&');
+                for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+                var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+                for(var i in x) {
+                var y = document.getElementsByClassName(x[i]);
+                for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                    }
+                }
+            </script>
+            <style type="text/css">
+                ${css}
+            </style>
+        </head>
+        <body style="border:0; margin: 0;" onload="subst()">
+            <table class="header" style="border-bottom: 0px solid black; width: 100%">
+                <tr>
+                    <td style="text-align:left; font-size:11px; font-weight: bold;"><span style="text-transform:uppercase; font-size:12px;">${report_name}</span> - ${company.partner_id.name | entity} - ${company.currency_id.name | entity}</td>
+                </tr>
+            </table> ${_debug or ''|n} </body>
+    </html>]]>
+                </field>
+                <field eval="17.0" name="margin_top"/>
+                <field eval="15.0" name="margin_bottom"/>
+                <field name="css"><![CDATA[
+
+    body, table, td, span, div {
+        font-family: Helvetica, Arial;
+    }
+
+    .act_as_table {
+        display: table;
+    }
+    .act_as_row  {
+        display: table-row;
+    }
+    .act_as_cell {
+        display: table-cell;
+    }
+    .act_as_thead {
+        display: table-header-group;
+    }
+    .act_as_tbody {
+        display: table-row-group;
+    }
+    .act_as_tfoot {
+        display: table-footer-group;
+    }
+    .act_as_caption {
+        display: table-caption;
+    }
+    act_as_colgroup {
+        display: table-column-group;
+    }
+
+    .list_table, .data_table {
+        width: 690px;
+        table-layout: fixed
+    }
+
+    .bg, .act_as_row.labels {
+        background-color:#F0F0F0;
+    }
+
+    .list_table, .data_table, .list_table .act_as_row {
+        border-left:0px;
+        border-right:0px;
+        text-align:left;
+        font-size:9px;
+        padding-right:3px;
+        padding-left:3px;
+        padding-top:2px;
+        padding-bottom:2px;
+        border-collapse:collapse;
+    }
+
+    .list_table .act_as_row.labels, .list_table .act_as_row.initial_balance, .list_table .act_as_row.lines {
+        border-color:gray;
+        border-bottom:1px solid lightGrey;
+    }
+
+    .data_table .act_as_cell {
+        border: 1px solid lightGrey;
+        text-align: center;
+    }
+
+    .data_table .act_as_cell, .list_table .act_as_cell {
+        word-wrap: break-word;
+    }
+
+    .data_table .act_as_row.labels {
+        font-weight: bold;
+    }
+
+    .initial_balance .act_as_cell {
+        font-style:italic;
+    }
+
+    .account_title {
+        font-size:10px;
+        font-weight:bold;
+        page-break-after: avoid;
+    }
+
+    .act_as_cell.amount {
+        word-wrap:normal;
+        text-align:right;
+    }
+
+    .list_table .act_as_cell{
+        padding-left: 5px;
+    }
+    .list_table .act_as_cell.first_column {
+        padding-left: 0px;
+    }
+
+    .sep_left {
+        border-left: 1px solid lightGrey;
+    }
+
+    .account_level_1 {
+        text-transform: uppercase;
+        font-size: 15px;
+        background-color:#F0F0F0;
+    }
+
+    .account_level_2 {
+        font-size: 12px;
+        background-color:#F0F0F0;
+    }
+
+    .account_level_5 {
+
+    }
+
+    .regular_account_type {
+        font-weight: normal;
+    }
+
+    .view_account_type {
+        font-weight: bold;
+
+    .account_level_consol {
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    .overflow_ellipsis {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    ]]>
+                </field>
+                <field name="name">requisition Portrait Header</field>
+            </record>
+        </data>
+    </openerp>

@@ -24,7 +24,6 @@ postgresql-client         postgresql-client-9.3     postgresql-common
 createuser openerp -d -r -l -P
 dropuser openerp
 psql --list
-> alter database NAME owner to NEW_OWNER;
 
 --------------------
 Borrar base de datos
@@ -56,3 +55,40 @@ IOError: [Errno 13] Permission denied:
 
 sudo chmod 755
 /usr/local/lib/python2.7/dist-packages/openerp-7.0-py2.7.egg/openerp/addons/base/static/src/img/avatar.png
+
+Cambiar todas las base de datos de un owner a otro owner
+--------------------------------------------------------
+
+REASSIGN OWNED BY old_role [, ...] TO new_role
+
+Comando para duplicar registros
+-------------------------------
+
+insert into TABLA (CAMPO1, CAMPO2) select CAMPO1,CAMPO2 from TABLA where CONDITION;
+
+Super comando para cambiar los permisos de todas las tablas, secuencias y vista de una base de
+----------------------------------------------------------------------------------------------
+
+datos a otro owner
+------------------
+
+En psql ejecutar:
+
+> alter database NAME owner to NEW_OWNER;
+
+Luego con el usuario postgres ejecutar:
+
+Para tablas
+~~~~~~~~~~~
+
+postgres@yani-kde:/home/yanina$ for tbl in `psql -qAt -c "select tablename from pg_tables where schemaname = 'public';" YOUR_DB` ; do  psql -c "alter table $tbl owner to NEW_OWNER" YOUR_DB ; done
+
+Para secuencias
+~~~~~~~~~~~~~~~
+
+for tbl in `psql -qAt -c "select sequence_name from information_schema.sequences where sequence_schema = 'public';" YOUR_DB` ; do  psql -c "alter table $tbl owner to NEW_OWNER" YOUR_DB ; done
+
+Para vistas
+~~~~~~~~~~~
+
+for tbl in `psql -qAt -c "select table_name from information_schema.views where table_schema = 'public';" YOUR_DB` ; do  psql -c "alter table $tbl owner to NEW_OWNER" YOUR_DB ; done

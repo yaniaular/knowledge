@@ -148,3 +148,31 @@ donde scss y css son las carpetas con los archivos de extensión scss y css.
 
 **Referencias**: http://cambio.name/personal/content/uso-de-sass-y-compass-para-generar-css 
 
+Herramientas
+------------
+
+Artisteer
+Adobe Dreamweaver CS6
+
+Amaya
+Aptana Studio
+Google Sites
+Bluegriffon
+BlueFish
+
+
+Adobe Fireworks
+AAA
+Logo Cre8or
+Coda
+QuantaPlus
+
+Kompozer
+ZenStuido
+SeaMonkey
+Codetch
+
+ftps:
+-----
+
+nautilus

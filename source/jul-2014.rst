@@ -1,0 +1,11 @@
+Julio 2014
+==========
+
+17 de Julio 2014
+----------------
+
+Instale:
+
+sudo apt-get install filezilla
+sudo apt-get install mysql-server
+
