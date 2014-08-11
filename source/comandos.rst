@@ -3,6 +3,35 @@ Comandos
 - **find, xargs y sed**: find . -name "index*" | xargs sed -i "s/jquery\-ui\.min\.js/info\.js/g"
 
 - **wget**: wget --wait=20 --limit-rate=20K -r -p -U jmarin http://ajmarin.alwaysdata.net/
+  usar -c para renaudar la descarga **wget -c http://dl.google.com/android/adt/adt-bundle-linux-x86-20140702.zip**
+
+Este truco viene muy bien si hemos tratado de descargar algún fichero y más
+tarde nos damos cuenta de que por alguna razón, la descarga no se completó.
+Muchas veces, si se corta una descarga de un navegador, se puede continuar
+donde se perdió si le damos inmediatamente a volver a descargar (porque aún
+esté el fichero a descargar en la caché). Sin embargo, otras veces esto no
+sirve y en vez de volver a descargar el fichero desde el principio podemos
+aprovechar el trozo que hemos descargado y descargar sólo lo que nos resta,
+gracias a esa fantástica herramienta que es wget. Sólo tienes que abrir una
+terminal, situarte en el directorio donde está el fichero a medio descargar y
+ejecutar:
+
+$ wget -c URL_del_archivo Aunque antes de hacer esto puede que tengas que
+modificar el nombre del archivo que está a medio descargar, para que coincida
+con el del archivo en el servidor. Esto puede ser por ejemplo eliminar la
+extensión .part o algún (1)  o [1] que introducen ciertos navegadores…
+
+Wget es un programita sencillo pero potente ya que admite muchas opciones
+adicionales que aumentan sus posibilidades. Por poner un ejemplo, si el
+servidor exige que para descargarse un archivo haya que estar registrado, se le
+pueden indicar muy fácilmente los datos de registro con Wget:
+
+$ wget -c --http-user="nombre" --http-password="clave"
+"http://www.servidor.com/fichero" Nota: para que esto funcione la URL tiene que
+apuntar directamente al archivo. Si en vez de eso, por ejemplo, apunta a una
+página PHP con algún parámetro para seleccionar el archivo, es poco probable
+que funcione (aunque a veces sí, todo depende de cómo esté configurado el
+servidor).
 
 - **youtube-dl**:
 

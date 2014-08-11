@@ -6,6 +6,7 @@ Configuracion servidor OpenERP
 ------------------------------
 
 vim /etc/nginx/sites-enabled/openerp-yani
+usar puerto ubicado arriba
 
 
 Nginx
