@@ -424,6 +424,23 @@ Mensaje de confirmacion en un boton de Openerp
     <button name="signal_disapprove_cc" states="approve_cc" string="Disapprove by CC" type="workflow"
         confirm="Do you confirm DISAPPROVE this document?"/>
 
+Arreglar o desinstalar libreria de reportlab
+--------------------------------------------
+
+dpkg --get-selections | grep reportlab
+pip freeze | grep reportlab
+sudo apt-get purge python-reportlab
+sudo apt-get purge python-reportlab-accel
+
+Descargar reportlab 2.7
+sudo python setup.py install
+
+pip freeze | grep reportlab
+reportlab==2.7
+
+Esto ocasiona que se desinstale rst2pdf
+
+
 Reportes Webkit
 ---------------
 
