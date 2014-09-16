@@ -124,7 +124,7 @@ sudo mkfs.vfat -F 32 -n Mi_Memoria /dev/sdc1
   entrar a screen: screen -x NOMBRE
     (o el id en su defecto, el que aparece en -list)
 
- **chmod**:
+- **chmod**:
 
 Relación Numérica con los Permisos
 
