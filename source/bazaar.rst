@@ -383,7 +383,11 @@ bzr join workcenter
 bzr add
 bzr ci
 
+Eliminar un commit
+==================
+eliminando los cambios reflejados desde 245 a 246
 
+bzr merge . -r 246..245
 
 Copiar branch por ssh
 =====================
