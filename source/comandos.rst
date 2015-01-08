@@ -1,5 +1,12 @@
 Comandos
 ========
+
+- **fcrackzip y rarcrack**: Para poder descubrir contraseñas de archivos comprimidos. 
+
+- **TOR**, hoy descargue tor para poder cambiar la ip de mi maquina.
+https://www.torproject.org/download/download-easy.html.en
+lo descargue de alli, 64 bits y funciona de maravilla
+
 - **find, xargs y sed**: find . -name "index*" | xargs sed -i "s/jquery\-ui\.min\.js/info\.js/g"
 
 - **wget**: wget --wait=20 --limit-rate=20K -r -p -U jmarin http://ajmarin.alwaysdata.net/
@@ -155,3 +162,5 @@ puedes consultarlas consultando el manual del comando, para ello abre un termina
 Encuentra la contraseña o password de un archivo comprimido (zip)
 
 $ fcrackzip -v -b -p aaaaaa -u your_zip_file.zip
+
+- **py.test --flakes**: probar flakes en los archivos python

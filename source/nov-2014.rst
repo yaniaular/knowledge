@@ -1,0 +1,35 @@
+Noviembre - 2014
+================
+
+Herramientas
+------------
+
+Notas github:
+
+https://docs.google.com/document/d/18UbMxyuitrqfao6VxA2ZCUUSlKdO7shyCaX2hxorFz0/edit#
+
+Pytlint:
+
+https://github.com/Vauxoo/pylint-conf/blob/master/conf/pylint_vauxoo_light.cfg
+
+Odoo runbot:
+
+http://odoorunbot.vauxoo.com/
+
+Cosas por hacer
+---------------
+
+1. Revisar errores que mando Moises en el correo
+2. Cargar horas que faltan
+
+Links de trabajo
+----------------
+
+https://github.com/vauxoo-dev/odoo/tree/8.0-hr-payroll-account-get-partner-dev-moylop260
+
+https://github.com/vauxoo-dev/hr/commits/8.0-hr-loan-dev-yanina
+
+Historia de usuario
+-------------------
+
+https://www.vauxoo.com/?ts=1413900314552#id=380&view_type=form&model=user.story&menu_id=557&action=726
