@@ -64,13 +64,17 @@ Historial de Trabajo
    :maxdepth: 1
 
    
-   mayo-2013
-   mar-2014
-   ene-2014
-   nov-2013
-   oct-2013
-   sep-2013
-   ago-2013
+   2013/mayo-2013
+   2013/ago-2013
+   2013/nov-2013
+   2013/sep-2013
+   2013/oct-2013
+   2014/ene-2014
+   2014/mar-2014
+   2014/jun-2014
+   2014/jul-2014
+   2014/nov-2014
+   2015/ene-2015
    todo_on_free_time
 
 Referencias
