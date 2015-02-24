@@ -1,0 +1,123 @@
+============
+Febrero 2014
+============
+
+.. contents:: Tabla de Contenido
+
+23 de Febrero del 2014
+----------------------
+
+Pendientes con los módulos de YOYTEC
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+dividir onchange en dos partes, una para la linea de la factura
+y otra para el serial number, metodoso genericos.
+
+Producto de servicio en la compañia
+
+Usar metodo self.partner_id = imd_model.get_object_reference(
+           cr, uid, "base", "res_partner_1")[1]
+
+asignar factura de proveedor cuando se crean 
+reclamos a proveedor desde un reclamo a client.
+
+campo supplier en serial number.
+o2m de cliente en serial number.
+
+24 de Febrero del 2014
+----------------------
+
+Es sobre la explicación de movimientos encadenados que se le mostró a
+Friedemann, por parte de Humberto.
+
+Él mismo Friedemann preguntó, si era posible usar esta modalidad en el RMA, por
+eso la importancia de que lo revisen, por favor.
+
+Después de que lo revisen, me dicen, para programar una reunión y terminar de
+definir el tema.
+
+https://www.youtube.com/watch?v=Af-DwMzzLWc&feature=youtu.be
+
+Resumen de reunión:
+~~~~~~~~~~~~~~~~~~~
+
+El objetivo es los almacenes con poca mercancía a partir de 
+un almacen principal.
+
+Ejemplo 1, Suplir un almacen destino desde un almacen principal directamente:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+El almacen principal tiene una oción que dice que se suple a 
+partir de comprar (Purchase to resupply this warehouse)
+
+Dos maneras de pasar mercancía del almacen principal a otro
+almacen, Almacen principal -> almacen intermedio -> almacen destino.
+O, Almacen principal -> Almacen destino.
+
+Se va a crear una ruta, Del almacen principal a otros almacenes,
+dentro de la ruta se establece la regla de tipo Pull Rules.
+
+Tambien existen las reglas de empuje Push Rules. Por ejemplo
+cuando se recibe la mercancía del proveedor, Almacen Proveedor ->
+Almacen de control de calidad, y luego Almacen de control de calidad ->
+Almacen principal.
+
+En la ficha de los productos se puede elegir de que manera se va a 
+supplier el producto, es decir, están las rutas que se han definido.
+
+También se debe crear una regla de reorden al producto, se dice
+en que almacen se ubican el producto y cuanto es el minimo
+y maximo para poder suplir.
+
+Luego, se ejecutan las procuras. en Run Schedulers.
+
+Entonces en ese momento, se crear una Operation de tipo recepcion
+en el almacen destino, y esta esperando por disponibilidad del
+producto.
+
+El movimiento de inventario que va desde al almacen principal
+al almacen destino esta esperando disponibilidad de productos en
+el almacen principal por lo tanto, se debe hacer una orden de 
+compra con el campo Deliver To al almacen principal.
+
+Luego nos vamos a picking, hacemos la transferencia, luego vemos
+en la ficha del producto lo que se tiene disponible en forecast.
+
+Luego automaticamente, ya el recibo en el almacen destino esta listo
+ya que e recibio producto en el almacen principal.
+
+
+Ejemplo 2, Suplir un almacen destino desde un almacen principal con tránsito:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Se esta explicando, como se puede supplir un almacen destino desde un almacen principal,
+por medio de un almacen de transito.
+
+En rma Friedemann quiere que los reclamo se manejen las reglas de los 
+almacenes para transportar productos de un almacen a otro.
+
+quiere que en rma, se tome en cuenta los movimientos de inventario que sale
+de su almacen, se le entrega a un mensaje (transito), y luego cuando
+el transportista (vehículo o transporte para saber quien lo está llevando),
+esté en camino, se debe recibir el producto. es cuando se hace el movimiento
+de transito al destino.
+
+Tomar en cuenta modulo de Fleet. Para poder tener los modelos de vehiculos
+o flota, para agregar un atributo en el movimiento de inventario, para
+poder saber cual es el transportista que lleva el producto al proveedor.
+
+Hay una opcion en las Routes que se llama agrupacion de procuras
+(Procurement Group) , cuando se generen las procuras, se agrupan en una 
+sola, y cuando se genere el picking, se agrupan todos los productos.
+
+Procurement Group: Agrupalo todo en un solo picking.
+
+En el route, (activando los permisos de technical features), se puede
+escoger la manera en que se propagan los productos agrupados.
+
+Tambien existe un campo llamado Invoice estatus, donde se decide
+en que momento se puede facturar desde el albaran, sin embargo,
+tambien se puede decir que no se factura desde el albaran cuando esa
+ruta esté habilitada.
+
+Hace split dependiendo de los movimientos 
