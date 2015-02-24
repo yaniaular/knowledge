@@ -96,3 +96,42 @@ GitEye-1.6.1-linux.x86_64.zip
 -----------------------------
 
 Entorno gráfico de git
+
+Eliminar una rama remota con git
+--------------------------------
+
+Supongamos que hemos creado una rama en nuestro repositorio para corregir
+algunos errores y evitar que el cambio de código pueda afectar a nuestra rama
+estable. Una vez corregidos los errores y pasados todos los test de nuevo la
+rama debe mezclarse (merge) con nuestra rama estable y debemos eliminar la rama
+de cambios del repositorio.
+
+Eliminarla de nuestro repositorio local es fácil, símplemente debemos ejecutar
+(suponemos que nuestra rama se llama bugfixes)
+
+**git branch -d bugfixes** #si la rama ha sido mezclada correctamente con
+nuestra rama de upstream
+
+**git branch -D bugfixes** #si queremos borrarla aunque la mezcla no se haya
+producido con el upstream
+
+Pero borrarla del servidor… Eso ya es otra cosa. Si después de hacer lo
+anterior hacemos un git pull la rama local volverá a crearse, ya que seguía
+estando en el servidor. Esto podemos arreglarlo de la siguiente manera
+
+**git push origin :bugfixes** #suponiendo que la rama en el servidor se llama
+igual que nuestra ex-rama local
+
+**git push origin --delete bugfixes**
+
+Ambos comandos hacen lo mismo, pero quizás por lo del ahorro de pulsaciones la
+primera nos guste más :p
+ 
+**git stash save 'mensaje'** 
+
+Se usa para guardar cambios que no se quieren hacer commit aún. Engavetar.
+
+**git stash list**
+
+Ver lista de cambios guardados
+
