@@ -11,18 +11,31 @@ Pendientes con los módulos de YOYTEC
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 dividir onchange en dos partes, una para la linea de la factura
-y otra para el serial number, metodoso genericos.
+y otra para el serial number, metodoso genericos. **DONE**
+campo supplier en serial number. **DONE**
 
-Producto de servicio en la compañia
+reclamos a proveedor desde un reclamo a client.
 
+asignar factura de proveedor cuando se crean 
+
+Producto de servicio en la compañia. (Se va a crear la cotizacion con
+lineas en blanco)
 Usar metodo self.partner_id = imd_model.get_object_reference(
            cr, uid, "base", "res_partner_1")[1]
 
-asignar factura de proveedor cuando se crean 
-reclamos a proveedor desde un reclamo a client.
 
-campo supplier en serial number.
 o2m de cliente en serial number.
+
+Cuando se crean los reclamos a proveedor, y en otro reclamo
+a cliente tambien se hace lo mismo, entonces debe llenarse
+el reclamo a proveedor que ya este abierto.. hasta que
+se llene... usando los campos definidos en la compania
+
+
+Surge error usando appi 8.0 cuando se hace la llamada a un metodo
+desde la version 8.0 a la version 7.0. se hizo debug pausado
+hasta determinar que existia un self.pool.get y por eso tomaba
+el numero de argumentos erróneo.
 
 24 de Febrero del 2014
 ----------------------
@@ -121,3 +134,245 @@ tambien se puede decir que no se factura desde el albaran cuando esa
 ruta esté habilitada.
 
 Hace split dependiendo de los movimientos 
+
+25 de Febrero del 2015
+~~~~~~~~~~~~~~~~~~~~~~
+
+Copy of Requerimientos - Soporte Técnico (yoytec)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://docs.google.com/a/vauxoo.com/spreadsheets/d/1pRHM5kbqiyTpT2oWYiHXEGAT2dx6XaP9GhoRDIi_2wI/edit?pli=1#gid=12
+
+Trazabilidad con número de serie
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ejemplos de Purchase Order, Picking, Ordenes de Venta, con serial number
+
+https://docs.google.com/a/vauxoo.com/spreadsheets/d/1N6x6tBRMsanDXuiVlSb6ysS-0egP3Z72Q0_8sK0DaC0/edit?pli=1#gid=0
+
+Cotizaciones tareas de workflow
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://docs.google.com/a/vauxoo.com/spreadsheet/ccc?key=0AlUUUA6bRx8-dHpZUzFFNmdQS3Q2VmVMR05CaEFkNGc&usp=drive_web&pli=1#gid=17
+
+Notas reunión Friedemann yoytec sprint 3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://docs.google.com/a/vauxoo.com/spreadsheets/d/1DwNYRliATFmd0kb-O12WvTJBZW0KW3p-RILpsgqr4Xo/edit?pli=1#gid=0
+
+Caracteristica serial
+~~~~~~~~~~~~~~~~~~~~~
+
+lot_unique_ok, track_all
+
+https://docs.google.com/a/vauxoo.com/spreadsheets/d/1bQYwXQpAN7JJ8UJOUSsE3xQUCSp4d6QrYx8FNSb5ckE/edit#gid=1825573164
+
+Ejemplo de stock e inventarios
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+https://docs.google.com/a/vauxoo.com/spreadsheets/d/1GdtjBXXPuvKDc0ipClkzFHKjd6Kymej3ZPxO_4f6U3g/edit?pli=1#gid=0
+
+26 de Febrero del 2016
+~~~~~~~~~~~~~~~~~~~~~~
+
+Investigacion de productos y proveedores de yoytec desde su pagina web,
+http://www.yoytec.com/
+Bussqueda de un producto con mas de un proveedor que lo suple.
+Creacion de instancia de prueba con productos y proveedores
+reales de yoytec.
+
+se descubre que las secuencias usadas en los reclamos no estan para
+la compañia de yoytec, se emite correo a Gabriela Quilarque
+para que porfavor modifique el atributo company_id de las
+seccuencias, y se puedas usar en Yoyter Computer, esto
+se hara en el modulo yoyte_data
+
+Se cambia el código a API 8.0, I+D de nueva forma de declarar
+los metodos.
+
+Ver video de stock (reunion de hbto, moi y yoytec) 
+y analizar lo que se quiere 3 horas.
+https://www.youtube.com/watch?v=Af-DwMzzLWc&feature=youtu.be
+
+
+
+
+SI se colocan los campos de garantía readonly en la vista..
+cuando se llenan con el onchange, al darle close and save,
+ya se borran los valores..
+
+https://github.com/odoo/odoo/issues/4348
+https://www.odoo.com/forum/help-1/question/how-to-store-field-readonly-in-database-with-onchange-method-66603
+https://bugs.launchpad.net/openobject-client/+bug/378824
+
+Se tuvo el problema se reviso el codigo en busca de escrituras.
+luego se hizo un pdb en el metodo write, y no se estaba recibiendo
+el valor. Luego se intentó quitando el readonly del modeloy colocandolo
+en la vista. No funciono.. se quito el readonly dde todos los campos
+y funciono, se hizo una investigacion en internet y parece ser
+un bug, sin embargo no se consiguió una solución directa.
+Por ahora, se puede resolver cambiando los campos a funcionales
+y se tendrá en los pendientes.
+
+
+hay uno que dice que el framework esta siguiendo las ordenes que le dicen...
+que sean "readonly" y por eso no deja guardar el campo cuando se cambia desde
+la vista con un onchange.. y que usaran un campo funcional
+
+
+
+La garantia con el proveedor se calcula tomando la fecha de la
+factura de compra al proveedor?
+
+cambiar warning a Selection
+
+
+
+
+
+
+
+
+
+
+**Y puede que tengan razón. Pero ellos tieneb el privilegio de decir eso porque
+son observadores. Nosotras Quw estamos metidas en ese desarrollo como con 20
+ideas en la mente hacemos lo que mejor podemos. Los observadores siempre van a
+poder dar una opinión de una solución sencilla porque ven en el problema de una
+manera muy abstracta y sin considerar muchas cosas que nos tras vamos
+considerando debido a que la planificación la vamos haciendo al momento
+
+Ellos ven un comienzo un final y dicen Ahh pero esta es la solución y es fácil.
+
+Ellos siempre tendrá la opinión fresca porque estas abstraído del panorama. Y
+tienen un marco muy sencillo. El final. Entrada proceso salida Siempre se harán
+los muy inteligente si dirán... Eso es fácil. Pero no. Fácil es verlo Difícil
+es desarrollar el proceso y abstraerse para encontrar una entrada punto y una
+salida satisfactoria**
+
+28 de Febrero del 2014
+----------------------
+
+Hacer la prueba usando campos funcionales para el problema de campos 
+readonly, pero se dejo en stand by...
+
+agregar campo supplier_id en el modelo stock.production.lot,
+busqueda de método que se encarga de asignar el producto
+cuando el serial number es creado desde la transferencia de 
+productos al almacen de la compañia...
+
+Edición de método para agregar el proveedor en el wizard
+desde el stockmove, se hacen pruebas pertinentes, se
+descubre que se debe colocar la condicion que se agregue el
+proveedor si y solo si, el campo supplier del serial number
+está vacío y que el stock move sea de tipo incoming
+
+Se continua con la creación de la base de datos, se le asigna
+cuentas a cada proveedor para que se pueda procesar las ordenes
+de compra. Se crea un diario de compra y venta para la compañia.
+
+**CORREO**
+
+El Problema:
+
+Si se colocan los campos de garantía readonly en la vista.
+cuando se llenan con el onchange de la forma (self.campo = value), 
+al darle al botón save and close, no se guardan los valores de esos campos
+readonly.
+
+En la línea de reclamo existen campos readonly (que sí se guardan) como lo son state y date_invoice, con la diferencia de que el campo state se le asigna valor usando un write en un metodo action del workflow (es decir, el record ya existe en la BD con su id, y con write no hay escapatoria para que se guarde), y el otro campo es un related. Es decir, es un campo que se calcula y se almacena cuando se guarda el registro.
+
+Los campos Readonly que no funcionan son los que se calculando en el método onchange. Es decir, por lo que leí, al hacer un self.campo = value, dicho valor se está guardando en la caché de la pagina web, y cuando se guarda el registro el framework ignora los campos readonly que tengan valor en caché.
+
+Aquí les dejo 3 links donde se reporta el mismo problema que tengo... El mas reciente se hizo en diciembre del 2014.
+
+https://github.com/odoo/odoo/issues/4348
+
+https://www.odoo.com/forum/help-1/question/how-to-store-field-readonly-in-database-with-onchange-method-66603
+
+https://bugs.launchpad.net/openobject-client/+bug/378824
+
+En un principio, se descubre el problema se reviso el codigo en busca de escrituras.
+luego se hizo un pdb en el metodo write, y no se estaba recibiendo
+el valor. Luego se intentó quitando el readonly del modelo y colocándolo
+en la vista. No funciono.Se quito el readonly de todos los campos
+y funcionó, se hizo una investigacion en internet y parece ser
+un bug, sin embargo no se consiguió una solución directa.
+
+Aquí está un artículo De Olivier, parace que no han tomado una decisión con
+respecto aesa limitación y lo que está sucediendo es el resultado esperado (el
+comportamiento de los campos readonly y los onchange)
+
+https://www.odoo.com/forum/help-1/question/how-to-handle-reading-and-writing-to-read-only-fields-2247
+
+Posibles soluciones:
+
+1. Por ahora, siguiendo los consejos de internet, se puede resolver cambiando los campos a funcionales y lo tendré pendiente.
+
+2. También probaré con @api.depends This decorator will trigger the call to the decorated function if any of the fields specified in the decorator is altered by
+ORM or changed in the form:
+@api.depends(’name’, ’an_other_field’)
+def afun(self):
+pass
+
+
+Las soluciones aún no han sido totalmente probadas, mientras tanto, se dejaron los campos editables, para que s epueda ver la funcionalidad en la reunión. 
+
+Saludos..
+
+Se probó colocando el campo readonly and required, tanto en vista como en el modelo. NO funciono.
+
+
+Error al obtener browseable con id equivocado.
+
+Revision de PR con kathy... 
+
+**Minuta reunión con friedmann**
+
+Almacen RMA CLient
+Almacen RMa proveedor
+
+Recibir PoM. Productos fabricados
+por yoytec.
+
+Prioridad Normal
+
+Colocar date claim de la linea en la vista en tree
+
+Cotizacion se hace solo si esta fuera de garantia con
+yoytec.
+
+Tomar en cuenta cuando se recibe una computadora 
+con varias piezas. 
+
+Se puede atender al cliente cuando el producto esta fuera
+de garantia. es decir, se crea la cotizacion.
+
+A veces reciben productos que no son de ellos
+y se debe recibir para repaacion.
+
+numero de secuencia...
+
+Preparar una base de datos con la acumulacion
+de productos en un rma de proveedor...
+
+Numero de caso por linea en los reclamos de proveedor.
+
+Agregar campo company_id al claim.line, que sea multicompany
+
+Acumular los reclamos por direccion de proveedor.
+El acumulador debe ser por servicio autorizado.
+
+agregar opcion manual para que se pueda atender un producto
+aunque este fuera de garantía, selection en valid
+y expired.
+
+Mostrar cotizacion en el reclamo.
+
+Cuando esta diagnosticado, despues que pasa a diagnosticado
+es cuando se ve la notificacion al cliente o e reemplazo, o
+crear cotizacion...
+
+en at review solo se debe ver boton diagnosed o pass to rma vendor.
+
+
