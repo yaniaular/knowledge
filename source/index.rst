@@ -20,6 +20,7 @@ OpenERP
    tdd
    atdd
    vauxoo
+   como_desarrollar
 
 Herramientas
 ============
@@ -28,6 +29,7 @@ Herramientas
    :numbered:
    :maxdepth: 2
    
+   herramientas
    python
    nginx
    vim
@@ -52,6 +54,10 @@ Lenguajes
    postgresql
    javascript
    web
+   mysql
+   redes
+   vpn
+   wordpress
 
 
 Historial de Trabajo
@@ -63,7 +69,6 @@ Historial de Trabajo
    :numbered:
    :maxdepth: 1
 
-   
    2013/mayo-2013
    2013/ago-2013
    2013/nov-2013
@@ -75,7 +80,19 @@ Historial de Trabajo
    2014/jul-2014
    2014/nov-2014
    2015/ene-2015
+   2015/feb-2015
+   2015/marzo-2015
    todo_on_free_time
+
+Informacion importante
+======================
+
+.. toctree::
+   :numbered:
+   :maxdepth: 1
+
+   info_importante
+
 
 Referencias
 ===========

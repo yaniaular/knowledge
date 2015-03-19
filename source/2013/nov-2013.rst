@@ -191,7 +191,6 @@ lugar se concilió el asiento contable del anticipo con la deuda pagada por el m
 El error estaba en que el resultado esperado en los yaml no tomaba en cuenta los taxes, por lo
 tanto se modificaron los taxes de la factura para que pudiera dar los resultados correctos.
 
-~~~~~~~~~~~~~~~~~~~~~~
 Para correr test yaml:
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -200,7 +199,6 @@ Para correr test yaml:
 ara-debit --xmlrpc-port=10000 --no-xmlrpcs --no-netrp --log-level=test -i account_reconcile_advance
 --test-enable
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Guardar data de test yaml en la base de datos
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -213,7 +211,6 @@ cxp payable
 
 para saber que transacciones se ha hecho con ese partner.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~
 Siempre llevará un método:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -239,11 +236,9 @@ Eliminar líneas que contngas un "pdb":
 01 de Noviembre del 2013
 ------------------------
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas solventados en el día
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~
 Resumen del día
 ~~~~~~~~~~~~~~~
 
@@ -285,11 +280,9 @@ C.
 | Ingreso|        |  900   |
 +--------+--------+--------+
 
-~~~~~~~~~~~~~~~~~~
 Servers ejecutados
 ~~~~~~~~~~~~~~~~~~
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Problemas que se presentaron
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -14,25 +14,21 @@ dividir onchange en dos partes, una para la linea de la factura
 y otra para el serial number, metodoso genericos. **DONE**
 campo supplier en serial number. **DONE**
 
-reclamos a proveedor desde un reclamo a client.
+reclamos a proveedor desde un reclamo a client. **DONE**
 
-asignar factura de proveedor cuando se crean 
+asignar factura de proveedor cuando se crean  **DONE**
 
 Producto de servicio en la compañia. (Se va a crear la cotizacion con
 lineas en blanco)
 Usar metodo self.partner_id = imd_model.get_object_reference(
-           cr, uid, "base", "res_partner_1")[1]
+           cr, uid, "base", "res_partner_1")[1]. **NO se hizo porque la cotizacion
+           se crea con las lineas vacías**
 
 
-o2m de cliente en serial number.
+Bug combinando api 7.0 con api 8.0
+----------------------------------
 
-Cuando se crean los reclamos a proveedor, y en otro reclamo
-a cliente tambien se hace lo mismo, entonces debe llenarse
-el reclamo a proveedor que ya este abierto.. hasta que
-se llene... usando los campos definidos en la compania
-
-
-Surge error usando appi 8.0 cuando se hace la llamada a un metodo
+Surge error usando api 8.0 cuando se hace la llamada a un metodo
 desde la version 8.0 a la version 7.0. se hizo debug pausado
 hasta determinar que existia un self.pool.get y por eso tomaba
 el numero de argumentos erróneo.
@@ -219,21 +215,7 @@ hay uno que dice que el framework esta siguiendo las ordenes que le dicen...
 que sean "readonly" y por eso no deja guardar el campo cuando se cambia desde
 la vista con un onchange.. y que usaran un campo funcional
 
-
-
-La garantia con el proveedor se calcula tomando la fecha de la
-factura de compra al proveedor?
-
 cambiar warning a Selection
-
-
-
-
-
-
-
-
-
 
 **Y puede que tengan razón. Pero ellos tieneb el privilegio de decir eso porque
 son observadores. Nosotras Quw estamos metidas en ese desarrollo como con 20
@@ -256,10 +238,6 @@ salida satisfactoria**
 Hacer la prueba usando campos funcionales para el problema de campos 
 readonly, pero se dejo en stand by...
 
-agregar campo supplier_id en el modelo stock.production.lot,
-busqueda de método que se encarga de asignar el producto
-cuando el serial number es creado desde la transferencia de 
-productos al almacen de la compañia...
 
 Edición de método para agregar el proveedor en el wizard
 desde el stockmove, se hacen pruebas pertinentes, se
@@ -270,6 +248,8 @@ está vacío y que el stock move sea de tipo incoming
 Se continua con la creación de la base de datos, se le asigna
 cuentas a cada proveedor para que se pueda procesar las ordenes
 de compra. Se crea un diario de compra y venta para la compañia.
+
+
 
 **CORREO**
 
@@ -316,7 +296,8 @@ def afun(self):
 pass
 
 
-Las soluciones aún no han sido totalmente probadas, mientras tanto, se dejaron los campos editables, para que s epueda ver la funcionalidad en la reunión. 
+Las soluciones aún no han sido totalmente probadas, mientras tanto, se dejaron
+los campos editables, para que s epueda ver la funcionalidad en la reunión. 
 
 Saludos..
 
@@ -332,47 +313,69 @@ Revision de PR con kathy...
 Almacen RMA CLient
 Almacen RMa proveedor
 
-Recibir PoM. Productos fabricados
-por yoytec.
+Recibir PoM. Productos fabricados **DONE**
+por yoytec. **DONE**
 
-Prioridad Normal
+Prioridad Normal **DONE**
 
-Colocar date claim de la linea en la vista en tree
+Colocar date claim de la linea en la vista en tree **DONE**
+
+Tomar en cuenta cuando se recibe una computadora 
+con varias piezas.  **DONE**
+
+numero de secuencia... **DONE**
+
+Numero de caso por linea en los reclamos de proveedor. **DONE**
+
+Agregar campo company_id al claim.line, que sea multicompany **DONE**
+
+agregar opcion manual para que se pueda atender un producto
+aunque este fuera de garantía, selection en valid
+y expired. **DONE**
+
+
 
 Cotizacion se hace solo si esta fuera de garantia con
 yoytec.
-
-Tomar en cuenta cuando se recibe una computadora 
-con varias piezas. 
 
 Se puede atender al cliente cuando el producto esta fuera
 de garantia. es decir, se crea la cotizacion.
 
 A veces reciben productos que no son de ellos
-y se debe recibir para repaacion.
-
-numero de secuencia...
+y se debe recibir para reparacion.
 
 Preparar una base de datos con la acumulacion
 de productos en un rma de proveedor...
 
-Numero de caso por linea en los reclamos de proveedor.
-
-Agregar campo company_id al claim.line, que sea multicompany
-
 Acumular los reclamos por direccion de proveedor.
 El acumulador debe ser por servicio autorizado.
-
-agregar opcion manual para que se pueda atender un producto
-aunque este fuera de garantía, selection en valid
-y expired.
 
 Mostrar cotizacion en el reclamo.
 
 Cuando esta diagnosticado, despues que pasa a diagnosticado
 es cuando se ve la notificacion al cliente o e reemplazo, o
-crear cotizacion...
+crear cotizacion... **IMPORTANTE**
 
-en at review solo se debe ver boton diagnosed o pass to rma vendor.
+en at review solo se debe ver boton diagnosed o pass to rma vendor. **IMPORTANTE**
 
 
+
+o2m de cliente en serial number.
+
+Cuando se crean los reclamos a proveedor, y en otro reclamo
+a cliente tambien se hace lo mismo, entonces debe llenarse
+el reclamo a proveedor que ya este abierto.. hasta que
+se llene... usando los campos definidos en la compania
+
+La garantia con el proveedor se calcula tomando la fecha de la
+factura de compra al proveedor?
+
+agregar campo supplier_id en el modelo stock.production.lot,
+busqueda de método que se encarga de asignar el producto
+cuando el serial number es creado desde la transferencia de 
+productos al almacen de la compañia...
+
+Editar metodo en la orden de venta cuando la factura es creada
+antes que el delivery, colocar un condicional que pregunte
+si ya existe un picking asociado con la orden de venta
+y asignarlo a la facutra que se creó primero
