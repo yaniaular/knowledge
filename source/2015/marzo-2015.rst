@@ -227,3 +227,48 @@ por claim_customer o claim_supplier.
 
 transformar en un metodo todo los filtros que se hacen en fiel_view_gets
 
+19 de marzo del 2015
+--------------------
+
+Cotizacion se hace solo si esta fuera de garantia con
+yoytec.
+
+Se puede atender al cliente cuando el producto esta fuera
+de garantia. es decir, se crea la cotizacion.
+
+A veces reciben productos que no son de ellos
+y se debe recibir para reparacion.
+
+Preparar una base de datos con la acumulacion
+de productos en un rma de proveedor...
+
+Acumular los reclamos por direccion de proveedor.
+El acumulador debe ser por servicio autorizado.
+
+Mostrar cotizacion en el reclamo.
+
+Cuando esta diagnosticado, despues que pasa a diagnosticado
+es cuando se ve la notificacion al cliente o e reemplazo, o
+crear cotizacion... **IMPORTANTE**
+
+en at review solo se debe ver boton diagnosed o pass to rma vendor. **IMPORTANTE**
+
+o2m de cliente en serial number.
+
+Cuando se crean los reclamos a proveedor, y en otro reclamo
+a cliente tambien se hace lo mismo, entonces debe llenarse
+el reclamo a proveedor que ya este abierto.. hasta que
+se llene... usando los campos definidos en la compania
+
+La garantia con el proveedor se calcula tomando la fecha de la
+factura de compra al proveedor?
+
+agregar campo supplier_id en el modelo stock.production.lot,
+busqueda de método que se encarga de asignar el producto
+cuando el serial number es creado desde la transferencia de 
+productos al almacen de la compañia...
+
+Editar metodo en la orden de venta cuando la factura es creada
+antes que el delivery, colocar un condicional que pregunte
+si ya existe un picking asociado con la orden de venta
+y asignarlo a la facutra que se creó primero
