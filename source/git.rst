@@ -135,3 +135,10 @@ Se usa para guardar cambios que no se quieren hacer commit aún. Engavetar.
 
 Ver lista de cambios guardados
 
+**borrar branch arriba en el repo**
+
+git push origin --delete nombre_rama
+
+o
+
+git push origin :nombre_rama

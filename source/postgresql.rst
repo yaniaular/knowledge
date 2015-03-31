@@ -92,3 +92,8 @@ Para vistas
 ~~~~~~~~~~~
 
 for tbl in `psql -qAt -c "select table_name from information_schema.views where table_schema = 'public';" YOUR_DB` ; do  psql -c "alter table $tbl owner to NEW_OWNER" YOUR_DB ; done
+
+Copiar base de datos en vivo
+----------------------------
+
+createdb -O openerp -T rma_demo rma_demo_virgen

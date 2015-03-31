@@ -230,6 +230,9 @@ transformar en un metodo todo los filtros que se hacen en fiel_view_gets
 19 de marzo del 2015
 --------------------
 
+TO DOS
+~~~~~~
+
 Cotizacion se hace solo si esta fuera de garantia con
 yoytec.
 
@@ -247,11 +250,6 @@ El acumulador debe ser por servicio autorizado.
 
 Mostrar cotizacion en el reclamo.
 
-Cuando esta diagnosticado, despues que pasa a diagnosticado
-es cuando se ve la notificacion al cliente o e reemplazo, o
-crear cotizacion... **IMPORTANTE**
-
-en at review solo se debe ver boton diagnosed o pass to rma vendor. **IMPORTANTE**
 
 o2m de cliente en serial number.
 
@@ -272,3 +270,168 @@ Editar metodo en la orden de venta cuando la factura es creada
 antes que el delivery, colocar un condicional que pregunte
 si ya existe un picking asociado con la orden de venta
 y asignarlo a la facutra que se creó primero
+
+Cambiar los nombres
+none que se llamara draft
+y draft_customer, claim_customer, y draft_supplier claim_supplier
+
+20 de marzo 2015
+================
+
+reunion con hbto kathy y yani. 1:30 m
+
+
+Se cambia el nombre del campo move_id ya que se neesita el modulo de anglo saxon
+instalado en yoytec por la razon XXX, y en anglo saxon de define un campo
+con el mismo nombre move_id.
+
+La razon por la cual no se usa el campo de move_id es porque, este campo
+es usado en yoytec para tomar el numero de lotes de alguna factura
+que está entrando en reclamo, entonces es posible que se mezcle
+informacion 
+
+
+Usar locaciones virtuales para movimientos de recibo de productos en reclamo
+y devoluciones al proveedor
+
+
+Hacer como en early payment, agregar un metodo en Ask refund para agregar una nueva
+opcion para hacer la devolucion del producto. Ya que es ninguna opcion
+se incluye lo dos asientos de costo promedio y perdida
+https://docs.google.com/a/vauxoo.com/document/d/1JVSVOjH2tQnpN5KA1vUeJVu26TNG1I1G9Y1JKHvwdzo/edit#
+
+
+Cuando se hace la nota de credito va a ser una nota de credito financiera o logistico.
+
+Documentos:
+===========
+
+  a) Se debe de registrar la nota de crédito y escanearla adjunta. b) Se debe
+  de registrar contablemente esta nota de crédito: (CONTABLEMENTE SE DEBE DE
+  REGISTRAR, PÉRDIDA VS COSTO PROMEDIO)
+
+
+Lenovo > Laptop > Yoytec (Location Stock)
+Yoytec > Laptop  > Yanina (Location Customer)
+Yanina > Laptop > Yoytec (Location RMA) ----- no hay contabilidad-- tipo iventory
+Yoytec > Laptop > Lenovo (Location Supplier)  ---- no hay contabilidad -- tipo supplier
+Lenovo > Nota de Credito > Yoytec . -- Registrar contablemente
+
+I*D: NOTAS DE CREDITO
+Logistica: es cuando se generan asiento contables para disminuir el valor del
+inventario, cuando se hacen devoluciones al proveedor. 
+
+Financiera: no hay producto involucrado y 2 lineas de asiento.
+
+Factura de Lenovo
+Expenses (dr) 700
+Payable (cr) 700 (A1)
+
+Lenovo > Yoytec (asiento contable financiero)
+PURCHASE REFUND
+Allowance (dr)   700   0,00
+payable (cr)     0,00   700 (A1)
+
+1) compra a proveedor 1. Fecha 01/01/2015
+expense(dr) 100
+cxp (cr) 100
+
+2) Compra a proveedor 1 en Fecha 03/03/2015
+expense (dr) 120
+cxp (cr) 120
+
+precio promedio es 110
+
+Nota de crédito de la primera compra
+Cxp (dr) 100
+Expense (cr) 110 @ precio promedio (Estos asientos no se crean en odoo)
+G & L diff (dr) 10
+
+Banco (dr) 100
+CxP (cr) 100
+
+Resumen:
+
+Se debe preguntar como YOYTEC registra los asientos contables cuando el
+proveedor les hace una nota de crédito. Dependiendo de lo que nos informen,
+estudiaremos el caso y veremos si la propuesta aquí discutida es válida
+
+Se debe preguntar como manejan la devolucion YOYTEC - CLIENTE. Si realizan una
+nota de crédito financiera.
+
+Propuesta:
+
+Hacer como en early payment (opcion en selection), agregar un metodo llamado
+(Allowance: Devolution of product to supplier) en Ask refund para agregar una
+nueva opción para hacer la devolución del producto. Ya que en ninguna opcion se
+incluye lo dos asientos de costo promedio y perdida
+
+Tambien, crear un atributo en la compañia que permita guarda la cuenta de
+ganancias y perdidas con diferencia en precio (promedio) de devoluciones de
+compra.
+
+
+22 de marzo 2015
+================
+
+self = self.with_context(variable=valor)
+self._context
+
+Manera de editar la variable privada context
+en el enviroment actual.
+
+
+Se cambia creacion de locaciones y products en los tests de crm_rma_stock_location
+desde el yml a data demo. Porque cuando se corren los tests por segunda
+vez, el id de lo que se creo primero y se le asigno a stock.warehouse0
+queda guardado y no se actualiza con el nuevo registro creado.
+
+Cuando se coloco el yml en demo: ['quantity.yml']
+tambien daba error, 
+ValueError: stock_inventory_socket not found when processing /home/yanina/Roots/instancias/odoo/rma/crm_rma_stock_location/test/quantity.yml.
+    This Yaml file appears to depend on missing data. This often happens for
+    tests that belong to a module's test suite and depend on each other.
+
+La solucion fue pasar la creacion de las locaciones, asignacion de una de las locaciones
+en el warehouse de YOurCompany y creacion del producto que se usa
+
+31 de marzo 2015
+================
+
+Documentos a tomar en cuenta
+============================
+
+Dudas HU 814
+
+https://docs.google.com/a/vauxoo.com/document/d/1UiIEPncl4MSEucCWjRO4eeM2XJuayrZLc3hAZ26XP9M/edit#heading=h.b75uyd8a8qvi
+https://docs.google.com/a/vauxoo.com/document/d/1JVSVOjH2tQnpN5KA1vUeJVu26TNG1I1G9Y1JKHvwdzo/edit#
+
+https://www.odoo.com/forum/help-1/question/what-documentation-is-available-for-odoo-60312
+http://www.diferenciahoraria.info/panama-mexico.htm
+
+http://es.wikipedia.org/wiki/Scrum
+
+
+
+
+Buscar sistemas RMA en el mercado
+
+Tenemos que separar las reparaciones del recibimiento de productos
+para reclamo. Las reparaciones de que producto se reparó, eso incluye las
+BOM, ya que no vamos a avanzar en el Workflow.
+
+Por ahora no se va a incluir el proceso de recibir reclamos
+de NO clientes
+
+Hacer las traducciones.
+
+código en git
+
+```python
+return company_picking_type and company_picking_type.id 
+````
+
+La configuracion de rma_internacional debe ir en yoytec/data/data.xml
+
+
+
