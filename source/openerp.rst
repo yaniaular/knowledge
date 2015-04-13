@@ -888,3 +888,29 @@ report/report.xml
             </record>
         </data>
     </openerp>
+
+Sobreescribir el create de account_invoice_line
+-----------------------------------------------
+
+Cuando se sobreescribe el metodo create de account_invoice_line
+y se esta creando la linea desde la linea de reclamo a cliente
+se toma el id de la linea del reclamo y se le asigna al reclado 
+la linea que se esta creando.
+
+class account_invoice_line(orm.Model):
+
+    _inherit = "account.invoice.line"
+
+    def create(self, cr, uid, vals, context=None):
+        claim_line_id = False
+        if vals.get('claim_line_id'):
+            claim_line_id = vals['claim_line_id']
+            del vals['claim_line_id']
+        line_id = super(account_invoice_line, self).create(
+            cr, uid, vals, context=context)
+        if claim_line_id:
+            claim_line_obj = self.pool.get('claim.line')
+            claim_line_obj.write(cr, uid, claim_line_id,
+                                 {'refund_line_id': line_id},
+                                 context=context)
+        return line_id

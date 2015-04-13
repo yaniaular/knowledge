@@ -142,3 +142,24 @@ git push origin --delete nombre_rama
 o
 
 git push origin :nombre_rama
+
+**Borrar el ultimo commit y NO dejar los cambios en el local**
+
+git reset --hard HEAD~1
+
+**Borrar el ultimo commit y dejar los cambios en el local**
+
+git reset --soft HEAD~1
+
+luego se puede hacer un git reset, y luego un git checkout -- . si se 
+desea borrar los cambios locales.
+
+**Traerse los cambios de un commit viejo**
+
+git checkout 24646e0 -- .
+
+**Aplicar los cambios de un commit que fue revertido**
+
+
+git checkout 24646e0 -- .
+git add -A && git commit

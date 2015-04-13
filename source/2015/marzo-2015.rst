@@ -380,7 +380,6 @@ self._context
 Manera de editar la variable privada context
 en el enviroment actual.
 
-
 Se cambia creacion de locaciones y products en los tests de crm_rma_stock_location
 desde el yml a data demo. Porque cuando se corren los tests por segunda
 vez, el id de lo que se creo primero y se le asigno a stock.warehouse0
@@ -411,9 +410,6 @@ http://www.diferenciahoraria.info/panama-mexico.htm
 
 http://es.wikipedia.org/wiki/Scrum
 
-
-
-
 Buscar sistemas RMA en el mercado
 
 Tenemos que separar las reparaciones del recibimiento de productos
@@ -433,5 +429,25 @@ return company_picking_type and company_picking_type.id
 
 La configuracion de rma_internacional debe ir en yoytec/data/data.xml
 
+1 de Abril de 2015
+==================
 
+Error de vista con state not in open
 
+.. figure:: ../images/error_de_vista_states.png
+
+El problema era en una vista 
+
+.. code-block :: xml
+
+    <button name="%(action_create_return_serial)d" string="Mass return from
+    serial/lot" states="draft,open" type="action" target="new"/>
+
+se borró el **states="draft,open"**
+
+Quedó así
+
+.. code-block :: xml
+
+    <button name="%(action_create_return_serial)d" string="Mass return from
+    serial/lot" type="action" target="new"/>

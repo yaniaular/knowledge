@@ -190,3 +190,8 @@ make a deep copy of a component, it should call the deepcopy() function with
 the component as first argument and the memo dictionary as second argument.
 
 https://docs.python.org/2/library/copy.html
+
+Pdb++ pdb con colores
+---------------------
+
+https://bitbucket.org/antocuni/pdb/overview?utm_source=Python+Weekly+Newsletter&utm_campaign=dd2af6ec73-Python_Weekly_Issue_185_April_2_2015&utm_medium=email&utm_term=0_9e26887fc5-dd2af6ec73-312717837
