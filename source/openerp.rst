@@ -914,3 +914,12 @@ class account_invoice_line(orm.Model):
                                  {'refund_line_id': line_id},
                                  context=context)
         return line_id
+
+
+Test pylint and flake
+---------------------
+
+git clone git@github.com:OCA/maintainer-quality-tools.git
+
+pylint --rcfile=~/Roots/instancias/odoo/maintainer-quality-tools/travis/cfg/travis_run_pylint.cfg .
+flake8 --config=~/Roots/instancias/odoo/maintainer-quality-tools/travis/cfg/travis_run_flake8 .

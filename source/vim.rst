@@ -162,3 +162,8 @@ Problema con link a python 3
 sudo vim /usr/bin/bpython
 
 editar path de python en la primera linea
+
+Selecionar bloques de codigo:
+-----------------------------
+
+Enter
