@@ -923,3 +923,9 @@ git clone git@github.com:OCA/maintainer-quality-tools.git
 
 pylint --rcfile=~/Roots/instancias/odoo/maintainer-quality-tools/travis/cfg/travis_run_pylint.cfg .
 flake8 --config=~/Roots/instancias/odoo/maintainer-quality-tools/travis/cfg/travis_run_flake8 .
+
+Decorador para ejecutar tests o codigo python cuando la data demo sea False
+---------------------------------------------------------------------------
+
+@openerp.tests.common.at_install(False)
+@openerp.tests.common.post_install(True)
