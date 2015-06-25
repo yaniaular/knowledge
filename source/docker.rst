@@ -4,12 +4,13 @@ Crear docker para pruebas con travis
 ------------------------------------
 
 1.  python travisfile2dockerfile.py https://github.com/vauxoo-dev/rma 8.0-rma_metsearch_field-dev-yani
+
 1.1 python travisfile2dockerfile.py git@github.com:Vauxoo/yoytec.git pull/112
 
 2. cd /tmp/...
 
--- #. FROM vauxoo/odoo-80-image-shippable-auto
--- #. cambiar el branch de OCA a Vauxoo
+.. #. FROM vauxoo/odoo-80-image-shippable-auto
+.. #. cambiar el branch de OCA a Vauxoo
 
 3. sudo docker build -t rma .
 
@@ -17,11 +18,11 @@ Crear docker para pruebas con travis
 
 .. note::
 
-cada vez que se edite el Dockerfile 
-ejecutar de nuevo sudo docker build -t rma .
+    cada vez que se edite el Dockerfile 
+    ejecutar de nuevo sudo docker build -t rma .
 
 
--- #. sudo docker run -it --entrypoint=bash rma 
+.. #. sudo docker run -it --entrypoint=bash rma 
 
 5. sudo docker run -it rma 
 
@@ -33,27 +34,24 @@ La ejecucion de la instancia se puede copiar y pegar
 desde el archivo Dockefile al final de la linea
 
 
+.. note::
 
+    Correr el que construye.
 
+    from vauxoo-doo-images
+    colocar imagen desde odoo-mexico-v2 moi lo paso por chat.
 
+    python travisfile2dockerfile.py git@github.com:Vauxoo/rma.git pull/21
+    ejecuta así, please
 
+    wget -qO- https://get.docker.com/ | sh
 
-Correr el que construye.
+    Y luego, ejecutas esto: docker pull vauxoo/odoo-80-image-shippable-auto
+    vauxoo/odoo-80-image-shippable-auto
 
-from vauxoo-doo-images
-colocar imagen desde odoo-mexico-v2 moi lo paso por chat.
+    FROM vauxoo/odoo-80-image-shippable-auto
 
-python travisfile2dockerfile.py git@github.com:Vauxoo/rma.git pull/21
-ejecuta así, please
+    docker build -t rma .
 
-wget -qO- https://get.docker.com/ | sh
-
-Y luego, ejecutas esto: docker pull vauxoo/odoo-80-image-shippable-auto
-vauxoo/odoo-80-image-shippable-auto
-
-FROM vauxoo/odoo-80-image-shippable-auto
-
-docker build -t rma .
-
-docker images | grep rma
-docker run -it --entrypoint=bash rma
+    docker images | grep rma
+    docker run -it --entrypoint=bash rma
