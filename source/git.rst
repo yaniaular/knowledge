@@ -184,3 +184,7 @@ then unless you specify **-f** nothing will actually happen.
 
 See the git-clean docs for more information.
 
+Agregar proxy al git
+--------------------
+
+$ git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080
