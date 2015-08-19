@@ -12,23 +12,22 @@ Crear docker para pruebas con travis
 .. #. FROM vauxoo/odoo-80-image-shippable-auto
 .. #. cambiar el branch de OCA a Vauxoo
 
-3. sudo docker build -t rma .
+3. ./10-build.sh (sudo docker build -t rma .)
 
-4. sudo docker images
+4. ./20-run.sh (sudo docker images)
 
 .. note::
 
     cada vez que se edite el Dockerfile 
     ejecutar de nuevo sudo docker build -t rma .
 
+5. sudo docker run -itP --entrypoint=bash rma --La P mayusuculas es para conectar a la instancia 
 
-.. #. sudo docker run -it --entrypoint=bash rma 
+6. sudo docker run -it rma 
 
-5. sudo docker run -it rma 
+7. root@75a63c640b2c:~# 
 
-8. root@75a63c640b2c:~# 
-
-9. LINT_CHECK=0 PATH=${HOME}/maintainer-quality-tools/travis:${PATH} travis_run_tests
+8. LINT_CHECK=0 PATH=${HOME}/maintainer-quality-tools/travis:${PATH} travis_run_tests
 
 La ejecucion de la instancia se puede copiar y pegar
 desde el archivo Dockefile al final de la linea

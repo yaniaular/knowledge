@@ -929,3 +929,125 @@ Decorador para ejecutar tests o codigo python cuando la data demo sea False
 
 @openerp.tests.common.at_install(False)
 @openerp.tests.common.post_install(True)
+
+
+Hacer referencia a un xml id desde vistas, data y python
+========================================================
+
+action domain windows
+---------------------
+
+    <record model="ir.actions.act_window" id="crm_claim_rma.act_crm_case_claim_lines">
+        <field name="domain" eval="[('claim_id.stage_id.id', '!=', ref('crm_claim.stage_claim1'))]"/>
+    </record>
+
+attrs para un campo
+-------------------
+
+    <xpath expr="//field[@name='date']" position="attributes">
+        <attribute name="attrs">{'readonly':[('stage_id','!=',%(crm_claim.stage_claim1)d)]}</attribute>
+    </xpath>
+
+    <xpath expr="//button[@name='render_metasearch_view']" position="attributes">
+        <attribute name="attrs">{'invisible': [('stage_id', '!=', %(crm_claim.stage_claim1)d )]}</attribute>
+    </xpath>
+    
+    <div class="oe_form_box_info oe_text_center"
+            attrs="{'invisible':[('stage_id','!=',%(crm_claim.stage_claim1)d)]}">
+        <b><field name='message' readonly="1"/></b>
+    </div>
+    
+    <record id="filter_customer_new" model="ir.filters">
+        <field name="name">New</field>
+        <field name="model_id">crm.claim</field>
+        <field name="domain" eval="[('stage_id', '=', ref('crm_claim.stage_claim1'))]"/>
+        <field name="context">{}</field>
+        <field name="user_id"></field>
+    </record>
+
+
+atributo options en field
+-------------------------
+
+<field name="category_id" widget="many2many_tags" options="{'limit':
+1,'no_create_edit': True,'no_quick_create': True}"/>
+
+
+<field name="attribute_line_ids" widget="one2many_list" context="{'show_attribute': False}">
+    <tree string="Variants" editable="bottom">
+        <field name="attribute_id"/>
+        <field name="value_ids" widget="many2many_tags" options="{'no_create_edit': True}" domain="[('attribute_id', '=', attribute_id)]" context="{'default_attribute_id': attribute_id}"/>
+    </tree>
+</field>
+
+funciones workflow por xml assert test transformar referencias a objetos
+------------------------------------------------------------------------
+
+<assert id="test_order_1" model="sale.order" string="the sales order is now in 'Manual in progress' state">
+    <test expr="state">manual</test>
+</assert>
+
+<workflow action="manual_invoice" model="sale.order" ref="test_order_1" uid="base.user_root"/>
+
+
+
+<function model="stock.transfer_details"
+name="do_detailed_transfer" eval="[ref('transfer_sale_2'), True, False]"/>
+
+<workflow action="manual_invoice" model="sale.order" ref="sale_order_rma_1" uid="base.user_root"/>
+
+<workflow action="invoice_open" model="account.invoice">
+    <value eval="obj(ref('sale_order_rma_1')).invoice_ids[0].id" model="sale.order"/>
+</workflow>
+
+<record id="transfer_sale_2" model="stock.transfer_details">
+    <field name="picking_id" model="stock.picking" search="[('origin', '=', 'Order sale RMA 1')]"/>
+    <field name="picking_source_location_id" ref="stock.stock_location_stock"/>
+    <field name="picking_destination_location_id" ref="stock.stock_location_customers"/>
+</record>
+
+<function
+    model="sale.order"
+    name="action_button_confirm" eval="[[ref('sale_order_rma_1')]]"/>
+
+<record id="stock_move_rma" model="stock.move">
+    <function eval="[[('purchase_line_id.id', '=', ref('purchase_order_rma_1_line_1'))]]" model="stock.move" name="search"/>
+</record>
+
+<function model="event.event" name="button_confirm" eval="[ref('event_0')]"/>
+
+<record id="stock_picking_rma" model="stock.picking">
+    <function eval="[[('move_lines', '=', ref('stock_move_rma'))]]" model="stock.move" name="search"/>
+</record>
+
+<function
+    eval="('default',False,'warehouse_id', [('purchase.requisition', False)], ref('stock.warehouse0'), True, False, False, False, True)"
+    id="purchase_default_set"
+    model="ir.values"
+    name="set"/>
+
+<function model="account.invoice" name="pay_and_reconcile">
+    <value eval="[obj(ref('test_order_1')).invoice_ids[0].id]" model="sale.order"/>
+    <value eval="obj(ref('test_order_1')).amount_total" model="sale.order"/>
+    <value model="account.account" search="[('type', '=', 'cash')]"/>
+    <value eval="ref('account.period_' + str(int(time.strftime('%m'))))"/>
+    <value eval="ref('account.bank_journal')"/>
+    <value model="account.account" search="[('type', '=', 'cash')]"/>
+    <value eval="ref('account.period_' + str(int(time.strftime('%m'))))"/>
+    <value eval="ref('account.bank_journal')"/>
+</function>
+
+<function model="stock.picking" name="action_assign">
+    <value eval="[obj(ref('test_order_1')).picking_ids[0].id]" model="sale.order"/>
+</function>
+
+<!-- Run all schedulers -->
+<function model="procurement.order" name="run_scheduler"/>
+
+<record id="test_order_1" model="sale.order">
+    <field model="product.pricelist" name="pricelist_id" search="[]"/>
+    <field name="user_id" ref="base.user_root"/>
+    <field model="res.partner" name="partner_id" search="[]"/>
+    <field model="res.partner" name="partner_invoice_id" search="[]"/>
+    <field model="res.partner" name="partner_shipping_id" search="[]"/>
+</record>

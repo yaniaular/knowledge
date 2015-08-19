@@ -29,3 +29,11 @@ route add default gw 172.16.113.1
 
 Paso 3. Configurar DNS 
 echo nameserver 172.16.112.200 > /etc/resolv.conf 
+
+
+zsh
+===
+
+nueva shell para yakuake..
+
+https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH

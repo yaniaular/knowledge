@@ -213,3 +213,7 @@ estimación de los tiempos.
 
 http://en.wikipedia.org/wiki/Proof_of_concept
 
+Export para yoytec
+==================
+
+export PYTHONPATH=/home/yanina/Rutas/panama-dv:${PYTHONPATH}
