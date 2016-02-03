@@ -1051,3 +1051,115 @@ name="do_detailed_transfer" eval="[ref('transfer_sale_2'), True, False]"/>
     <field model="res.partner" name="partner_invoice_id" search="[]"/>
     <field model="res.partner" name="partner_shipping_id" search="[]"/>
 </record>
+
+
+
+warning en el init
+------------------
+
+import logging
+import os
+
+
+_logger = logging.getLogger(__name__ + ".deprecated")
+
+# Skip warnings on runbots
+_method = _logger.info if "OCA_RUNBOT" in os.environ else _logger.warning
+_method("This module is DEPRECATED. See %s/README.rst.",
+        os.path.dirname(__file__))
+
+
+Mute logger para warnings
+-------------------------
+
+ from openerp import exceptions
++from openerp.tools import mute_logger
+ 
+ 
+ class TestSalesManPayments(TransactionCase):
+ @@ -29,6 +30,7 @@ def setUp(self):
+         self.account_id = self.env.ref("account.a_recv")
+         self.product_id = self.env.ref("product.product_product_6")
+ 
++    @mute_logger('openerp.addons.base.ir.ir_model', 'openerp.osv.orm')
+     def test_create_payment(self):
+         """
+             Sales Man can not Validate account invoice
+
+Library for panama ruc
+----------------------
+
+pip install git+https://github.com/vauxoo/panama-dv.git
+
+Campos agrupados mostrar string de un campo al agruparlo
+--------------------------------------------------------
+
+Para poder ver el string real de un campo cuando se agrupa
+y no el nombre técnico, debe agregarse el campo
+a la vista tree del modelo
+
+
+Problema con las vistas
+-----------------------
+
+En odoo vista list y tree son dos vistas distintas. Y no están
+bien definidas en odoo, debido a que se les asignó el mismo nombre
+técnico "tree".
+
+list
+     ------ "tree"
+tree
+
+Entonces al definir view_type=tree me va a mostrar la vista tree
+como se ve en chart of accounts. Entonces si le digo
+view_type=form, me va a mostrar la vista form en caso de que
+esté de primero en view_mode=tree,form. pero como en este
+caso, no está de primero, mostrará la vista tree, que
+se muestra por pura suerte porque en el view_id= esta definido
+el link a la vista form.
+
+Entonces, en view_id se debe especificar la vista tree para que
+quede consistente.
+
+Mustrame la vista form en caso de que sea la primera
+en la lista, sino, muestra la primera en la lista.
+
+view_type>form<
+view_mode>tree,form<
+view_id="......_tree"
+
+Como en este caso, se va a mostrar tree de primero,
+entonces en el view_id debe estar linkeada al tree.
+
+
+Cablear vista en un campo many2one
+----------------------------------
+
+<field name="wave_id" context="{'default_mrp': True, 'form_view_ref':'lodi_customized_picking_transfer.view_mrp_wave_form'}"/>
+
+o también y mejor..
+
++    @api.multi
+ +    def get_formview_id(self):
+ +        """ Return an view id to open the document with. This method is meant to be
+ +            overridden in addons that want to give
+ +            specific view ids for example.
+ +
+ +            :param int id: id of the document to open
+ +        """
+ +        customer_type = self.env.ref("crm_claim_type.crm_claim_type_customer")
+ +        my_type = self.claim_type
+ +        customer_view = self.env.ref(
+ +            "yoytec_customer_rma_workflow.crm_claim_customer_view_form")
+ +        supplier_view = self.env.ref(
+ +            "yoytec_supplier_rma_workflow.crm_claim_supplier_view_form")
+ +        view = my_type == customer_type and customer_view or supplier_view
+ +        return view.id
+
+
+
+
+Actions
+-------
+
+si se agrega un menuitem y no tiene action no se verá el menu

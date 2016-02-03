@@ -177,3 +177,12 @@ Selecionar bloques de codigo:
 -----------------------------
 
 Enter
+
+Spelling errors are higlighted using SpellBad highlighting group, so to get it highlighted as you want you should put something like
+------------------------------------------------------------------------------------------------------------------------------------
+
+hi clear SpellBad
+hi SpellBad cterm=underline
+after last line that is altering colorscheme in your vimrc (it is either set background=(dark|light) or colorscheme {schemename}).
+
+See also :h hl-SpellBad for names and descriptions of other Spell* highlight groups.

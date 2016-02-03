@@ -188,3 +188,15 @@ Agregar proxy al git
 --------------------
 
 $ git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080
+
+How to add a changed file to an older (not last) commit in Git
+--------------------------------------------------------------
+
+Use git rebase. Specifically:
+
+#. Use git rebase -i HEAD~10 (or whatever you need to see far enough back).
+#. Mark the commit in question (a0865...) for edit.
+#. Save the rebase file, and git will drop back to the shell and wait for you to fix that commit.
+#. Add your file with git add.
+#. Amend the commit with git commit --amend.
+#. Do a git rebase --continue which will rewrite the rest of your commits against the new one.

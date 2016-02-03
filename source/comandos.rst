@@ -164,3 +164,6 @@ Encuentra la contraseña o password de un archivo comprimido (zip)
 $ fcrackzip -v -b -p aaaaaa -u your_zip_file.zip
 
 - **py.test --flakes**: probar flakes en los archivos python
+
+**7z**
+https://www.ibm.com/developerworks/community/blogs/6e6f6d1b-95c3-46df-8a26-b7efd8ee4b57/entry/how_to_use_7zip_on_linux_command_line144?lang=en
