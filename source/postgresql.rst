@@ -7,6 +7,7 @@ crear base de datos openerp
 ---------------------------
 
 createdb -O usuario_base_de_datos -T template0 -E UTF8 nombre_base_de_datos
+
 psql -d nombre_base_de_datos -f archivo_sql.sql -U usuario_base_de_datos
 
 alter user openerp with password 'openerp';
